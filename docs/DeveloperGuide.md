@@ -501,6 +501,9 @@ the `Index` class.
 
 * Deletion of Event can only happen for a single patient, and a single event at any given time.
 
+The activity diagram below outlines the steps involved when a user initiates a Delete Event command.
+<puml src="diagrams/DeleteEventActivityDiagram.puml" alt="DeleteEventActivityDiagram" />
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -509,14 +512,18 @@ Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/ Birthday d/ 20-01-2022` command to add the Event, Birthday,
 which falls on the 20th January.
+
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
-Step 3: The use executes `deletee 1 e/1` to delete the Event as he realised he keyed in the wrong
-date.
+Step 3: The use executes `deletee 1 e/1` to delete the Event as the event is over.
+
 * Upon successful validation,  an `DeleteEventCommand` instance is created.
 
 The following UML sequence diagram illustrates how the Delete Event operation works.
 <puml src="diagrams/DeleteEventSequenceDiagram.puml" alt="Delete Event Sequence Diagram" />
+
+**Note:** The lifeline for `DeleteEventCommandParser` and `DeleteEventCommand` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Design Considerations
 
@@ -526,7 +533,7 @@ The following UML sequence diagram illustrates how the Delete Event operation wo
     * Pros: Consistent with `adde` command to add new Event.
     * Cons: Might be counter-intuitive for user as command is unfamiliar.
       <br></br>
-* **Alternative 2**: `deleteID`
+* **Alternative 2**: Use `deleteID`
     * Pros: Clearer syntax.
     * Cons: User might confuse ID as Patient ID and also inconsistency with `adde` command, further confusing user.
 
