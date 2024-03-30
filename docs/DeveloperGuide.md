@@ -208,6 +208,12 @@ Step 4: The newly added Patient will be added to the end of list, shown in the U
 The following UML sequence diagram illustrates how the `AddCommand` operation works.
 <puml src="diagrams/AddSequenceDiagram.puml" alt="Add Sequence Diagram" />
 
+<box type="info" seamless>
+
+**Note:** The lifeline for `AddCommandParser` and `AddCommand` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
@@ -263,7 +269,7 @@ The following sequence diagram shows how the Add Tags operation works:
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `AddTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `AddTagCommandParser` and `AddTagsCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
@@ -336,7 +342,7 @@ The following sequence diagram shows how the Delete Tags operation works:
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteTagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `DeleteTagCommandParser` and `DeleteTagsCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
@@ -389,6 +395,9 @@ The `AddEventCommand` class is responsible for adding an Event to a patient in t
 
 * If the patient already has a particular Event, it will not be added again.
 
+The activity diagram below outlines the steps involved when a user initiates a Add Event command.
+<puml src="diagrams/AddEventActivityDiagram.puml" alt="AddEventActivityDiagram" />
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -399,10 +408,19 @@ Step 2: The user executes the `adde 1 n/Birthday d/20-01-2022` command to add th
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
 <box type="info" seamless>
+
 <b>Note</b>: Only 1 Event can be added at a time per command
+
 </box>
 
 <puml src="diagrams/AddEventSequenceDiagram.puml" alt="Add Event Sequence Diagram" />
+
+<box type="info" seamless>
+
+<b>Note:</b> The lifeline for `AddEventCommandParser` and `AddEventCommand` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
@@ -473,6 +491,12 @@ Step 4: The Patient with specified index will be updated in the list, shown in t
 The following UML sequence diagram illustrates how the `EditCommand` operation works.
 <puml src="diagrams/EditSequenceDiagram.puml" alt="Edit Sequence Diagram" />
 
+<box type="info" seamless>
+
+<b>Note:</b> The lifeline for `EditCommandParser` and `EditCommand` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
@@ -522,8 +546,12 @@ Step 3: The use executes `deletee 1 e/1` to delete the Event as the event is ove
 The following UML sequence diagram illustrates how the Delete Event operation works.
 <puml src="diagrams/DeleteEventSequenceDiagram.puml" alt="Delete Event Sequence Diagram" />
 
+<box type="info" seamless>
+
 **Note:** The lifeline for `DeleteEventCommandParser` and `DeleteEventCommand` should end at the destroy marker (X) but
 due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
@@ -580,6 +608,13 @@ Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-01-2023` to edit the 
 The following UML sequence diagram illustrates how the Edit Event operations works.
 <puml src="diagrams/EditEventSequenceDiagram.puml" alt="Edit Event Sequence Diagram" />
 
+<box type="info" seamless>
+
+**Note:** The lifeline for `EditEventCommandParser` and `EditEventCommand` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
 
 #### Design Considerations
 
@@ -620,6 +655,13 @@ Step 3: The user decide to remove the first patient in the address book.
 
 Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
 
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
 ### 3.9 Listing all Patients
 
 #### Introduction
@@ -637,6 +679,13 @@ command.
 then end time if both date and start time is equal
 
 <puml src="diagrams/ListSequenceDiagram.puml" alt="List Sequence Diagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -663,6 +712,13 @@ Step 2: The user executes `find Alex` to search for patients whose name is Alex.
 
 The following UML sequence diagram illustrates how the Find operations works.
 <puml src="diagrams/FindSequenceDiagram.puml" alt="Find Sequence Diagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 
 #### Design Considerations
@@ -702,6 +758,13 @@ Step 2: The user executes `findt depression` to search for patients whose tag is
 
 The following UML sequence diagram illustrates how the FindTags operations works.
 <puml src="diagrams/FindTagsSequenceDiagram.puml" alt="Find Tags Sequence Diagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `FindTagsCommandParser` should end at the destroy marker (X) but
+due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 #### Design Considerations
 
