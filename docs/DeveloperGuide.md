@@ -269,7 +269,7 @@ The following sequence diagram shows how the Add Tags operation works:
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `AddTagCommandParser` and `AddTagsCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `AddTagsCommandParser` and `AddTagsCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
@@ -342,7 +342,7 @@ The following sequence diagram shows how the Delete Tags operation works:
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteTagCommandParser` and `DeleteTagsCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `DeleteTagsCommandParser` and `DeleteTagsCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
