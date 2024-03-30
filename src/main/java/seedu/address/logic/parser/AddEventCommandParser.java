@@ -15,7 +15,7 @@ import seedu.address.model.patient.Event;
 /**
  * Parses the user's input arguments and creates a new AddEvent Command
  */
-public class AddEventParser implements Parser<AddEventCommand> {
+public class AddEventCommandParser implements Parser<AddEventCommand> {
 
     /**
      * @throws ParseException if the user input does not conform to the expected format

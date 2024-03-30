@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Event;
 
 public class AddEventParserTest {
-    private final AddEventParser parser = new AddEventParser();
+    private final AddEventCommandParser parser = new AddEventCommandParser();
     private final Event validDate = new Event(VALID_EVENT_NAME, VALID_EVENT_DATE);
     private final Event validDateTime = new Event(VALID_EVENT_NAME, VALID_EVENT_DATETIME);
 
