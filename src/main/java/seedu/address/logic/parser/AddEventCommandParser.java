@@ -34,7 +34,6 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddEventCommand.MESSAGE_USAGE));
         }
-
         logger.info("All prefixes required are present.");
 
         Index index;
@@ -44,12 +43,10 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddEventCommand.MESSAGE_USAGE), e);
         }
-
         logger.info("Patient Index is valid");
 
         Event event = ParserUtil.parseEvent(argMultimap.getValue(PREFIX_NAME).get(),
                 argMultimap.getValue(PREFIX_DATETIME).get());
-
         logger.info("All arguments received are valid");
 
         return new AddEventCommand(index, event);
