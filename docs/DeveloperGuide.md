@@ -761,8 +761,8 @@ The following UML sequence diagram illustrates how the FindTags operations works
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `FindTagsCommandParser` should end at the destroy marker (X) but
-due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `FindTagsCommandParser` and `FindTagsCommand` should end at the destroy marker 
+(X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
