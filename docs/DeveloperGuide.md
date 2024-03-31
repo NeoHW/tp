@@ -715,7 +715,7 @@ The following UML sequence diagram illustrates how the Find operations works.
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but
+**Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but
 due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
