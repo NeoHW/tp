@@ -20,12 +20,13 @@ else ([Valid command format])
                 :PatientSync throws an error;
                 :PatientSync adds error message to output;
             else ([Valid event details])
-                :PatientSync edits the specified event;
-                :PatientSync updates the set of events for the patient;
-                :PatientSync updates the displayed patient list;
                 if () then ([Duplicate event])
-                    :PatientSync adds duplicate event message to output;
+                    :PatientSync throws an error;
+                    :PatientSync adds error message to output;
                 else ([else])
+                    :PatientSync edits the specified event;
+                    :PatientSync updates the set of events for the patient;
+                    :PatientSync updates the displayed patient list;
                     :PatientSync adds success message to output;
                 endif
             endif
