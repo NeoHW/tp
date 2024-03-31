@@ -101,6 +101,9 @@ Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/
 Examples:
 * `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 * `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
+* `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`
+
+![result for 'adding patient John Doe'](images/addPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,6 +112,8 @@ Examples:
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+![result for 'listing all patients'](images/listResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -128,7 +133,9 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 
 Examples:
 *  `edit 1 p/Alex f/Fried rice` Edits the preferred name and food preference of the 1st patient to be `Alex` and `Fried rice` respectively.
-*  `edit 2 f/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.
+*  `edit 2 c/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.
+
+![result for 'edit patient'](images/editPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +156,8 @@ e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 Examples:
 * find `Alex` returns `alex` and `Alex becker`
 * find `alex becker` returns `alex`, `Alex Becker` and `Becker Li`
-  ![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
+
+![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,8 +172,10 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+
+![result for 'delete 2'](images/deleteResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -193,7 +203,9 @@ Format: `addt INDEX [t/TAG]+`
 
 Examples:
 * `addt 1 t/critical`
-* `addt 2 t/friend t/fall risk`
+* `addt 2 t/friend t/stable`
+
+![result for 'add tags'](images/addTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -216,7 +228,9 @@ Format: `deletet INDEX [t/TAG]+`
 
 Examples:
 * `deletet 1 t/critical`
-* `deletet 2 t/friend t/fall risk`
+* `deletet 2 t/friend t/stable`
+
+![result for 'delete tags'](images/deleteTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,6 +252,8 @@ Examples:
 * find `depression` returns `depression` and `depression diabetes`
 * find `depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
 
+![result for 'find tags'](images/findTagsResult.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Adding an Event to a Patient : `adde`
@@ -256,6 +272,8 @@ Examples:
 * `adde 1 n/Birthday d/20-01-2022`
 * `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 
+![result for 'add event'](images/addEventResult.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting an Event from a Patient : `deletee`
@@ -273,8 +291,10 @@ Patients/Events)
 * Both `PATIENT_INDEX` and `EVENT_INDEX` are compulsory fields (Neither can be **EMPTY**)
 
 Examples:
+* `deletee 2 e/4`
 * `deletee 1 e/1`
-* `deletee 3 e/4`
+
+![result for 'delete event'](images/deleteEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Editing an Event for a Patient: `edite`
@@ -298,11 +318,15 @@ Examples:
 * `edite 1 e/1 n/Papa Birthday d/20-01-2023`
 * `edite 2 e/1 n/Mama Birthday d/21-02-2024`
 
+![result for 'edit event'](images/editEventResult.png)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+![result for 'clear'](images/clearResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
