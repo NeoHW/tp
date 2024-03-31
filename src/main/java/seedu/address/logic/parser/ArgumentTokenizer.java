@@ -1,9 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -30,6 +37,18 @@ public class ArgumentTokenizer {
 
     /**
      * Finds all zero-based prefix positions in the given arguments string.
+     *
+     * @param argsString The arguments string to search for prefixes
+     * @return a list of PrefixPosition objects representing the positions of prefixes
+     */
+    private static List<PrefixPosition> findAllPrefixPositions(String argsString) {
+        return PREFIX_LIST.stream()
+                .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Finds all zero-based prefix positions in the given arguments string from specified given prefixes.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixes   Prefixes to find in the arguments string
@@ -122,6 +141,24 @@ public class ArgumentTokenizer {
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
+    }
+
+    /**
+     * Checks for invalid prefixes other than {@code \t} in the provided arguments string.
+     * Throws a ParseException if any prefix other than {@code \t} is found.
+     *
+     * @param argsString The arguments string to check for invalid prefixes
+     * @throws ParseException if an invalid prefix is found
+     */
+    public static void checkInvalidPrefixesForTags(String argsString) throws ParseException {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString);
+
+        for (PrefixPosition position : positions) {
+            Prefix prefix = position.getPrefix();
+            if (!PREFIX_TAG.equals(prefix)) {
+                throw new ParseException("Invalid command prefixes detected. Only allows " + PREFIX_TAG + " prefix.");
+            }
+        }
     }
 
     /**
