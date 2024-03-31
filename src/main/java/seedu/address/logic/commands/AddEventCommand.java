@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -24,7 +26,6 @@ import seedu.address.model.patient.Patient;
  */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "adde";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an event for a Patient. "
             + "Parameters: INDEX (must be a positive integer matching that of the Patient in the `list` command) "
@@ -35,12 +36,13 @@ public class AddEventCommand extends Command {
             + COMMAND_WORD + " 1 "
             + PREFIX_NAME + " Father Birthday "
             + PREFIX_DATETIME + "29-09-1789";
-
     public static final String MESSAGE_SUCCESS = "Event %1$s successfully added for Patient %2$s with ID %3$s for %4$s";
     public static final String MESSAGE_DUPLICATE = "Event %1$s already exists for Patient %2$s with ID %3$s for %4$s";
 
+    private static final Logger logger = LogsCenter.getLogger(AddEventCommand.class);
+
     private final Index index;
-    private final Event dateToAdd;
+    private final Event eventToAdd;
     private final EditPatientDescriptor editPatientDescriptor;
 
 
@@ -55,13 +57,15 @@ public class AddEventCommand extends Command {
         requireAllNonNull(index, event);
 
         this.index = index;
-        this.dateToAdd = event;
+        this.eventToAdd = event;
         this.editPatientDescriptor = new EditPatientDescriptor();
     }
 
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Attempting to execute AddEventCommand");
+
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
@@ -72,20 +76,27 @@ public class AddEventCommand extends Command {
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
         Set<Event> newEventsList = new HashSet<>(patientToEdit.getEvents());
 
-        if (newEventsList.contains(this.dateToAdd)) {
-            return new CommandResult(String.format(MESSAGE_DUPLICATE, dateToAdd.name, patientToEdit.getName(),
-                    index.getOneBased(), dateToAdd.date));
+        if (newEventsList.contains(this.eventToAdd)) {
+            return new CommandResult(String.format(MESSAGE_DUPLICATE, eventToAdd.name, patientToEdit.getName(),
+                    index.getOneBased(), eventToAdd.date));
         }
 
-        newEventsList.add(this.dateToAdd);
+        logger.info("All checks passed; Attempting to add event " + this.eventToAdd
+                + " into the patient's event set");
+
+        newEventsList.add(this.eventToAdd);
+        assert(newEventsList.size() > 0);
+
         editPatientDescriptor.setEvents(newEventsList);
 
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, dateToAdd.name, editedPatient.getName(),
-                index.getOneBased(), dateToAdd.date));
+        logger.info("Event added to patient's event set");
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd.name, editedPatient.getName(),
+                index.getOneBased(), eventToAdd.date));
     }
 
     /**
@@ -106,14 +117,14 @@ public class AddEventCommand extends Command {
 
         AddEventCommand otherAddEventCommand = (AddEventCommand) other;
         return index.equals(otherAddEventCommand.index)
-                && dateToAdd.equals(otherAddEventCommand.dateToAdd);
+                && eventToAdd.equals(otherAddEventCommand.eventToAdd);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("event", dateToAdd)
+                .add("event", eventToAdd)
                 .toString();
     }
 }
