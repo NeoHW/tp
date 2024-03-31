@@ -44,8 +44,7 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully updated "
             + "for Patient %4$s with ID %5$s";
-    public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s "
-            + "so only one entry is kept.";
+    public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s";
 
     private final Index patientIndex;
     private final Index eventIndex;
@@ -75,17 +74,14 @@ public class EditEventCommand extends Command {
         Patient patientToEditEvent = lastShownList.get(patientIndex.getZeroBased());
         Set<Event> events = patientToEditEvent.getEvents();
         checkEventIndex(events);
+        
+        checkDuplicateEvent(events, patientToEditEvent);
 
         List<Event> eventList = new ArrayList<>(events);
         editEvent(eventList);
 
         Patient updatedPatient = createEditedPatient(patientToEditEvent, editPatientDescriptor);
         updatePatientList(model, patientToEditEvent, updatedPatient);
-
-        if (events.contains(eventToUpdate)) {
-            return new CommandResult(String.format(MESSAGE_DUPLICATE, eventToUpdate.name, eventToUpdate.date,
-                    updatedPatient.getName(), patientIndex.getOneBased()));
-        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToUpdate.name, eventIndex.getOneBased(),
                 eventToUpdate.date, updatedPatient.getName(), patientIndex.getOneBased()));
@@ -110,6 +106,19 @@ public class EditEventCommand extends Command {
     public void checkEventIndex(Set<Event> events) throws CommandException {
         if (eventIndex.getZeroBased() >= events.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Checks if the event to edit is the same as any of the existing events.
+     * @param events Set of events.
+     * @param patientToEditEvent The specified patient to edit event.
+     * @throws CommandException Throws exception when there is a duplicate event.
+     */
+    public void checkDuplicateEvent(Set<Event> events, Patient patientToEditEvent) throws CommandException {
+        if (events.contains(eventToUpdate)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE, eventToUpdate.name, eventToUpdate.date,
+                    patientToEditEvent.getName(), patientIndex.getOneBased()));
         }
     }
 
