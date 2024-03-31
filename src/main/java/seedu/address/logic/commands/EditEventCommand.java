@@ -74,7 +74,7 @@ public class EditEventCommand extends Command {
         Patient patientToEditEvent = lastShownList.get(patientIndex.getZeroBased());
         Set<Event> events = patientToEditEvent.getEvents();
         checkEventIndex(events);
-        
+
         checkDuplicateEvent(events, patientToEditEvent);
 
         List<Event> eventList = new ArrayList<>(events);

@@ -313,6 +313,8 @@ Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DA
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
   Patients/Events).
+* Editing an event to an existing event will not change the patient list as there should not have any duplicate
+  events.
 
 Examples:
 * `edite 1 e/1 n/Papa Birthday d/20-01-2023`
