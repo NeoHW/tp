@@ -657,7 +657,7 @@ Step 4: The user executes the `delete 1` command to remove the first patient in 
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but
+**Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but
 due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
