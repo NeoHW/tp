@@ -57,7 +57,7 @@ public class DeleteCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
-        logger.log(Level.INFO, "Invalid target index is checked.");
+        logger.log(Level.INFO, "Target index is valid.");
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePatient(patientToDelete);
