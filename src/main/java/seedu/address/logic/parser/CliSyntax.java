@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import java.util.Set;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -16,4 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
     public static final Prefix PREFIX_EVENT = new Prefix("e/");
 
+    public static final Set<Prefix> PREFIX_LIST = Set.of(PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME,
+            PREFIX_FOOD_PREFERENCE, PREFIX_FAMILY_CONDITION, PREFIX_HOBBY, PREFIX_TAG, PREFIX_DATETIME, PREFIX_EVENT);
 }

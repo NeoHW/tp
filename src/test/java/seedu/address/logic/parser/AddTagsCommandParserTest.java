@@ -24,6 +24,27 @@ public class AddTagsCommandParserTest {
     private final AddTagsCommandParser parser = new AddTagsCommandParser();
 
     @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        // Invalid prefix: "p/" instead of "t/"
+        String userInput = "1 p/tag";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_multipleInvalidPrefixes_throwsParseException() {
+        // Multiple invalid prefixes: "p/" instead of "t/", "d/" instead of "t/"
+        String userInput = "1 p/tag d/depression";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_multipleInvalidAndValidPrefixes_throwsParseException() {
+        // Multiple invalid prefixes: "p/" instead of "t/", "d/" instead of "t/"
+        String userInput = "1 t/fall risk p/tag d/depression";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
     public void parse_validArgs_returnsAddTagsCommand() throws ParseException {
         Index targetIndex = INDEX_SECOND_PATIENT;
         String userInput = targetIndex.getOneBased() + TAG_DESC_DEPRESSION;
