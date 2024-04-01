@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,10 +59,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPatientDescriptor.setPreferredName(ParserUtil.parsePreferredName(
                 argMultimap.getValue(PREFIX_PREFERRED_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_FOOD_PREFERENCE).isPresent()) {
-            editPatientDescriptor.setFoodPreference(ParserUtil.parseFoodPreference(
-                argMultimap.getValue(PREFIX_FOOD_PREFERENCE).get()));
-        }
+
+        parseFoodPreferenceForEdit(argMultimap.getAllValues(PREFIX_FOOD_PREFERENCE)).ifPresent(
+            editPatientDescriptor::setFoodPreferences);
+
         if (argMultimap.getValue(PREFIX_FAMILY_CONDITION).isPresent()) {
             editPatientDescriptor.setFamilyCondition(ParserUtil.parseFamilyCondition(
                 argMultimap.getValue(PREFIX_FAMILY_CONDITION).get()));
@@ -77,6 +78,24 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPatientDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> foodPreferences} into a {@code Set<FoodPreference>} if {@code foodPreferences}
+     * is non-empty.
+     * If {@code foodPreferences} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FoodPreference>} containing zero foodPreference.
+     */
+    private Optional<Set<FoodPreference>> parseFoodPreferenceForEdit(
+        Collection<String> foodPreferences) throws ParseException {
+        assert foodPreferences != null;
+
+        if (foodPreferences.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> foodPreferenceSet = foodPreferences.size() == 1 && foodPreferences.contains("")
+            ? Collections.emptySet() : foodPreferences;
+        return Optional.of(ParserUtil.parseFoodPreferences(foodPreferenceSet));
     }
 
     /**

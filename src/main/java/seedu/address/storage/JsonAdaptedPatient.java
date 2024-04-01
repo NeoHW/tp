@@ -30,7 +30,7 @@ class JsonAdaptedPatient {
     private final String patientHospitalId;
     private final String name;
     private final String preferredName;
-    private final String foodPreference;
+    private final List<JsonAdaptedFoodPreference> foodPreferences = new ArrayList<>();
     private final String familyCondition;
     private final String hobby;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -42,7 +42,7 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("patientHospitalId") String patientHospitalId,
                               @JsonProperty("name") String name, @JsonProperty("preferredName") String preferredName,
-                              @JsonProperty("foodPreference") String foodPreference,
+                              @JsonProperty("foodPreferences") List<JsonAdaptedFoodPreference> foodPreferences,
                               @JsonProperty("familyCondition") String familyCondition,
                               @JsonProperty("hobby") String hobby,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
@@ -50,7 +50,9 @@ class JsonAdaptedPatient {
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.foodPreference = foodPreference;
+        if (foodPreferences != null) {
+            this.foodPreferences.addAll(foodPreferences);
+        }
         this.familyCondition = familyCondition;
         this.hobby = hobby;
         if (tags != null) {
@@ -68,15 +70,17 @@ class JsonAdaptedPatient {
         patientHospitalId = source.getPatientHospitalId().patientHospitalId;
         name = source.getName().fullName;
         preferredName = source.getPreferredName().preferredName;
-        foodPreference = source.getFoodPreference().foodPreference;
+        foodPreferences.addAll(source.getFoodPreferences().stream()
+            .map(JsonAdaptedFoodPreference::new)
+            .collect(Collectors.toList()));
         familyCondition = source.getFamilyCondition().familyCondition;
         hobby = source.getHobby().hobby;
         tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
         events.addAll(source.getEvents().stream()
-                .map(JsonAdaptedEvent::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedEvent::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -85,6 +89,11 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
+        final List<FoodPreference> patientFoodPreferences = new ArrayList<>();
+        for (JsonAdaptedFoodPreference foodPreference : foodPreferences) {
+            patientFoodPreferences.add(foodPreference.toModelType());
+        }
+
         final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             patientTags.add(tag.toModelType());
@@ -123,14 +132,7 @@ class JsonAdaptedPatient {
         }
         final PreferredName modelPreferredName = new PreferredName(preferredName);
 
-        if (foodPreference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                FoodPreference.class.getSimpleName()));
-        }
-        if (!FoodPreference.isValidFoodPreference(foodPreference)) {
-            throw new IllegalValueException(FoodPreference.MESSAGE_CONSTRAINTS);
-        }
-        final FoodPreference modelFoodPreference = new FoodPreference(foodPreference);
+        final Set<FoodPreference> modelFoodPreferences = new HashSet<>(patientFoodPreferences);
 
         if (familyCondition == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -152,7 +154,7 @@ class JsonAdaptedPatient {
         final Set<Tag> modelTags = new HashSet<>(patientTags);
         final Set<Event> modelEvents = new HashSet<>(patientEvents);
 
-        return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreference,
+        return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreferences,
             modelFamilyCondition, modelHobby, modelTags, modelEvents);
     }
 

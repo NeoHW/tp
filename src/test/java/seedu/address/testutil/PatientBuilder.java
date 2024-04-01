@@ -29,7 +29,7 @@ public class PatientBuilder {
     private PatientHospitalId patientHospitalId;
     private Name name;
     private PreferredName preferredName;
-    private FoodPreference foodPreference;
+    private Set<FoodPreference> foodPreferences;
     private FamilyCondition familyCondition;
     private Hobby hobby;
     private Set<Tag> tags;
@@ -42,7 +42,7 @@ public class PatientBuilder {
         patientHospitalId = new PatientHospitalId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         preferredName = new PreferredName(DEFAULT_PREFERRED_NAME);
-        foodPreference = new FoodPreference(DEFAULT_FOOD_PREFERENCE);
+        foodPreferences = new HashSet<>();
         familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
         hobby = new Hobby(DEFAULT_HOBBY);
         tags = new HashSet<>();
@@ -56,7 +56,7 @@ public class PatientBuilder {
         patientHospitalId = patientToCopy.getPatientHospitalId();
         name = patientToCopy.getName();
         preferredName = patientToCopy.getPreferredName();
-        foodPreference = patientToCopy.getFoodPreference();
+        foodPreferences = new HashSet<>(patientToCopy.getFoodPreferences());
         familyCondition = patientToCopy.getFamilyCondition();
         hobby = patientToCopy.getHobby();
         tags = new HashSet<>(patientToCopy.getTags());
@@ -96,10 +96,12 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code FoodPreference} of the {@code Patient} that we are building.
+     * Sets the FoodPreference of the {@code Patient} that we are building.
+     * @param foodPreferences array of string of preferred food
+     * @return return PatientBuilder withFoodPreferences
      */
-    public PatientBuilder withFoodPreference(String foodPreference) {
-        this.foodPreference = new FoodPreference(foodPreference);
+    public PatientBuilder withFoodPreferences(String ... foodPreferences) {
+        this.foodPreferences = SampleDataUtil.getFoodPreferenceSet(foodPreferences);
         return this;
     }
 
@@ -136,7 +138,7 @@ public class PatientBuilder {
      * Builds {@code Patient} with new Patient.
      */
     public Patient build() {
-        return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
+        return new Patient(patientHospitalId, name, preferredName, foodPreferences, familyCondition, hobby, tags,
             events);
     }
 

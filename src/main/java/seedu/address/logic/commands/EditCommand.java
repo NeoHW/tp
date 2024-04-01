@@ -103,8 +103,8 @@ public class EditCommand extends Command {
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         PreferredName updatedPreferredName = editPatientDescriptor.getPreferredName()
             .orElse(patientToEdit.getPreferredName());
-        FoodPreference updatedFoodPreference = editPatientDescriptor.getFoodPreference()
-            .orElse(patientToEdit.getFoodPreference());
+        Set<FoodPreference> updatedFoodPreferences = editPatientDescriptor.getFoodPreferences()
+            .orElse(patientToEdit.getFoodPreferences());
         FamilyCondition updatedFamilyCondition = editPatientDescriptor.getFamilyCondition()
             .orElse(patientToEdit.getFamilyCondition());
         Hobby updatedHobby = editPatientDescriptor.getHobby().orElse(patientToEdit.getHobby());
@@ -112,7 +112,7 @@ public class EditCommand extends Command {
         Set<Event> updatedEvents = editPatientDescriptor.getEvents()
                 .orElse(patientToEdit.getEvents());
 
-        return new Patient(originalPatientHospitalId, updatedName, updatedPreferredName, updatedFoodPreference,
+        return new Patient(originalPatientHospitalId, updatedName, updatedPreferredName, updatedFoodPreferences,
             updatedFamilyCondition, updatedHobby, updatedTags, updatedEvents);
     }
 

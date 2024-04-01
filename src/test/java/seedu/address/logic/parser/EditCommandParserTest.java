@@ -119,7 +119,7 @@ public class EditCommandParserTest {
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
             .withPatientHospitalId(VALID_ID_AMY).withName(VALID_NAME_AMY).withPreferredName(VALID_PREFERRED_NAME_AMY)
-            .withFoodPreference(VALID_FOOD_AMY).withFamilyCondition(VALID_FAMILY_CONDITION_AMY)
+            .withFoodPreferences(VALID_FOOD_AMY).withFamilyCondition(VALID_FAMILY_CONDITION_AMY)
             .withHobby(VALID_HOBBY_AMY).withTags(VALID_TAG_DIABETES, VALID_TAG_DEPRESSION).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -157,7 +157,7 @@ public class EditCommandParserTest {
 
         // food preference
         userInput = targetIndex.getOneBased() + FOOD_DESC_AMY;
-        descriptor = new EditPatientDescriptorBuilder().withFoodPreference(VALID_FOOD_AMY).build();
+        descriptor = new EditPatientDescriptorBuilder().withFoodPreferences(VALID_FOOD_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

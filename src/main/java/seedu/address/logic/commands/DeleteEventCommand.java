@@ -93,7 +93,7 @@ public class DeleteEventCommand extends Command {
         editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
         editPatientDescriptor.setPatientHospitalId(patientToDeleteEvent.getPatientHospitalId());
         editPatientDescriptor.setPreferredName(patientToDeleteEvent.getPreferredName());
-        editPatientDescriptor.setFoodPreference(patientToDeleteEvent.getFoodPreference());
+        editPatientDescriptor.setFoodPreferences(patientToDeleteEvent.getFoodPreferences());
         editPatientDescriptor.setFamilyCondition(patientToDeleteEvent.getFamilyCondition());
         editPatientDescriptor.setHobby(patientToDeleteEvent.getHobby());
         editPatientDescriptor.setName(patientToDeleteEvent.getName());

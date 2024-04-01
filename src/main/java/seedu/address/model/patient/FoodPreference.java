@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Patient's preferred food in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidFood(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidFoodPreference(String)} (String)}
  */
 public class FoodPreference {
 

@@ -35,7 +35,9 @@ public class PatientUtil {
         sb.append(PREFIX_PID + patient.getPatientHospitalId().patientHospitalId + " ");
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
         sb.append(PREFIX_PREFERRED_NAME + patient.getPreferredName().preferredName + " ");
-        sb.append(PREFIX_FOOD_PREFERENCE + patient.getFoodPreference().foodPreference + " ");
+        patient.getFoodPreferences().stream().forEach(
+            s -> sb.append(PREFIX_FOOD_PREFERENCE + s.foodPreference + " ")
+        );
         sb.append(PREFIX_FAMILY_CONDITION + patient.getFamilyCondition().familyCondition + " ");
         sb.append(PREFIX_HOBBY + patient.getHobby().hobby + " ");
         patient.getTags().stream().forEach(
@@ -54,8 +56,14 @@ public class PatientUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPreferredName().ifPresent(preferredName -> sb.append(PREFIX_PREFERRED_NAME)
             .append(preferredName.preferredName).append(" "));
-        descriptor.getFoodPreference().ifPresent(foodPreference -> sb.append(PREFIX_FOOD_PREFERENCE)
-            .append(foodPreference.foodPreference).append(" "));
+
+        descriptor.getFoodPreferences().ifPresent(foodPreferences -> {
+            if (!foodPreferences.isEmpty()) {
+                foodPreferences.forEach(food -> sb.append(PREFIX_FOOD_PREFERENCE)
+                    .append(food.foodPreference).append(" "));
+            }
+        });
+
         descriptor.getFamilyCondition().ifPresent(familyCondition -> sb.append(PREFIX_FAMILY_CONDITION)
             .append(familyCondition.familyCondition).append(" "));
         descriptor.getHobby().ifPresent(hobby -> sb.append(PREFIX_HOBBY).append(hobby.hobby).append(" "));

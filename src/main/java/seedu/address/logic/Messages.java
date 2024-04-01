@@ -42,9 +42,9 @@ public class Messages {
                 .append(patient.getPreferredName())
                 .append("; PatientHospitalId: ")
                 .append(patient.getPatientHospitalId())
-                .append("; FoodPreference: ")
-                .append(patient.getFoodPreference())
-                .append("; FamilyCondition: ")
+                .append("; FoodPreferences: ");
+        patient.getFoodPreferences().forEach(builder::append);
+        builder.append("; FamilyCondition: ")
                 .append(patient.getFamilyCondition())
                 .append("; Hobby: ")
                 .append(patient.getHobby())

@@ -55,7 +55,7 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different food preference -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFoodPreference(VALID_FOOD_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFoodPreferences(VALID_FOOD_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different family condition -> returns false
@@ -85,8 +85,8 @@ public class EditPatientDescriptorTest {
         String expected = EditPatientDescriptor.class.getCanonicalName() + "{patientHospitalId="
                 + editPatientDescriptor.getPatientHospitalId().orElse(null) + ", name="
                 + editPatientDescriptor.getName().orElse(null) + ", preferredName="
-                + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreference="
-                + editPatientDescriptor.getFoodPreference().orElse(null) + ", familyCondition="
+                + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreferences="
+                + editPatientDescriptor.getFoodPreferences().orElse(null) + ", familyCondition="
                 + editPatientDescriptor.getFamilyCondition().orElse(null) + ", hobby="
                 + editPatientDescriptor.getHobby().orElse(null) + ", tags="
                 + editPatientDescriptor.getTags().orElse(null) + ", events="

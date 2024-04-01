@@ -25,7 +25,7 @@ public class SampleDataUtil {
             new Patient(new PatientHospitalId("12345"),
                 new Name("Alex Yeoh Jia Jun"),
                 new PreferredName("Alex"),
-                new FoodPreference("Curry chicken"),
+                getFoodPreferenceSet("diabetes"),
                 new FamilyCondition("Stable, Has 2 sons that visits him regularly"),
                 new Hobby("Singing karaoke"),
                 getTagSet("diabetes"),
@@ -33,7 +33,7 @@ public class SampleDataUtil {
             new Patient(new PatientHospitalId("12346"),
                 new Name("Bernice Yu Sheng Huat"),
                 new PreferredName("Bern"),
-                new FoodPreference("Char Kuay Tiao, Black Carrot Cake"),
+                getFoodPreferenceSet("Char Kuay Tiao", "Black Carrot Cake"),
                 new FamilyCondition("Lives alone, no family members around"),
                 new Hobby("Playing Mahjong"),
                 getTagSet("high blood pressure"),
@@ -41,28 +41,28 @@ public class SampleDataUtil {
             new Patient(new PatientHospitalId("12347"),
                 new Name("Mary Jane"),
                 new PreferredName("Mary"),
-                new FoodPreference("Korean"),
+                getFoodPreferenceSet("Korean"),
                 new FamilyCondition("Lives with only daughter, quarrels regularly with daughter"),
                 new Hobby("Watching Drama"),
                 getTagSet("fall risk")),
             new Patient(new PatientHospitalId("12348"),
                 new Name("David Li"),
                 new PreferredName("David"),
-                new FoodPreference("Bak Kut Teh"),
+                getFoodPreferenceSet("Bak Kut Teh"),
                 new FamilyCondition("Son visits him every weekend"),
                 new Hobby("Plays erhu"),
                 getTagSet("diabetes", "skin irritation")),
             new Patient(new PatientHospitalId("12349"),
                 new Name("Irfan Ibrahim"),
                 new PreferredName("Fan"),
-                new FoodPreference("Roti Prata"),
+                getFoodPreferenceSet("Roti Prata"),
                 new FamilyCondition("Children encountered accident 2 months ago"),
                 new Hobby("Plays badminton"),
                 getTagSet("tumour")),
             new Patient(new PatientHospitalId("12350"),
                 new Name("Roy Balakrishnan"),
                 new PreferredName("Rony"),
-                new FoodPreference("Fish Ball Soup"),
+                getFoodPreferenceSet("Fish Ball Soup"),
                 new FamilyCondition("Financial problem"),
                 new Hobby("Jog around park"),
                 getTagSet("wheelchair")),
@@ -75,6 +75,15 @@ public class SampleDataUtil {
             sampleAb.addPatient(samplePatient);
         }
         return sampleAb;
+    }
+
+    /**
+     * Returns a food preference set containing the list of strings given.
+     */
+    public static Set<FoodPreference> getFoodPreferenceSet(String... strings) {
+        return Arrays.stream(strings)
+            .map(FoodPreference::new)
+            .collect(Collectors.toSet());
     }
 
     /**

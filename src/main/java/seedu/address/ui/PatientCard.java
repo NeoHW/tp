@@ -41,7 +41,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label preferredName;
     @FXML
-    private Label foodPreference;
+    private Label foodPreferences;
     @FXML
     private Label familyCondition;
     @FXML
@@ -60,7 +60,10 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         preferredName.setText(patient.getPreferredName().preferredName);
-        foodPreference.setText(patient.getFoodPreference().foodPreference);
+        patient.getFoodPreferences().stream()
+            .sorted(Comparator.comparing(foodPreference -> foodPreference.foodPreference))
+            .forEach(foodPreference -> foodPreferences.getChildrenUnmodifiable().add(
+                new Label(foodPreference.foodPreference)));
         familyCondition.setText(patient.getFamilyCondition().familyCondition);
         hobby.setText(patient.getHobby().hobby);
         patient.getTags().stream()

@@ -103,6 +103,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> foodPreferences} into a {@code Set<Tag>}.
+     */
+    public static Set<FoodPreference> parseFoodPreferences(Collection<String> foodPreferences) throws ParseException {
+        requireNonNull(foodPreferences);
+        final Set<FoodPreference> foodPreferenceSet = new HashSet<>();
+        for (String foodPreferenceName : foodPreferences) {
+            foodPreferenceSet.add(parseFoodPreference(foodPreferenceName));
+        }
+        return foodPreferenceSet;
+    }
+
+    /**
      * Parses a {@code String condition} into an {@code FamilyCondition}.
      * Leading and trailing whitespaces will be trimmed.
      *

@@ -18,7 +18,7 @@ public class EditPatientDescriptor {
     private PatientHospitalId patientHospitalId;
     private Name name;
     private PreferredName preferredName;
-    private FoodPreference foodPreference;
+    private Set<FoodPreference> foodPreferences;
     private FamilyCondition familyCondition;
     private Hobby hobby;
     private Set<Tag> tags;
@@ -35,7 +35,7 @@ public class EditPatientDescriptor {
         setPatientHospitalId(toCopy.patientHospitalId);
         setName(toCopy.name);
         setPreferredName(toCopy.preferredName);
-        setFoodPreference(toCopy.foodPreference);
+        setFoodPreferences(toCopy.foodPreferences);
         setFamilyCondition(toCopy.familyCondition);
         setHobby(toCopy.hobby);
         setTags(toCopy.tags);
@@ -46,7 +46,7 @@ public class EditPatientDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition,
+        return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreferences, familyCondition,
             hobby, tags, events);
     }
 
@@ -74,12 +74,21 @@ public class EditPatientDescriptor {
         return Optional.ofNullable(preferredName);
     }
 
-    public void setFoodPreference(FoodPreference foodPreference) {
-        this.foodPreference = foodPreference;
+    /**
+     * Sets {@code foodPreferences} to this object's {@code foodPreferences}.
+     * A defensive copy of {@code foodPreferences} is used internally.
+     */
+    public void setFoodPreferences(Set<FoodPreference> foodPreferences) {
+        this.foodPreferences = (foodPreferences != null) ? new HashSet<>(foodPreferences) : null;
     }
 
-    public Optional<FoodPreference> getFoodPreference() {
-        return Optional.ofNullable(foodPreference);
+    /**
+     * Returns an unmodifiable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code foodPreferences} is null.
+     */
+    public Optional<Set<FoodPreference>> getFoodPreferences() {
+        return (foodPreferences != null) ? Optional.of(Collections.unmodifiableSet(foodPreferences)) : Optional.empty();
     }
 
     public void setFamilyCondition(FamilyCondition familyCondition) {
@@ -139,7 +148,7 @@ public class EditPatientDescriptor {
         return Objects.equals(patientHospitalId, otherEditPatientDescriptor.patientHospitalId)
             && Objects.equals(name, otherEditPatientDescriptor.name)
             && Objects.equals(preferredName, otherEditPatientDescriptor.preferredName)
-            && Objects.equals(foodPreference, otherEditPatientDescriptor.foodPreference)
+            && Objects.equals(foodPreferences, otherEditPatientDescriptor.foodPreferences)
             && Objects.equals(familyCondition, otherEditPatientDescriptor.familyCondition)
             && Objects.equals(hobby, otherEditPatientDescriptor.hobby)
             && Objects.equals(tags, otherEditPatientDescriptor.tags)
@@ -152,7 +161,7 @@ public class EditPatientDescriptor {
             .add("patientHospitalId", patientHospitalId)
             .add("name", name)
             .add("preferredName", preferredName)
-            .add("foodPreference", foodPreference)
+            .add("foodPreferences", foodPreferences)
             .add("familyCondition", familyCondition)
             .add("hobby", hobby)
             .add("tags", tags)

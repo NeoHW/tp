@@ -138,7 +138,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseFoodPreference_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseFoodPreference((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFoodPreferences(null));
     }
 
     @Test

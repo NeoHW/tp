@@ -3,7 +3,7 @@
     "patientHospitalId" : "",
     "name": "Hans Muster",
     "preferredName": "Hans",
-    "foodPreference": "pizza",
+    "foodPreference": [ "pizza" ],
     "familyCondition": "no children",
     "hobby": "singing",
     "tags": [ ]

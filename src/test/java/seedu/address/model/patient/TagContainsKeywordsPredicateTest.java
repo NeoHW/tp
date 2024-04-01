@@ -52,8 +52,9 @@ public class TagContainsKeywordsPredicateTest {
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("12344", "Caroline", "Li", "Carol", "Pasta",
                 "Daughter", "not", "in", "Singapore", "swimming", "diabetes"));
         assertFalse(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Caroline Li")
-                .withPreferredName("Carol").withFoodPreference("Pasta").withFamilyCondition("Daughter not in Singapore")
-                .withHobby("swimming").withTags("depression").build()));
+                .withPreferredName("Carol").withFoodPreferences("Pasta")
+                .withFamilyCondition("Daughter not in Singapore").withHobby("swimming").withTags("depression")
+            .build()));
     }
 
     @Test
@@ -69,8 +70,8 @@ public class TagContainsKeywordsPredicateTest {
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("12345", "Carolina", "Lee", "Caroli", "Paste",
                 "Son", "at", "China", "dancing", "diabetes"));
         assertTrue(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Caroline Li")
-                .withPreferredName("Carol").withFoodPreference("Pasta").withFamilyCondition("Daughter not in Singapore")
-                .withHobby("swimming").withTags("diabetes").build()));
+                .withPreferredName("Carol").withFoodPreferences("Pasta")
+                .withFamilyCondition("Daughter not in Singapore").withHobby("swimming").withTags("diabetes").build()));
     }
 
     @Test

@@ -39,7 +39,7 @@ public class EditPatientDescriptorBuilder {
         descriptor.setPatientHospitalId(patient.getPatientHospitalId());
         descriptor.setName(patient.getName());
         descriptor.setPreferredName(patient.getPreferredName());
-        descriptor.setFoodPreference(patient.getFoodPreference());
+        descriptor.setFoodPreferences(patient.getFoodPreferences());
         descriptor.setFamilyCondition(patient.getFamilyCondition());
         descriptor.setHobby(patient.getHobby());
         descriptor.setTags(patient.getTags());
@@ -70,10 +70,13 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code FoodPreference} of the {@code EditPatientDescriptor} that we are building.
+     * Parses the {@code foodPreferences} into a {@code Set<FoodPreference>}
+     * and set it to the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withFoodPreference(String food) {
-        descriptor.setFoodPreference(new FoodPreference(food));
+    public EditPatientDescriptorBuilder withFoodPreferences(String... foodPreferences) {
+        Set<FoodPreference> foodPreferenceSet = Stream.of(foodPreferences).map(FoodPreference::new)
+            .collect(Collectors.toSet());
+        descriptor.setFoodPreferences(foodPreferenceSet);
         return this;
     }
 

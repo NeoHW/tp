@@ -22,7 +22,7 @@ public class Patient {
     private final PreferredName preferredName;
 
     // Data fields
-    private final FoodPreference foodPreference;
+    private final Set<FoodPreference> foodPreferences = new HashSet<>();
     private final FamilyCondition familyCondition;
     private final Hobby hobby;
     private final Set<Tag> tags = new HashSet<>();
@@ -32,13 +32,13 @@ public class Patient {
      * Every field must be present and not null.
      */
     public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
-                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<FoodPreference> foodPreferences, FamilyCondition familyCondition, Hobby hobby,
                    Set<Tag> tags) {
-        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreferences, familyCondition, hobby, tags);
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.foodPreference = foodPreference;
+        this.foodPreferences.addAll(foodPreferences);
         this.familyCondition = familyCondition;
         this.hobby = hobby;
         this.tags.addAll(tags);
@@ -46,25 +46,25 @@ public class Patient {
 
     /**
      * Constructs a Patient with {@param patientHospitalId},{@param name}, {@param preferredName},
-     * {@param foodPreference}, {@param familyCondition}, {@param hobby},{@param tags}, {@param events}
+     * {@param foodPreferences}, {@param familyCondition}, {@param hobby},{@param tags}, {@param events}
      *
      * @param patientHospitalId patient's hospital ID
      * @param name patient's full name
      * @param preferredName patient's preferred name
-     * @param foodPreference patient's preferred food
+     * @param foodPreferences patient's preferred food
      * @param familyCondition patient's family condition
      * @param hobby patient's hobby
      * @param tags tag for patient
      * @param events
      */
     public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
-                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<FoodPreference> foodPreferences, FamilyCondition familyCondition, Hobby hobby,
                    Set<Tag> tags, Set<Event> events) {
-        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreferences, familyCondition, hobby, tags);
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.foodPreference = foodPreference;
+        this.foodPreferences.addAll(foodPreferences);
         this.familyCondition = familyCondition;
         this.hobby = hobby;
         this.tags.addAll(tags);
@@ -87,8 +87,12 @@ public class Patient {
         return familyCondition;
     }
 
-    public FoodPreference getFoodPreference() {
-        return foodPreference;
+    /**
+     * Returns an immutable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<FoodPreference> getFoodPreferences() {
+        return Collections.unmodifiableSet(foodPreferences);
     }
 
     public Hobby getHobby() {
@@ -143,7 +147,7 @@ public class Patient {
         return patientHospitalId.equals(otherPatient.patientHospitalId)
                 && name.equals(otherPatient.name)
                 && preferredName.equals(otherPatient.preferredName)
-                && foodPreference.equals(otherPatient.foodPreference)
+                && foodPreferences.equals(otherPatient.foodPreferences)
                 && familyCondition.equals(otherPatient.familyCondition)
                 && hobby.equals(otherPatient.hobby)
                 && tags.equals(otherPatient.tags)
@@ -153,7 +157,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
+        return Objects.hash(patientHospitalId, name, preferredName, foodPreferences, familyCondition, hobby, tags,
             events);
     }
 
@@ -163,7 +167,7 @@ public class Patient {
             .add("patientHospitalId", patientHospitalId)
             .add("name", name)
             .add("preferredName", preferredName)
-            .add("foodPreference", foodPreference)
+            .add("foodPreferences", foodPreferences)
             .add("familyCondition", familyCondition)
             .add("hobby", hobby)
             .add("tags", tags)

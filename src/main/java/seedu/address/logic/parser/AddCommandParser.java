@@ -48,15 +48,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         PatientHospitalId patientHospitalId = ParserUtil.parsePatientHospitalId(argMultimap.getValue(PREFIX_PID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         PreferredName preferredName = ParserUtil.parsePreferredName(argMultimap.getValue(PREFIX_PREFERRED_NAME).get());
-        FoodPreference foodPreference = ParserUtil.parseFoodPreference(argMultimap
-            .getValue(PREFIX_FOOD_PREFERENCE).get());
+        Set<FoodPreference> foodPreferenceList = ParserUtil.parseFoodPreferences(argMultimap
+            .getAllValues(PREFIX_FOOD_PREFERENCE));
         FamilyCondition familyCondition = ParserUtil.parseFamilyCondition(argMultimap
             .getValue(PREFIX_FAMILY_CONDITION).get());
         Hobby hobby = ParserUtil.parseHobby(argMultimap.getValue(PREFIX_HOBBY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Patient patient = new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby,
-            tagList);
+        Patient patient = new Patient(patientHospitalId, name, preferredName, foodPreferenceList, familyCondition,
+            hobby, tagList);
 
         return new AddCommand(patient);
     }
