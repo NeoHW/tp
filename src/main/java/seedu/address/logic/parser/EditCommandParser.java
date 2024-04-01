@@ -89,7 +89,6 @@ public class EditCommandParser implements Parser<EditCommand> {
     private Optional<Set<FoodPreference>> parseFoodPreferenceForEdit(
         Collection<String> foodPreferences) throws ParseException {
         assert foodPreferences != null;
-
         if (foodPreferences.isEmpty()) {
             return Optional.empty();
         }

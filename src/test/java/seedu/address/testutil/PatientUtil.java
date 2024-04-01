@@ -35,6 +35,7 @@ public class PatientUtil {
         sb.append(PREFIX_PID + patient.getPatientHospitalId().patientHospitalId + " ");
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
         sb.append(PREFIX_PREFERRED_NAME + patient.getPreferredName().preferredName + " ");
+        System.out.println("S: " + patient.getFoodPreferences());
         patient.getFoodPreferences().stream().forEach(
             s -> sb.append(PREFIX_FOOD_PREFERENCE + s.foodPreference + " ")
         );
@@ -43,6 +44,7 @@ public class PatientUtil {
         patient.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        System.out.println("sb: " + sb);
         return sb.toString();
     }
 

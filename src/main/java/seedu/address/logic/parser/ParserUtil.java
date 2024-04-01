@@ -111,6 +111,9 @@ public class ParserUtil {
         for (String foodPreferenceName : foodPreferences) {
             foodPreferenceSet.add(parseFoodPreference(foodPreferenceName));
         }
+        if (foodPreferenceSet.isEmpty()) {
+            throw new ParseException(FoodPreference.MESSAGE_CONSTRAINTS);
+        }
         return foodPreferenceSet;
     }
 

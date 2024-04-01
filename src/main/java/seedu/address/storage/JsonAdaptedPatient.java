@@ -93,6 +93,10 @@ class JsonAdaptedPatient {
         for (JsonAdaptedFoodPreference foodPreference : foodPreferences) {
             patientFoodPreferences.add(foodPreference.toModelType());
         }
+        if (patientFoodPreferences.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                FoodPreference.class.getSimpleName()));
+        }
 
         final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {

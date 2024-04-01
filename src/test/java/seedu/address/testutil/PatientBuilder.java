@@ -42,7 +42,8 @@ public class PatientBuilder {
         patientHospitalId = new PatientHospitalId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         preferredName = new PreferredName(DEFAULT_PREFERRED_NAME);
-        foodPreferences = new HashSet<>();
+        // Include the default food preference
+        foodPreferences = SampleDataUtil.getFoodPreferenceSet(DEFAULT_FOOD_PREFERENCE);
         familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
         hobby = new Hobby(DEFAULT_HOBBY);
         tags = new HashSet<>();
@@ -138,7 +139,7 @@ public class PatientBuilder {
      * Builds {@code Patient} with new Patient.
      */
     public Patient build() {
-        return new Patient(patientHospitalId, name, preferredName, foodPreferences, familyCondition, hobby, tags,
+        return new Patient(patientHospitalId, name, preferredName, this.foodPreferences, familyCondition, hobby, tags,
             events);
     }
 
