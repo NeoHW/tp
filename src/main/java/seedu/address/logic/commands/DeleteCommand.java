@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -26,6 +29,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Patient %1$s with ID %2$s "
         + "has been successfully deleted.";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
+
     private final Index targetIndex;
 
     /**
@@ -44,15 +49,20 @@ public class DeleteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Attempting to execute DeleteCommand.");
         requireNonNull(model);
+
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
+        logger.log(Level.INFO, "Target index is valid.");
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePatient(patientToDelete);
+        logger.log(Level.INFO, "Patient details successfully deleted.");
+
         return new CommandResult(
                 String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete.getName(), targetIndex.getOneBased())
         );

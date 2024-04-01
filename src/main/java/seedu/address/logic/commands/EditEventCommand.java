@@ -12,7 +12,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -38,13 +41,15 @@ public class EditEventCommand extends Command {
             + " / DD-MM-YYYY, HH:mm - HH:mm respectively]\n"
             + "Example: "
             + COMMAND_WORD + " 1 "
-            + PREFIX_EVENT + " 1"
+            + PREFIX_EVENT + " 1 "
             + PREFIX_NAME + " Updated Event "
             + PREFIX_DATETIME + " 12-10-2024";
 
     public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully updated "
             + "for Patient %4$s with ID %5$s";
     public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s";
+
+    private static final Logger logger = LogsCenter.getLogger(EditEventCommand.class);
 
     private final Index patientIndex;
     private final Index eventIndex;
@@ -68,6 +73,9 @@ public class EditEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Attempting to execute EditEventCommand.");
+        requireAllNonNull(model);
+
         List<Patient> lastShownList = model.getFilteredPatientList();
         checkPatientIndex(lastShownList);
 
@@ -76,12 +84,16 @@ public class EditEventCommand extends Command {
         checkEventIndex(events);
 
         checkDuplicateEvent(events, patientToEditEvent);
+        logger.log(Level.INFO, "All three checks for invalid patient index, invalid event index "
+                + "and duplicate event have been completed.");
 
         List<Event> eventList = new ArrayList<>(events);
         editEvent(eventList);
+        logger.log(Level.INFO, "Event edited successfully.");
 
         Patient updatedPatient = createEditedPatient(patientToEditEvent, editPatientDescriptor);
         updatePatientList(model, patientToEditEvent, updatedPatient);
+        logger.log(Level.INFO, "Updated the information on the patient list successfully.");
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToUpdate.name, eventIndex.getOneBased(),
                 eventToUpdate.date, updatedPatient.getName(), patientIndex.getOneBased()));
@@ -94,6 +106,9 @@ public class EditEventCommand extends Command {
      */
     public void checkPatientIndex(List<Patient> lastShownList) throws CommandException {
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid patient index for EditEventCommand: "
+                    + patientIndex.getOneBased());
+
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
     }
@@ -105,6 +120,9 @@ public class EditEventCommand extends Command {
      */
     public void checkEventIndex(Set<Event> events) throws CommandException {
         if (eventIndex.getZeroBased() >= events.size()) {
+            logger.log(Level.WARNING, "Invalid event index for EditEventCommand: "
+                    + eventIndex.getOneBased());
+
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
     }
@@ -117,6 +135,9 @@ public class EditEventCommand extends Command {
      */
     public void checkDuplicateEvent(Set<Event> events, Patient patientToEditEvent) throws CommandException {
         if (events.contains(eventToUpdate)) {
+            logger.log(Level.WARNING, "Duplicate event found while executing EditEventCommand: "
+                    + eventToUpdate.name + ", " + eventToUpdate.date);
+
             throw new CommandException(String.format(MESSAGE_DUPLICATE, eventToUpdate.name, eventToUpdate.date,
                     patientToEditEvent.getName(), patientIndex.getOneBased()));
         }
@@ -127,6 +148,9 @@ public class EditEventCommand extends Command {
      * @param eventList List of events of the specified patient.
      */
     public void editEvent(List<Event> eventList) {
+        logger.log(Level.INFO, "Attempting to edit event " + eventIndex.getOneBased());
+        assert(eventList.size() > 0);
+
         Collections.sort(eventList);
         eventList.set(eventIndex.getZeroBased(), eventToUpdate);
         Set<Event> updatedEvents = new HashSet<>(eventList);
@@ -140,6 +164,9 @@ public class EditEventCommand extends Command {
      * @param updatedPatient The specified patient with updated event.
      */
     public void updatePatientList(Model model, Patient patientToEditEvent, Patient updatedPatient) {
+        logger.log(Level.INFO, "Attempting to update the information on the patient list "
+                + "with the newly edited event");
+
         model.setPatient(patientToEditEvent, updatedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
