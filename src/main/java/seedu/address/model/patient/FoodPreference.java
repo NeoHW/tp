@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Patient's preferred food in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidFoodPreference(String)} (String)}
  */
-public class FoodPreference {
+public class FoodPreference implements Comparable<FoodPreference> {
 
     public static final String MESSAGE_CONSTRAINTS = "Food preferences can take any values, and it should not be blank";
 
@@ -40,6 +40,12 @@ public class FoodPreference {
     @Override
     public String toString() {
         return foodPreference;
+    }
+
+    @Override
+    public int compareTo(FoodPreference other) {
+        // Compare the foodPreference strings
+        return this.foodPreference.compareTo(other.foodPreference);
     }
 
     @Override
