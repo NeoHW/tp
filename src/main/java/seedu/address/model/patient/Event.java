@@ -12,10 +12,10 @@ import java.time.format.DateTimeParseException;
  * Represents Events for a Patient
  */
 public class Event implements Comparable<Event> {
-    public static final String MESSAGE_CONSTRAINTS =
-            "The Name of the Event should be alphanumerical, and non-empty\n"
-            + "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
-            + "in the format: DD-MM-YYYY";
+    public static final String NAME_MESSAGE_CONSTAINTS = "The Name of the Event should be alphanumerical, and non-empty";
+    public static final String DATETIME_MESSAGE_CONSTRAINTS = "Dates should be in the format: DD-MM-YYYY, "
+            + "HH:mm - HH:mm, OR if there is no time period, in the format: DD-MM-YYYY";
+    public static final String NAME_PATTERN = "^.*[^a-zA-Z0-9 ].*$";
     public static final String DATE_PATTERN = "dd-MM-yyyy";
     public static final String TIME_PATTERN = "HH:mm";
 
@@ -31,30 +31,36 @@ public class Event implements Comparable<Event> {
     public final String endTime;
 
 
-
-
     /**
      * Constructs a {@Code Event}
      *
      * @param event
      */
     public Event(String name, String event) {
+        name = name.strip();
         requireNonNull(name);
-        checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        checkArgument(isValidEventName(name), DATETIME_MESSAGE_CONSTRAINTS);
 
         event = event.strip();
         requireNonNull(event);
-        checkArgument(isValidEvent(event), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEvent(event), DATETIME_MESSAGE_CONSTRAINTS);
 
         String[] args = extractDateTimeArgs(event);
+        this.name = name;
         this.date = args[0];
         this.startTime = args[1];
         this.endTime = args[2];
     }
 
+    /**
+     * Returns true if the given string is a valid Event Name String
+     *
+     * @param test the given string
+     * @return true if the {@param test} is valid
+     *         false if the {@param test} is not valid
+     */
     public static boolean isValidEventName(String test) {
-        if (test.trim().isEmpty()) {
+        if (test.isEmpty() || test.matches(NAME_PATTERN)) {
             return false;
         }
 
@@ -66,7 +72,7 @@ public class Event implements Comparable<Event> {
      *
      * @param test the given string
      * @return true if the {@param test} is valid,
-     *         false is the {@param test} is not valid
+     *         false if the {@param test} is not valid
      */
     public static boolean isValidEvent(String test) {
         String[] args = test.split(",");
@@ -90,7 +96,7 @@ public class Event implements Comparable<Event> {
      *
      * @param timeStr the given string
      * @return true if the {@param timeStr} is valid,
-     *         false is the {@param timeStr} is not valid
+     *         false if the {@param timeStr} is not valid
      */
     public static boolean isValidDateTimeStr(String timeStr) {
         String[] args = timeStr.split("-");
