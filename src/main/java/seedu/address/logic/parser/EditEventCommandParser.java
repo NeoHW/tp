@@ -33,6 +33,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT, PREFIX_NAME, PREFIX_DATETIME);
+
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT, PREFIX_NAME, PREFIX_DATETIME)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

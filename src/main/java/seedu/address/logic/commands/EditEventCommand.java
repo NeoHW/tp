@@ -74,6 +74,7 @@ public class EditEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         logger.log(Level.INFO, "Attempting to execute EditEventCommand.");
+        requireAllNonNull(model);
 
         List<Patient> lastShownList = model.getFilteredPatientList();
         checkPatientIndex(lastShownList);
