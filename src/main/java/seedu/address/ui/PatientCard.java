@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.patient.Event;
+import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -41,7 +42,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label preferredName;
     @FXML
-    private Label foodPreferences;
+    private VBox foodPreferences;
     @FXML
     private Label familyCondition;
     @FXML
@@ -60,10 +61,14 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         preferredName.setText(patient.getPreferredName().preferredName);
-        patient.getFoodPreferences().stream()
-            .sorted(Comparator.comparing(foodPreference -> foodPreference.foodPreference))
-            .forEach(foodPreference -> foodPreferences.getChildrenUnmodifiable().add(
-                new Label(foodPreference.foodPreference)));
+
+        ArrayList<FoodPreference> allFoodPreferences = new ArrayList<>(patient.getFoodPreferences());
+        Collections.sort(allFoodPreferences);
+        for (int i = 1; i <= allFoodPreferences.size(); i++) {
+            foodPreferences.getChildren().add(new Label((i) + ". "
+                + allFoodPreferences.get(i - 1).toString() + "\n"));
+        }
+
         familyCondition.setText(patient.getFamilyCondition().familyCondition);
         hobby.setText(patient.getHobby().hobby);
         patient.getTags().stream()
