@@ -44,8 +44,7 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully updated "
             + "for Patient %4$s with ID %5$s";
-    public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s "
-            + "so only one entry is kept.";
+    public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s";
 
     private final Index patientIndex;
     private final Index eventIndex;
@@ -70,36 +69,79 @@ public class EditEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Patient> lastShownList = model.getFilteredPatientList();
-
-        if (patientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-        }
+        checkPatientIndex(lastShownList);
 
         Patient patientToEditEvent = lastShownList.get(patientIndex.getZeroBased());
         Set<Event> events = patientToEditEvent.getEvents();
+        checkEventIndex(events);
 
-        if (eventIndex.getZeroBased() >= events.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
+        checkDuplicateEvent(events, patientToEditEvent);
 
         List<Event> eventList = new ArrayList<>(events);
-        Collections.sort(eventList);
-
-        eventList.set(eventIndex.getZeroBased(), eventToUpdate);
-        Set<Event> updatedEvents = new HashSet<>(eventList);
-        editPatientDescriptor.setEvents(updatedEvents);
+        editEvent(eventList);
 
         Patient updatedPatient = createEditedPatient(patientToEditEvent, editPatientDescriptor);
-        model.setPatient(patientToEditEvent, updatedPatient);
-        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-
-        if (events.contains(eventToUpdate)) {
-            return new CommandResult(String.format(MESSAGE_DUPLICATE, eventToUpdate.name, eventToUpdate.date,
-                    updatedPatient.getName(), patientIndex.getOneBased()));
-        }
+        updatePatientList(model, patientToEditEvent, updatedPatient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToUpdate.name, eventIndex.getOneBased(),
                 eventToUpdate.date, updatedPatient.getName(), patientIndex.getOneBased()));
+    }
+
+    /**
+     * Checks whether the patient index is valid.
+     * @param lastShownList The last shown displayed list.
+     * @throws CommandException Throws exception when patient index is invalid.
+     */
+    public void checkPatientIndex(List<Patient> lastShownList) throws CommandException {
+        if (patientIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Checks whether the event index is valid.
+     * @param events Set of events of the specified patient.
+     * @throws CommandException Throws exception when event index is invalid.
+     */
+    public void checkEventIndex(Set<Event> events) throws CommandException {
+        if (eventIndex.getZeroBased() >= events.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Checks if the event to edit is the same as any of the existing events.
+     * @param events Set of events.
+     * @param patientToEditEvent The specified patient to edit event.
+     * @throws CommandException Throws exception when there is a duplicate event.
+     */
+    public void checkDuplicateEvent(Set<Event> events, Patient patientToEditEvent) throws CommandException {
+        if (events.contains(eventToUpdate)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE, eventToUpdate.name, eventToUpdate.date,
+                    patientToEditEvent.getName(), patientIndex.getOneBased()));
+        }
+    }
+
+    /**
+     * Edits the specified event.
+     * @param eventList List of events of the specified patient.
+     */
+    public void editEvent(List<Event> eventList) {
+        Collections.sort(eventList);
+        eventList.set(eventIndex.getZeroBased(), eventToUpdate);
+        Set<Event> updatedEvents = new HashSet<>(eventList);
+        editPatientDescriptor.setEvents(updatedEvents);
+    }
+
+    /**
+     * Updates the displayed patient list.
+     * @param model It stores current patient objects.
+     * @param patientToEditEvent The specified patient to edit event.
+     * @param updatedPatient The specified patient with updated event.
+     */
+    public void updatePatientList(Model model, Patient patientToEditEvent, Patient updatedPatient) {
+        model.setPatient(patientToEditEvent, updatedPatient);
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override

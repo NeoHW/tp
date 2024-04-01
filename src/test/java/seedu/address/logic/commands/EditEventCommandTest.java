@@ -116,39 +116,20 @@ public class EditEventCommandTest {
     }
 
     @Test
-    public void execute_editEventToAnExistingEvent_success() throws CommandException {
-        CommandResult result;
-        String expected;
-        Patient editedPatient;
-        Set<Event> expectedEvents;
-
+    public void execute_editEventToAnExistingEvent_throwsCommandException() throws CommandException {
         EditEventCommand editEventCommand = new EditEventCommand(INDEX_SECOND_PATIENT,
                 INDEX_FIRST_EVENT, validEvent);
 
-        //Confirm basic edit event works
-        result = editEventCommand.execute(model);
-        editedPatient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        //first edit event command
+        editEventCommand.execute(model);
 
-        expected = String.format(EditEventCommand.MESSAGE_SUCCESS, validEvent.name,
-                INDEX_FIRST_EVENT.getOneBased(), validEvent.date, editedPatient.getName(),
-                INDEX_SECOND_PATIENT.getOneBased());
+        //Test duplicate event by executing the same edit event command
+        CommandException exception = assertThrows(CommandException.class, () ->
+                editEventCommand.execute(model));
 
-        assertEquals(expected, result.getFeedbackToUser());
-
-        expectedEvents = new HashSet<>(editedPatient.getEvents());
-        assertEquals(editedPatient.getEvents(), expectedEvents);
-
-        //Test duplicate event using edit command
-        result = editEventCommand.execute(model);
-        editedPatient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
-
-        expected = String.format(EditEventCommand.MESSAGE_DUPLICATE, validEvent.name, validEvent.date,
-                editedPatient.getName(), INDEX_SECOND_PATIENT.getOneBased());
-
-        assertEquals(expected, result.getFeedbackToUser());
-
-        expectedEvents = new HashSet<>(editedPatient.getEvents());
-        assertEquals(editedPatient.getEvents(), expectedEvents);
+        Patient editedPatient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        assertEquals(String.format(EditEventCommand.MESSAGE_DUPLICATE, validEvent.name, validEvent.date,
+                editedPatient.getName(), INDEX_SECOND_PATIENT.getOneBased()), exception.getMessage());
     }
 
     @Test
