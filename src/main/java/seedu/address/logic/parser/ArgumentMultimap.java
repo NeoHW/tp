@@ -77,12 +77,4 @@ public class ArgumentMultimap {
         }
     }
 
-    /**
-     * Returns a set of all the prefixes present in the ArgumentMultimap.
-     *
-     * @return Set of all prefixes
-     */
-    public Set<Prefix> getAllPrefixes() {
-        return argMultimap.keySet();
-    }
 }
