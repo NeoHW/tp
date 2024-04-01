@@ -15,6 +15,12 @@ public class EventTest {
     }
 
     @Test
+    public void constructor_invalidEventName_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Event("", "01-01-2022"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("              ", "01-01-2022"));
+    }
+
+    @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "something"));
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "1-1-2022"));

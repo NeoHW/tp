@@ -13,7 +13,8 @@ import java.time.format.DateTimeParseException;
  */
 public class Event implements Comparable<Event> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
+            "The Name of the Event should be alphanumerical, and non-empty\n"
+            + "Dates should be in the format: DD-MM-YYYY, HH:mm - HH:mm, OR if there is no time period,"
             + "in the format: DD-MM-YYYY";
     public static final String DATE_PATTERN = "dd-MM-yyyy";
     public static final String TIME_PATTERN = "HH:mm";
@@ -39,6 +40,7 @@ public class Event implements Comparable<Event> {
      */
     public Event(String name, String event) {
         requireNonNull(name);
+        checkArgument(isValidEventName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
 
         event = event.strip();
@@ -49,6 +51,14 @@ public class Event implements Comparable<Event> {
         this.date = args[0];
         this.startTime = args[1];
         this.endTime = args[2];
+    }
+
+    public static boolean isValidEventName(String test) {
+        if (test.trim().isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
