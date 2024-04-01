@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentTokenizer.checkInvalidPrefixesForTags;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
@@ -31,6 +32,13 @@ public class DeleteTagsCommandParser implements Parser<DeleteTagsCommand> {
     public DeleteTagsCommand parse(String args) throws ParseException {
         requireNonNull(args);
         logger.log(Level.INFO, "Parsing DeleteTagsCommand: " + args);
+
+        try {
+            checkInvalidPrefixesForTags(args);
+        } catch (ParseException pe) {
+            logger.log(Level.WARNING, "Invalid prefixes provided in DeleteTagsCommand: " + args);
+            throw new ParseException(pe.getMessage(), pe);
+        }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
