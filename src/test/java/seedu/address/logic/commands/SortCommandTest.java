@@ -102,12 +102,24 @@ public class SortCommandTest {
 
     @Test
     public void toStringTest() {
+        // test case 1
         String sortAttribute = "name";
         SortCommand sortCommand = new SortCommand(NAME_COMPARATOR, "name");
 
         String expected = SortCommand.class.getCanonicalName() + "{comparator=" + NAME_COMPARATOR + ", sort attribute="
-            + sortAttribute + "}";
+                + sortAttribute
+                + "}";
         assertEquals(expected, sortCommand.toString());
+
+        // test case 2
+        sortAttribute = "preferred name";
+        sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, "preferred name");
+        expected = SortCommand.class.getCanonicalName() + "{comparator=" + PREFERRED_NAME_COMPARATOR
+                + ", sort attribute="
+                + sortAttribute
+                + "}";
+        assertEquals(expected, sortCommand.toString());
+
     }
 
 }
