@@ -15,6 +15,12 @@ public class EventTest {
     }
 
     @Test
+    public void constructor_invalidEventName_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new Event("", "01-01-2022"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("              ", "01-01-2022"));
+    }
+
+    @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "something"));
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "1-1-2022"));
@@ -31,6 +37,10 @@ public class EventTest {
                 validDate + "21-02-2022, 99:88 - 99:99"));
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit",
                 validDate + "21-02-2022, 0000 - 2359"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit",
+                validDate + "21-02-2022, 06:00 - 00:00"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit",
+                validDate + "21-02-2022, 01:00 - 00:59"));
     }
 
     @Test
@@ -51,6 +61,7 @@ public class EventTest {
         assertTrue(Event.isValidEvent("21-02-2022, 00:00 - 23:59"));
         assertTrue(Event.isValidEvent("01-01-2022, 12:12 - 12:12        "));
         assertTrue(Event.isValidEvent("          01-01-2022, 12:12 - 12:12"));
+        assertTrue(Event.isValidEvent("21-02-2022, 00:00 - 00:00"));
     }
 
 
@@ -61,7 +72,7 @@ public class EventTest {
         Event laterDateEvent = new Event("Family Visit", "02-01-2022, 12:12 - 12:12");
         Event laterMonthEvent = new Event("Family Visit", "01-02-2022, 12:12 - 12:12");
         Event laterYearEvent = new Event("Family Visit", "01-01-2023, 12:12 - 12:12");
-        Event laterStartTimeEvent = new Event("Family Visit", "01-01-2022, 12:13 - 12:12");
+        Event laterStartTimeEvent = new Event("Family Visit", "01-01-2022, 13:12 - 13:12");
         Event laterEndTimeEvent = new Event("Family Visit", "01-01-2022, 12:12 - 12:13");
         Event laterNameEvent = new Event("Z", "01-01-2022, 12:12 - 12:12");
 
@@ -97,8 +108,6 @@ public class EventTest {
         assertFalse(date.equals(new Event("Family Visit", "02-01-2022, 12:12 - 12:12")));
         assertFalse(date.equals(new Event("Family Visit", "01-02-2022, 12:12 - 12:12")));
         assertFalse(date.equals(new Event("Family Visit", "01-02-2023, 12:12 - 12:12")));
-        assertFalse(date.equals(new Event("Family Visit", "01-01-2022, 12:12 - 12:11")));
-        assertFalse(date.equals(new Event("Family Visit", "01-01-2022, 12:12 - 11:12")));
         assertFalse(date.equals(new Event("Family Visit", "01-01-2022, 12:11 - 12:12")));
         assertFalse(date.equals(new Event("Family Visit", "01-01-2022, 11:12 - 12:12")));
 

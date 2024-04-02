@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -19,7 +21,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {
-
+    public static final String INVALID_PREFIXES_MESSAGE = "Invalid command prefixes detected. "
+            + "Only %1$s prefixes allowed";
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -142,8 +145,8 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Checks for invalid prefixes other than {@code \t} in the provided arguments string.
-     * Throws a ParseException if any prefix other than {@code \t} is found.
+     * Checks for invalid prefixes other than {@code t/} in the provided arguments string.
+     * Throws a ParseException if any prefix other than {@code t/} is found.
      *
      * @param argsString The arguments string to check for invalid prefixes
      * @throws ParseException if an invalid prefix is found
@@ -154,7 +157,27 @@ public class ArgumentTokenizer {
         for (PrefixPosition position : positions) {
             Prefix prefix = position.getPrefix();
             if (!PREFIX_TAG.equals(prefix)) {
-                throw new ParseException("Invalid command prefixes detected. Only allows " + PREFIX_TAG + " prefix.");
+                throw new ParseException(String.format(INVALID_PREFIXES_MESSAGE, PREFIX_TAG));
+            }
+        }
+    }
+
+    /**
+     * Checks for invalid prefixes, i.e., prefixes other than {@code n/}  or {@code d/} in the provided arguments
+     * string.
+     * Throws a ParseException if any prefix other than {@code n/} or {@code d/} is found.
+     *
+     * @param argsString The arguments string to check for invalid prefixes
+     * @throws ParseException If an invalid prefix is found
+     */
+    public static void checkInvalidPrefixesForAddEvent(String argsString) throws ParseException {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString);
+        List<Prefix> validPrefixes = List.of(PREFIX_NAME, PREFIX_DATETIME);
+
+        for (PrefixPosition position : positions) {
+            Prefix prefix = position.getPrefix();
+            if (!validPrefixes.contains(prefix)) {
+                throw new ParseException(String.format(INVALID_PREFIXES_MESSAGE, validPrefixes));
             }
         }
     }

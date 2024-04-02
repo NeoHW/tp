@@ -24,6 +24,7 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // General
         assertThrows(ParseException.class, () -> parser.parse(""));
         assertThrows(ParseException.class, () -> parser.parse("1"));
         assertThrows(ParseException.class, () -> parser.parse(VALID_EVENT_DATE));
@@ -31,6 +32,17 @@ public class AddEventCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(" " + VALID_EVENT_DATE));
         assertThrows(ParseException.class, () -> parser.parse(" " + VALID_EVENT_DATETIME));
         assertThrows(ParseException.class, () -> parser.parse(" " + INVALID_EVENT_DESC));
+        assertThrows(ParseException.class, () -> parser.parse(" " + INVALID_EVENT_DESC));
+
+        // Special chars
+        assertThrows(ParseException.class, () -> parser.parse("1 n/Valid? d/12-12-2024"));
+        assertThrows(ParseException.class, () -> parser.parse("1 n/Valid/ d/12-12-2024"));
+        assertThrows(ParseException.class, () -> parser.parse("1 n/Vali$$ d/12-12-2024"));
+
+        // Extra invalid prefixes
+        assertThrows(ParseException.class, () -> parser.parse("1 n/Valid d/12-12-2024 t/Something"));
+        assertThrows(ParseException.class, () -> parser.parse("1 n/Valid c/Test d/12-12-2024"));
+        assertThrows(ParseException.class, () -> parser.parse("1 p/Another n/Valid d/12-12-2024"));
     }
 
     @Test
@@ -48,6 +60,12 @@ public class AddEventCommandParserTest {
 
         userInput = validIndex.getOneBased() + EVENT_DESC_DATETIME;
         expected = new AddEventCommand(validIndex, validDateTime);
+        command = parser.parse(userInput);
+        assertEquals(expected, command);
+
+        String alphanumericName = "abc123";
+        userInput = validIndex.getOneBased() + " n/" + alphanumericName + " d/" + VALID_EVENT_DATETIME;
+        expected = new AddEventCommand(validIndex, new Event("abc123", VALID_EVENT_DATETIME));
         command = parser.parse(userInput);
         assertEquals(expected, command);
     }
