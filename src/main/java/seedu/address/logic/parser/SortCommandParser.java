@@ -32,17 +32,22 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         switch (sortAttribute) {
         case "":
-            logger.log(Level.INFO, "Sorting Attribute: not specified, patient name will be used as"
+            sortAttribute = "name";
+            logger.log(Level.INFO, "Sorting Attribute: not specified, patient "
+                    + sortAttribute
+                    + " will be used as"
                     + " the sorting attribute");
-            return new SortCommand(NAME_COMPARATOR);
+            return new SortCommand(NAME_COMPARATOR, sortAttribute);
         case "n":
-            logger.log(Level.INFO, "Sorting Attribute: Patient Name");
-            return new SortCommand(NAME_COMPARATOR);
+            sortAttribute = "name";
+            logger.log(Level.INFO, "Sorting Attribute: Patient " + sortAttribute);
+            return new SortCommand(NAME_COMPARATOR, sortAttribute);
         case "p":
-            logger.log(Level.INFO, "Sorting Attribute: Patient's Preferred Name");
-            return new SortCommand(PREFERRED_NAME_COMPARATOR);
+            sortAttribute = "preferred name";
+            logger.log(Level.INFO, "Sorting Attribute: Patient's " + sortAttribute);
+            return new SortCommand(PREFERRED_NAME_COMPARATOR, sortAttribute);
         default:
-            logger.log(Level.WARNING, "Invalid Sorting Attribute!");
+            logger.log(Level.WARNING, "Invalid Sorting Attribute! Sort Attribute Received: " + sortAttribute);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
     }
@@ -56,6 +61,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public String parseSortAttribute(String args) throws ParseException {
         String trimmedArgs = args.trim().toLowerCase();
+        logger.log(Level.INFO, "trimmed argument: " + trimmedArgs);
 
         if (trimmedArgs.length() > 1) {
             logger.log(Level.WARNING, "Invalid argument length (> 1) received.");
