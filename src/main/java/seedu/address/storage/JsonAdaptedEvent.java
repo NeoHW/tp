@@ -39,7 +39,7 @@ public class JsonAdaptedEvent {
      */
     public Event toModelType() throws IllegalValueException {
         if (!Event.isValidEvent(this.dateTime)) {
-            throw new IllegalValueException(Event.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Event.DATETIME_MESSAGE_CONSTRAINTS);
         }
         return new Event(this.name, this.dateTime);
     }

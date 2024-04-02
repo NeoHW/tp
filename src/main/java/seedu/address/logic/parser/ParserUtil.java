@@ -185,8 +185,12 @@ public class ParserUtil {
         String trimmedEventDateTimeStr = event.trim();
         requireAllNonNull(name, event);
 
+        if (!Event.isValidEventName(trimmedName)) {
+            throw new ParseException(Event.NAME_MESSAGE_CONSTAINTS);
+        }
+
         if (!Event.isValidEvent(trimmedEventDateTimeStr)) {
-            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Event.DATETIME_MESSAGE_CONSTRAINTS);
         }
 
         return new Event(trimmedName, trimmedEventDateTimeStr);
