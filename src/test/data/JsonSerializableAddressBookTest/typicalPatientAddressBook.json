@@ -4,7 +4,7 @@
     "name": "Alice Pauline",
     "patientHospitalId" : "12234",
     "preferredName" : "Alice",
-    "foodPreferences" : [ "Duck rice" ],
+    "foodPreferences" : [ "Duck rice", "Ban Mian" ],
     "familyCondition" : "Have 2 daughters working overseas",
     "hobby" : "Watching Hong Kong drama",
     "tags" : [ "depression" ],
