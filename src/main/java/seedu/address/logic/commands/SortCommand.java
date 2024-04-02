@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.model.patient.comparators.NameComparator.NAME_COMPARATOR;
+import static seedu.address.model.patient.comparators.PreferredNameComparator.PREFERRED_NAME_COMPARATOR;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +29,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort all persons by the specified attribute "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: [ATTRIBUTE]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_PREFERRED_NAME;
+            + "Example: " + COMMAND_WORD + " n";
 
     private static final Logger logger = LogsCenter.getLogger(SortCommand.class);
 
@@ -58,8 +58,8 @@ public class SortCommand extends Command {
             assert (sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
         }
 
-        if (this.comparator.equals(PREFIX_PREFERRED_NAME)) {
-            assert (sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
+        if (this.comparator.equals(PREFERRED_NAME_COMPARATOR)) {
+            assert (sortAttribute.equals("preferred name")) : "Sort Attribute and Comparator mismatch!";
         }
 
         List<Patient> patientList = model.getFullPatientList();
