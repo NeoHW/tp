@@ -2,26 +2,13 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DEPRESSION;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
 import static seedu.address.model.patient.comparators.NameComparator.NAME_COMPARATOR;
 import static seedu.address.model.patient.comparators.PreferredNameComparator.PREFERRED_NAME_COMPARATOR;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-
-import java.util.Comparator;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 public class SortCommandParserTest {
 
@@ -79,7 +66,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsAddTagsCommand() throws ParseException {
+    public void parse_validArgs_returnsSortCommand() throws ParseException {
 
         // Test for arg: n
         String userInput = "n";
@@ -91,7 +78,7 @@ public class SortCommandParserTest {
         // Test for arg: ""
         userInput = "";
 
-        expectedCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, "name");
+        expectedCommand = new SortCommand(NAME_COMPARATOR, "name");
         command = parser.parse(userInput);
         assertEquals(expectedCommand, command);
 

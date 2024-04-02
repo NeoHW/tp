@@ -60,24 +60,6 @@ public class SortCommandTest {
     }
 
     @Test
-    public void execute_sortCommandWithSortAttributePreferredName_failure() {
-
-        String sortAttribute = "preferred name";
-        SortCommand sortCommand = new SortCommand(NAME_COMPARATOR, sortAttribute);
-
-        List<Patient> patientList = expectedModel.getFullPatientList();
-        List<Patient> patientArrayList = new ArrayList<>(patientList);
-        Collections.sort(patientArrayList, NAME_COMPARATOR);
-        expectedModel.updatePatientList(patientArrayList);
-
-        expectedModel.updatePatientList(patientArrayList);
-
-        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS + "preferred name");
-
-        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void equals() {
         String sortAttribute = "name";
 
