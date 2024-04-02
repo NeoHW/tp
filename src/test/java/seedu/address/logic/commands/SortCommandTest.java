@@ -60,6 +60,21 @@ public class SortCommandTest {
     }
 
     @Test
+    public void initialise_sortCommandWithMismatchSortAttributeAndComparator_failure() throws AssertionError {
+        try {
+            SortCommand sortCommand = new SortCommand(NAME_COMPARATOR, "preferred name");
+        } catch (AssertionError e) {
+            assertEquals("Sort Attribute and Comparator mismatch!", e.getMessage());
+        }
+
+        try {
+            SortCommand sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, "name");
+        } catch (AssertionError e) {
+            assertEquals("Sort Attribute and Comparator mismatch!", e.getMessage());
+        }
+    }
+
+    @Test
     public void equals() {
         String sortAttribute = "name";
 
