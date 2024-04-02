@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
+import static seedu.address.model.patient.comparators.NameComparator.NAME_COMPARATOR;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +53,14 @@ public class SortCommand extends Command {
         logger.log(Level.INFO, "Attempting to execute SortCommand");
 
         requireNonNull(model);
+
+        if (this.comparator.equals(NAME_COMPARATOR)) {
+            assert (sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
+        }
+
+        if (this.comparator.equals(PREFIX_PREFERRED_NAME)) {
+            assert (sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
+        }
 
         List<Patient> patientList = model.getFullPatientList();
         List<Patient> patientArrayList = new ArrayList<>(patientList);
