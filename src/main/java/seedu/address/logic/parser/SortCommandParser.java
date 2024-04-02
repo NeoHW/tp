@@ -47,8 +47,9 @@ public class SortCommandParser implements Parser<SortCommand> {
             logger.log(Level.INFO, "Sorting Attribute: Patient's " + sortAttribute);
             return new SortCommand(PREFERRED_NAME_COMPARATOR, sortAttribute);
         default:
-            logger.log(Level.WARNING, "Invalid Sorting Attribute! Sort Attribute Received: " + sortAttribute);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            throw new AssertionError("Code should not reach here\n"
+                    + "Invalid sort attribute: "
+                    + sortAttribute);
         }
     }
 
