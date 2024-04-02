@@ -350,6 +350,8 @@ Examples:
 * `sort n`
 * `sort p`
 
+![result for 'sort'](images/sortResult.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Clearing all entries : `clear`
