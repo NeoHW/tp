@@ -33,8 +33,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         try {
             checkInvalidPrefixesForAddEvent(args);
         } catch (ParseException e) {
-          logger.log(Level.WARNING, "Invalid Prefixes found in AddEventCommand");
-          throw new ParseException(e.getMessage(), e);
+            logger.log(Level.WARNING, "Invalid Prefixes found in AddEventCommand");
+            throw new ParseException(e.getMessage(), e);
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME);
