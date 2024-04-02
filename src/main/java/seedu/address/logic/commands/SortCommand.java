@@ -77,13 +77,15 @@ public class SortCommand extends Command {
         }
 
         SortCommand otherSortCommand = (SortCommand) other;
-        return this.comparator.equals(otherSortCommand.comparator);
+        return this.comparator.equals(otherSortCommand.comparator)
+                && this.sortAttribute.equals(otherSortCommand.sortAttribute);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("comparator", comparator)
+                .add("comparator", this.comparator)
+                .add("sort attribute", this.sortAttribute)
                 .toString();
     }
 
