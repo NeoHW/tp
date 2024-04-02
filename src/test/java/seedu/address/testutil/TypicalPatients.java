@@ -30,7 +30,7 @@ import seedu.address.model.patient.Patient;
  */
 public class TypicalPatients {
     public static final Patient ALICE = new PatientBuilder().withPatientHospitalId("12234").withName("Alice Pauline")
-        .withPreferredName("Alice").withFoodPreferences("Duck rice")
+        .withPreferredName("Alice").withFoodPreferences("Duck rice", "Ban Mian")
         .withFamilyCondition("Have 2 daughters working overseas").withHobby("Watching Hong Kong drama")
         .withTags("depression").build();
     public static final Patient BENSON = new PatientBuilder().withPatientHospitalId("12235").withName("Benson Meier")
