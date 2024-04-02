@@ -299,6 +299,7 @@ Examples:
 ![result for 'delete event'](images/deleteEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### Editing an Event for a Patient: `edite`
 
 Edits an Event for a Patient in the address book.
@@ -323,6 +324,33 @@ Examples:
 * `edite 2 e/1 n/Mama Birthday d/21-02-2024`
 
 ![result for 'edit event'](images/editEventResult.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Sorting the patient list : `sort`
+
+Sorts the patient list in the address book by specified attribute.
+
+Format: `sort [ATTRIBUTE]`
+
+* Sorts all the added patients in the patient list by specified `ATTRIBUTE`.
+* Supported `ATTRIBUTE`s include `n` for patient name and `p` for patient's preferred name.
+* There can only be 1 or 0 `ATTRIBUTE`.
+* If no `ATTRIBUTE` is specified, the `sort` command will wort the patient list by patient's name by default.
+* `ATTRIBUTES` are **case-insensitive**.
+* The command will not be recognised if invalid `ATTRIBUTE`(s) are entered. e.g. `sort l` or `sort 123` are invalid
+sort commands.
+* If there are multiple patients with the same specified `ATTRIBUTE`, the sort will preserve the original order 
+of the affected patients list.
+    e.g. if the original list contains two patients: patient one name: `alex`, patient two name: `alex`, after sorting,
+    patient one will come before patient two.
+
+Examples:
+* `sort`
+* `sort n`
+* `sort p`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Clearing all entries : `clear`
 
@@ -389,5 +417,6 @@ Action     | Format, Examples
 **AddEvent** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
 **DeleteEvent** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
 **EditEvent** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+**Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`
