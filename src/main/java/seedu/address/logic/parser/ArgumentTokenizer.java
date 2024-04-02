@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -173,6 +174,26 @@ public class ArgumentTokenizer {
     public static void checkInvalidPrefixesForAddEvent(String argsString) throws ParseException {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString);
         List<Prefix> validPrefixes = List.of(PREFIX_NAME, PREFIX_DATETIME);
+
+        for (PrefixPosition position : positions) {
+            Prefix prefix = position.getPrefix();
+            if (!validPrefixes.contains(prefix)) {
+                throw new ParseException(String.format(INVALID_PREFIXES_MESSAGE, validPrefixes));
+            }
+        }
+    }
+
+    /**
+     * Checks for invalid prefixes, i.e., prefixes other than {@code e/} or {@code n/}  or {@code d/}
+     * in the provided arguments string.
+     * Throws a ParseException if any prefix other than {@code e/} or {@code n/} or {@code d/} is found.
+     *
+     * @param argsString The arguments string to check for invalid prefixes.
+     * @throws ParseException If an invalid prefix is found.
+     */
+    public static void checkInvalidPrefixesForEditEvent(String argsString) throws ParseException {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString);
+        List<Prefix> validPrefixes = List.of(PREFIX_EVENT, PREFIX_NAME, PREFIX_DATETIME);
 
         for (PrefixPosition position : positions) {
             Prefix prefix = position.getPrefix();
