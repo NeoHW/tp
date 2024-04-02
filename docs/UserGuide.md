@@ -263,10 +263,12 @@ Adds an Event to a patient in the address book.
 Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
 
 * Adds an Event with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
-* The format of the Date must be: DD-MM-YYYY
-* If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm
 * The index **must be a positive integer** 1, 2, 3, ...
-* Neither the Name or the Date / DateTime can be empty
+* Neither the Name or the Date / DateTime can be empty (after trimming whitespaces)
+* The Name must be alphanumerical
+* The format of the Date must be: DD-MM-YYYY
+* If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm, where the End Time must be after or equal to the Start Time
+* There is currently no support for Events spanning multiple days 
 
 Examples:
 * `adde 1 n/Birthday d/20-01-2022`
