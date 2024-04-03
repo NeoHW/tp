@@ -38,9 +38,10 @@
         <VBox fx:id="foodPreferences" GridPane.columnIndex="1" alignment="CENTER_LEFT" />
 <!--        <Label fx:id="foodPreferences" styleClass="cell_small_label" text="\$foodPreferences" />-->
       </HBox>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox spacing="5" alignment="BASELINE_LEFT">
         <Label fx:id="familyConditionLabel" styleClass="cell_small_label" text="Family Condition:"/>
-        <Label fx:id="familyCondition" styleClass="cell_small_label" text="\$familyCondition" />
+        <VBox fx:id="familyConditions" GridPane.columnIndex="1" alignment="CENTER_LEFT" />
+<!--        <Label fx:id="familyCondition" styleClass="cell_small_label" text="\$familyCondition" />-->
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="hobbyLabel" styleClass="cell_small_label" text="Hobby:"/>
