@@ -234,6 +234,15 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 * **Alternative 2**: Check duplicated patient by patient's `name`.
     * Pros: Easier to view as patient's `name` will be easier to be remembered.
     * Cons: Patients may have the same name.
+
+#### Aspect of Handling Multiple Inputs for Same Field 
+* **Alternative 1**: Adds `,` to the specific field
+  * Pros: Ensures that there are no duplicate prefixes in the input command.
+  * Cons: Display may be messy if inputs are long with more than 1 comma. 
+    <br></br>
+* **Alternative 2 (current choice)**: Allow duplicate prefixes for certain fields 
+  * Pros: Easier to view as listings will be shown without commas, provide clearer view to user.
+  * Cons: User may find it confused if same prefix not being entered continuously.
 --------------------------------------------------------------------------------------------------------------------
 
 ### 3.2 Adding Tags to a Patient
@@ -470,8 +479,9 @@ The `EditCommand` class is responsible for editing current patient's information
     *  `patientHospitalId` integer,
     *  `name`, `preferredName` String with only alphabets character,
     *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
-* All fields are optional in the EditCommand except for `INDEX`
-* If any of the fields are repeated during the adding of patient or missing fields, error message will be thrown.
+* All fields are optional in the EditCommand except for `INDEX`.
+* Fields such as `foodPreference`, `familyCondition`, `hobby` and `tag` can be repeated for multiple inputs.
+* If the fields for `patientHospitalId`, `name` and `preferredName` are repeated during the editing of patient, error message will be thrown.
 
 #### Example Usage Scenario
 
@@ -508,6 +518,15 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 *  **Alternative 2**: Uses `patientHospitalId` of a Patient.
     * Pros: Able to uniquely identified each patient.
     * Cons: Higher chance in typing the wrong `patientHospitalId`.
+
+#### Aspect of Bulk Editing for Certain Field
+* **Alternative 1 (current choice)**: Bulk edit a certain field.
+  * Pros: User able to edit the field easily.
+  * Cons: Input(s) that might be needed/ kept will be replaced by the newly edited ones.
+    <br></br>
+*  **Alternative 2**: Edit field by specifying the certain input needed to be changed.
+  * Pros: Able to uniquely identified which specific input needed to be edited.
+  * Cons: More time consuming to input command line as it will be longer. 
   
 --------------------------------------------------------------------------------------------------------------------
 
