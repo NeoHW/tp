@@ -27,7 +27,7 @@ public class SampleDataUtil {
                 new PreferredName("Alex"),
                 getFoodPreferenceSet("diabetes"),
                 getFamilyConditionSet("Stable ", "Has 2 sons that visits him regularly"),
-                new Hobby("Singing karaoke"),
+                getHobbySet("Singing karaoke"),
                 getTagSet("diabetes"),
                 getEventSet(new String[]{"Birthday"}, new String[]{"20-01-2022"})),
             new Patient(new PatientHospitalId("12346"),
@@ -35,7 +35,7 @@ public class SampleDataUtil {
                 new PreferredName("Bern"),
                 getFoodPreferenceSet("Char Kuay Tiao", "Black Carrot Cake"),
                 getFamilyConditionSet("Lives alone", "no family members around"),
-                new Hobby("Playing Mahjong"),
+                getHobbySet("Playing Mahjong"),
                 getTagSet("high blood pressure"),
                 getEventSet(new String[]{"Family Visit"}, new String[]{"30-03-2022, 15:00 - 18:00"})),
             new Patient(new PatientHospitalId("12347"),
@@ -43,28 +43,28 @@ public class SampleDataUtil {
                 new PreferredName("Mary"),
                 getFoodPreferenceSet("Korean"),
                 getFamilyConditionSet("Lives with only daughter", "quarrels regularly with daughter"),
-                new Hobby("Watching Drama"),
+                getHobbySet("Watching Drama"),
                 getTagSet("fall risk")),
             new Patient(new PatientHospitalId("12348"),
                 new Name("David Li"),
                 new PreferredName("David"),
                 getFoodPreferenceSet("Bak Kut Teh"),
                 getFamilyConditionSet("Son visits him every weekend"),
-                new Hobby("Plays erhu"),
+                getHobbySet("Plays erhu"),
                 getTagSet("diabetes", "skin irritation")),
             new Patient(new PatientHospitalId("12349"),
                 new Name("Irfan Ibrahim"),
                 new PreferredName("Fan"),
                 getFoodPreferenceSet("Roti Prata"),
                 getFamilyConditionSet("Children encountered accident 2 months ago"),
-                new Hobby("Plays badminton"),
+                getHobbySet("Plays badminton"),
                 getTagSet("tumour")),
             new Patient(new PatientHospitalId("12350"),
                 new Name("Roy Balakrishnan"),
                 new PreferredName("Rony"),
                 getFoodPreferenceSet("Fish Ball Soup"),
                 getFamilyConditionSet("Financial problem"),
-                new Hobby("Jog around park"),
+                getHobbySet("Jog around park"),
                 getTagSet("wheelchair")),
         };
     }
@@ -92,6 +92,15 @@ public class SampleDataUtil {
     public static Set<FoodPreference> getFoodPreferenceSet(String... strings) {
         return Arrays.stream(strings)
             .map(FoodPreference::new)
+            .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a hobby set containing the list of strings given.
+     */
+    public static Set<Hobby> getHobbySet(String... strings) {
+        return Arrays.stream(strings)
+            .map(Hobby::new)
             .collect(Collectors.toSet());
     }
 
