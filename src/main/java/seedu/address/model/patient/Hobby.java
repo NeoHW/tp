@@ -7,8 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Patient's hobby in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidHobby(String)}
  */
-public class Hobby {
-
+public class Hobby implements Comparable<Hobby> {
 
     public static final String MESSAGE_CONSTRAINTS = "Hobby can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -35,6 +34,12 @@ public class Hobby {
     @Override
     public String toString() {
         return hobby;
+    }
+
+    @Override
+    public int compareTo(Hobby other) {
+        // Compare the hobby strings
+        return this.hobby.compareTo(other.hobby);
     }
 
     @Override

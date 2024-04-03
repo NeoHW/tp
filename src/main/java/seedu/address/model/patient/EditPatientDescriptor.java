@@ -20,7 +20,7 @@ public class EditPatientDescriptor {
     private PreferredName preferredName;
     private Set<FoodPreference> foodPreferences;
     private Set<FamilyCondition> familyConditions;
-    private Hobby hobby;
+    private Set<Hobby> hobbies;
     private Set<Tag> tags;
     private Set<Event> events;
 
@@ -37,7 +37,7 @@ public class EditPatientDescriptor {
         setPreferredName(toCopy.preferredName);
         setFoodPreferences(toCopy.foodPreferences);
         setFamilyConditions(toCopy.familyConditions);
-        setHobby(toCopy.hobby);
+        setHobbies(toCopy.hobbies);
         setTags(toCopy.tags);
         setEvents(toCopy.events);
     }
@@ -47,7 +47,7 @@ public class EditPatientDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreferences, familyConditions,
-            hobby, tags, events);
+            hobbies, tags, events);
     }
 
     public void setPatientHospitalId(PatientHospitalId id) {
@@ -110,12 +110,23 @@ public class EditPatientDescriptor {
             : Optional.empty();
     }
 
-    public void setHobby(Hobby hobby) {
-        this.hobby = hobby;
+    /**
+     * Sets {@code hobbies} to this object's {@code hobbies}.
+     * A defensive copy of {@code hobbies} is used internally.
+     */
+    public void setHobbies(Set<Hobby> hobbies) {
+        this.hobbies = (hobbies != null) ? new HashSet<>(hobbies) : null;
     }
 
-    public Optional<Hobby> getHobby() {
-        return Optional.ofNullable(hobby);
+    /**
+     * Returns an unmodifiable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code hobbies} is null.
+     */
+    public Optional<Set<Hobby>> getHobbies() {
+        return (hobbies != null)
+            ? Optional.of(Collections.unmodifiableSet(hobbies))
+            : Optional.empty();
     }
 
     /**
@@ -161,7 +172,7 @@ public class EditPatientDescriptor {
             && Objects.equals(preferredName, otherEditPatientDescriptor.preferredName)
             && Objects.equals(foodPreferences, otherEditPatientDescriptor.foodPreferences)
             && Objects.equals(familyConditions, otherEditPatientDescriptor.familyConditions)
-            && Objects.equals(hobby, otherEditPatientDescriptor.hobby)
+            && Objects.equals(hobbies, otherEditPatientDescriptor.hobbies)
             && Objects.equals(tags, otherEditPatientDescriptor.tags)
             && Objects.equals(events, otherEditPatientDescriptor.events);
     }
@@ -174,7 +185,7 @@ public class EditPatientDescriptor {
             .add("preferredName", preferredName)
             .add("foodPreferences", foodPreferences)
             .add("familyConditions", familyConditions)
-            .add("hobby", hobby)
+            .add("hobbies", hobbies)
             .add("tags", tags)
             .add("events", events)
             .toString();
