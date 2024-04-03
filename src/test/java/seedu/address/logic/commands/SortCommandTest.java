@@ -36,7 +36,7 @@ public class SortCommandTest {
 
         expectedModel.updatePatientList(patientArrayList);
 
-        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS + "name");
+        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS, "name");
 
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
@@ -54,7 +54,7 @@ public class SortCommandTest {
 
         expectedModel.updatePatientList(patientArrayList);
 
-        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS + "preferred name");
+        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS, "preferred name");
 
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
