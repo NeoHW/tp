@@ -32,20 +32,17 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         switch (sortAttribute) {
         case "":
-            sortAttribute = "name";
             logger.log(Level.INFO, "Sorting Attribute: not specified, patient "
                     + sortAttribute
                     + " will be used as"
                     + " the sorting attribute");
-            return new SortCommand(NAME_COMPARATOR, sortAttribute);
+            return new SortCommand(NAME_COMPARATOR);
         case "n":
-            sortAttribute = "name";
             logger.log(Level.INFO, "Sorting Attribute: Patient " + sortAttribute);
-            return new SortCommand(NAME_COMPARATOR, sortAttribute);
+            return new SortCommand(NAME_COMPARATOR);
         case "p":
-            sortAttribute = "preferred name";
             logger.log(Level.INFO, "Sorting Attribute: Patient's " + sortAttribute);
-            return new SortCommand(PREFERRED_NAME_COMPARATOR, sortAttribute);
+            return new SortCommand(PREFERRED_NAME_COMPARATOR);
         default:
             throw new AssertionError("Code should not reach here\n"
                     + "Invalid sort attribute: "

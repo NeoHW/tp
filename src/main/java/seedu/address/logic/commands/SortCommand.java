@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.patient.comparators.NameComparator.NAME_COMPARATOR;
 import static seedu.address.model.patient.comparators.PreferredNameComparator.PREFERRED_NAME_COMPARATOR;
 
@@ -34,18 +33,16 @@ public class SortCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(SortCommand.class);
 
     private final Comparator<Patient> comparator;
-    private final String sortAttribute;
 
     /**
      * Creates a new SortCommand to sort the patients in patient list by the specified {@code comparator}
      *
      * @param comparator the comparator used to compare the patient list
      */
-    public SortCommand(Comparator<Patient> comparator, String sortAttribute) {
-        requireAllNonNull(comparator, sortAttribute);
+    public SortCommand(Comparator<Patient> comparator) {
+        requireNonNull(comparator);
 
         this.comparator = comparator;
-        this.sortAttribute = sortAttribute;
     }
 
     @Override
@@ -54,13 +51,17 @@ public class SortCommand extends Command {
 
         requireNonNull(model);
 
+        String sortAttribute = "";
+
         if (this.comparator.equals(NAME_COMPARATOR)) {
-            assert (this.sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
+            sortAttribute = "name";
         }
 
         if (this.comparator.equals(PREFERRED_NAME_COMPARATOR)) {
-            assert (this.sortAttribute.equals("preferred name")) : "Sort Attribute and Comparator mismatch!";
+            sortAttribute = "preferred name";
         }
+
+        assert (!sortAttribute.isEmpty()) : "Sort attribute should not be empty";
 
         List<Patient> patientList = model.getFullPatientList();
         List<Patient> patientArrayList = new ArrayList<>(patientList);
@@ -70,9 +71,9 @@ public class SortCommand extends Command {
         model.updatePatientList(patientArrayList);
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
 
-        logger.log(Level.INFO, "Successfully sorted the patient list by " + this.sortAttribute);
+        logger.log(Level.INFO, "Successfully sorted the patient list by " + sortAttribute);
 
-        return new CommandResult(String.format(MESSAGE_SORT_SUCCESS, this.sortAttribute));
+        return new CommandResult(String.format(MESSAGE_SORT_SUCCESS, sortAttribute));
     }
 
     @Override
@@ -86,15 +87,13 @@ public class SortCommand extends Command {
         }
 
         SortCommand otherSortCommand = (SortCommand) other;
-        return this.comparator.equals(otherSortCommand.comparator)
-                && this.sortAttribute.equals(otherSortCommand.sortAttribute);
+        return this.comparator.equals(otherSortCommand.comparator);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("comparator", this.comparator)
-                .add("sort attribute", this.sortAttribute)
                 .toString();
     }
 
