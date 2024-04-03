@@ -789,7 +789,7 @@ The `SortCommand` class is responsible for sorting the patients by the specified
 
 #### Specifications
 
-* `SortCommand` takes in one zero attributes to sort the patient list.
+* `SortCommand` takes in one or zero attributes to sort the patient list.
 * `SortCommand` will update the patient list with the sorted patient list and the display the sorted patient list.
 * If no attribute is specified, the default sorting method is by patient name.
 * SortCommand only can sort by patient's name or patient's preferred name.
@@ -994,21 +994,23 @@ PatientSync is meticulously crafted for nurses who prioritize the well-being of 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                       | So that I can…​                                                                                                                         |
-|----------|--------------------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `***`    | Nurse                                      | easily view the user guide         | learn more about the product and how to use whenever I need to                                                                          |
-| `***`    | Nurse                                      | add patient's information          | add new patients and easily remember their preferences to make a personalized connection                                                |
-| `***`    | Nurse                                      | delete patient's information       | remove patients who have been discharged                                                                                                |
-| `***`    | Nurse                                      | list all patient's information     | easily find the details of my patients                                                                                                  |
-| `***`    | Nurse                                      | add event for my patients          | keep track of my patients' appointments and see my overall schedule                                                                     |
-| `***`    | Nurse                                      | delete event for my patients       | delete my patients' appointments if they are canceled                                                                                   |
-| `***`    | Nurse                                      | add tags to my patients            | group the patients into categories                                                                                                      |
-| `***`    | Nurse                                      | find patient with a specific tag   | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
-| `***`    | Nurse                                      | save all previously added patients | ensure details of the patient would not be lost                                                                                         |
-| `**`     | Nurse                                      | edit patient's information         | have the most updated information of my patients at all times                                                                           |
-| `**`     | Nurse                                      | edit event for my patients          | edit my patients' appointments if they are changed                                                                                      |
-| `**`     | Nurse                                      | edit tags from my patients         | edit mistyped tags                                                                                         |
-| `**`     | Nurse                                      | delete tags from my patients       | delete the tag if it no longer applies                                                                                                  |
+| Priority | As a …​ | I want to …​                       | So that I can…​                                                                                                                          |
+|----------|---------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `***`    | Nurse   | easily view the user guide         | learn more about the product and how to use whenever I need to                                                                           |
+| `***`    | Nurse   | add patient's information          | add new patients and easily remember their preferences to make a personalized connection                                                 |
+| `***`    | Nurse   | delete patient's information       | remove patients who have been discharged                                                                                                 |
+| `***`    | Nurse   | list all patient's information     | easily find the details of my patients                                                                                                   |
+| `***`    | Nurse   | add event for my patients          | keep track of my patients' appointments and see my overall schedule                                                                      |
+| `***`    | Nurse   | delete event for my patients       | delete my patients' appointments if they are canceled                                                                                    |
+| `***`    | Nurse   | add tags to my patients            | group the patients into categories                                                                                                       |
+| `***`    | Nurse   | find patient with a specific tag   | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
+| `***`    | Nurse   | save all previously added patients | ensure details of the patient would not be lost                                                                                          |
+| `**`     | Nurse   | edit patient's information         | have the most updated information of my patients at all times                                                                            |
+| `**`     | Nurse   | edit event for my patients         | edit my patients' appointments if they are changed                                                                                       |
+| `**`     | Nurse   | edit tags from my patients         | edit mistyped tags                                                                                                                       |
+| `**`     | Nurse   | delete tags from my patients       | delete the tag if it no longer applies                                                                                                   |
+| `**`     | Nurse   | sort the patients by patient name  | be flexible in how I want to view my patient list                                                                                        |
+
 
 
 

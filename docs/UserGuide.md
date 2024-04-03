@@ -335,8 +335,8 @@ Format: `sort [ATTRIBUTE]`
 
 * Sorts all the added patients in the patient list by specified `ATTRIBUTE`.
 * Supported `ATTRIBUTE`s include `n` for patient name and `p` for patient's preferred name.
-* There can only be 1 or 0 `ATTRIBUTE`.
-* If no `ATTRIBUTE` is specified, the `sort` command will wort the patient list by patient's name by default.
+* There can only be one or zero `ATTRIBUTE`.
+* If no `ATTRIBUTE` is specified, default sorting order would be by patient's name.
 * `ATTRIBUTES` are **case-insensitive**.
 * The command will not be recognised if invalid `ATTRIBUTE`(s) are entered. e.g. `sort l` or `sort 123` are invalid
 sort commands.
