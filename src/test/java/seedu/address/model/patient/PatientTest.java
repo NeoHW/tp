@@ -37,7 +37,7 @@ public class PatientTest {
         // same id, all other attributes different -> returns true
         Patient editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB)
             .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreferences(VALID_FOOD_BOB)
-            .withFamilyCondition(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB).withTags(VALID_TAG_DEPRESSION)
+            .withFamilyConditions(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB).withTags(VALID_TAG_DEPRESSION)
             .build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
@@ -81,7 +81,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different family condition -> returns false
-        editedAlice = new PatientBuilder(ALICE).withFamilyCondition(VALID_FAMILY_CONDITION_BOB).build();
+        editedAlice = new PatientBuilder(ALICE).withFamilyConditions(VALID_FAMILY_CONDITION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different hobby -> returns false
@@ -93,7 +93,7 @@ public class PatientTest {
     public void toStringMethod() {
         String expected = Patient.class.getCanonicalName() + "{patientHospitalId=" + ALICE.getPatientHospitalId()
             + ", name=" + ALICE.getName() + ", preferredName=" + ALICE.getPreferredName()
-            + ", foodPreferences=" + ALICE.getFoodPreferences() + ", familyCondition=" + ALICE.getFamilyCondition()
+            + ", foodPreferences=" + ALICE.getFoodPreferences() + ", familyConditions=" + ALICE.getFamilyConditions()
             + ", hobby=" + ALICE.getHobby() + ", tags=" + ALICE.getTags() + ", events=" + ALICE.getEvents() + "}";
         assertEquals(expected, ALICE.toString());
     }

@@ -54,7 +54,7 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12344", "Carol", "Pasta", "Daughter", "not",
             "in", "Singapore", "swimming", "depression"));
         assertFalse(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Caroline Li")
-            .withPreferredName("Carol").withFoodPreferences("Pasta").withFamilyCondition("Daughter not in Singapore")
+            .withPreferredName("Carol").withFoodPreferences("Pasta").withFamilyConditions("Daughter not in Singapore")
             .withHobby("swimming").withTags("depression").build()));
     }
 

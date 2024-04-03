@@ -30,7 +30,7 @@ public class PatientBuilder {
     private Name name;
     private PreferredName preferredName;
     private Set<FoodPreference> foodPreferences;
-    private FamilyCondition familyCondition;
+    private Set<FamilyCondition> familyConditions;
     private Hobby hobby;
     private Set<Tag> tags;
     private Set<Event> events;
@@ -42,9 +42,9 @@ public class PatientBuilder {
         patientHospitalId = new PatientHospitalId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         preferredName = new PreferredName(DEFAULT_PREFERRED_NAME);
-        // Include the default food preference
+        // Include the default food preference, family condition
         foodPreferences = SampleDataUtil.getFoodPreferenceSet(DEFAULT_FOOD_PREFERENCE);
-        familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
+        familyConditions = SampleDataUtil.getFamilyConditionSet(DEFAULT_FAMILY_CONDITION);
         hobby = new Hobby(DEFAULT_HOBBY);
         tags = new HashSet<>();
         events = new HashSet<>();
@@ -58,7 +58,7 @@ public class PatientBuilder {
         name = patientToCopy.getName();
         preferredName = patientToCopy.getPreferredName();
         foodPreferences = new HashSet<>(patientToCopy.getFoodPreferences());
-        familyCondition = patientToCopy.getFamilyCondition();
+        familyConditions = new HashSet<>(patientToCopy.getFamilyConditions());
         hobby = patientToCopy.getHobby();
         tags = new HashSet<>(patientToCopy.getTags());
         events = new HashSet<>(patientToCopy.getEvents());
@@ -107,10 +107,12 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code FamilyCondition} of the {@code Patient} that we are building.
+     * Sets the FamilyCondition of the {@code Patient} that we are building.
+     * @param familyConditions array of string of preferred food
+     * @return return PatientBuilder withFamilyConditions
      */
-    public PatientBuilder withFamilyCondition(String familyCondition) {
-        this.familyCondition = new FamilyCondition(familyCondition);
+    public PatientBuilder withFamilyConditions(String ... familyConditions) {
+        this.familyConditions = SampleDataUtil.getFamilyConditionSet(familyConditions);
         return this;
     }
 
@@ -139,7 +141,7 @@ public class PatientBuilder {
      * Builds {@code Patient} with new Patient.
      */
     public Patient build() {
-        return new Patient(patientHospitalId, name, preferredName, this.foodPreferences, familyCondition, hobby, tags,
+        return new Patient(patientHospitalId, name, preferredName, this.foodPreferences, familyConditions, hobby, tags,
             events);
     }
 

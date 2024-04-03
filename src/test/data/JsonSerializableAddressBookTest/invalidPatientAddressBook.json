@@ -4,7 +4,7 @@
     "name": "Hans Muster",
     "preferredName": "Hans",
     "foodPreferences": [ "pizza" ],
-    "familyCondition": "no children",
+    "familyConditions": [ "no children" ],
     "hobby": "singing",
     "tags": [ ]
   } ]

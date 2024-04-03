@@ -5,7 +5,7 @@
     "patientHospitalId" : "12234",
     "preferredName" : "Alice",
     "foodPreferences" : [ "Duck rice", "Ban Mian" ],
-    "familyCondition" : "Have 2 daughters working overseas",
+    "familyConditions" : [ "Have 2 daughters working overseas" ],
     "hobby" : "Watching Hong Kong drama",
     "tags" : [ "depression" ],
     "importantDates" : [],
@@ -15,7 +15,7 @@
     "name" : "Benson Meier",
     "preferredName" : "Benson",
     "foodPreferences" : [ "Kampung Fried Rice" ],
-    "familyCondition" : "Wife in ICU",
+    "familyConditions" : [ "Wife in ICU", "No children" ],
     "hobby" : "Listen to Coldplay songs",
     "tags" : [ "diabetes", "cholesterol" ],
     "events" : [ {
@@ -30,7 +30,7 @@
     "name" : "Carl Kurz",
     "preferredName" : "Ah Carl",
     "foodPreferences" : [ "Sambal fish" ],
-    "familyCondition" : "Has no children",
+    "familyConditions" : [ "Has no children" ],
     "hobby" : "Likes to play mahjong",
     "tags" : [ ],
     "events" : []
@@ -39,7 +39,7 @@
     "name" : "Daniel Meier",
     "preferredName" : "Ah Da",
     "foodPreferences" : [ "Steak" ],
-    "familyCondition" : "Nieces not around Singapore",
+    "familyConditions" : [ "Nieces not around Singapore" ],
     "hobby" : "Cycling",
     "tags" : [ "eczema" ],
     "importantDates" : [],
@@ -49,7 +49,7 @@
     "name" : "Elle Meyer",
     "preferredName" : "Elle",
     "foodPreferences" : [ "Maggie Goreng" ],
-    "familyCondition" : "Husband working overseas",
+    "familyConditions" : [ "Husband working overseas" ],
     "hobby": "Dancing",
     "tags" : [ ],
     "events" : []
@@ -58,7 +58,7 @@
     "name" : "Fiona Kunz",
     "preferredName" : "Ms Fi",
     "foodPreferences" : [ "Fish soup without milk" ],
-    "familyCondition" : "Daughter fights with her every week",
+    "familyConditions" : [ "Daughter fights with her every week" ],
     "hobby" : "dancing",
     "tags" : [ ],
     "events" : []
@@ -67,7 +67,7 @@
     "name" : "George Best",
     "preferredName" : "George",
     "foodPreferences" : [ "Salmon with lemon" ],
-    "familyCondition" : "no children",
+    "familyConditions" : [ "no children" ],
     "hobby" : "reading books",
     "tags" : [ ],
     "events" : []

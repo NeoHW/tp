@@ -59,7 +59,7 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different family condition -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFamilyCondition(VALID_FAMILY_CONDITION_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFamilyConditions(VALID_FAMILY_CONDITION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different hobby -> returns false
@@ -86,8 +86,8 @@ public class EditPatientDescriptorTest {
                 + editPatientDescriptor.getPatientHospitalId().orElse(null) + ", name="
                 + editPatientDescriptor.getName().orElse(null) + ", preferredName="
                 + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreferences="
-                + editPatientDescriptor.getFoodPreferences().orElse(null) + ", familyCondition="
-                + editPatientDescriptor.getFamilyCondition().orElse(null) + ", hobby="
+                + editPatientDescriptor.getFoodPreferences().orElse(null) + ", familyConditions="
+                + editPatientDescriptor.getFamilyConditions().orElse(null) + ", hobby="
                 + editPatientDescriptor.getHobby().orElse(null) + ", tags="
                 + editPatientDescriptor.getTags().orElse(null) + ", events="
                 + editPatientDescriptor.getEvents().orElse(null) + "}";

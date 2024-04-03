@@ -161,7 +161,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseFamilyCondition_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseFamilyCondition((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFamilyConditions(null));
     }
 
     @Test

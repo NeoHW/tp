@@ -32,7 +32,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAMILY_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOBBY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
@@ -93,11 +92,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREFERRED_NAME_DESC_AMY + validExpectedPatientString,
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
 
-
-        // multiple family condition
-        assertParseFailure(parser, FAMILY_DESC_AMY + validExpectedPatientString,
-            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FAMILY_CONDITION));
-
         // multiple hobbies
         assertParseFailure(parser, HOBBY_DESC_AMY + validExpectedPatientString,
             Messages.getErrorMessageForDuplicatePrefixes(PREFIX_HOBBY));
@@ -106,7 +100,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedPatientString + ID_DESC_AMY + NAME_DESC_AMY
                 + PREFERRED_NAME_DESC_AMY + FOOD_DESC_AMY + FAMILY_DESC_AMY + HOBBY_DESC_AMY
                 + validExpectedPatientString, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID, PREFIX_NAME,
-            PREFIX_PREFERRED_NAME, PREFIX_FAMILY_CONDITION, PREFIX_HOBBY));
+            PREFIX_PREFERRED_NAME, PREFIX_HOBBY));
 
         // invalid value followed by valid value
 
@@ -121,10 +115,6 @@ public class AddCommandParserTest {
         // invalid preferred name
         assertParseFailure(parser, INVALID_PREFERRED_NAME_DESC + validExpectedPatientString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
-
-        // invalid family condition
-        assertParseFailure(parser, INVALID_FAMILY_DESC + validExpectedPatientString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FAMILY_CONDITION));
 
         // invalid hobby
         assertParseFailure(parser, INVALID_HOBBY_DESC + validExpectedPatientString,
@@ -143,11 +133,6 @@ public class AddCommandParserTest {
         // invalid preferred name
         assertParseFailure(parser, validExpectedPatientString + INVALID_PREFERRED_NAME_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
-
-
-        // invalid family condition
-        assertParseFailure(parser, validExpectedPatientString + INVALID_FAMILY_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FAMILY_CONDITION));
 
         // invalid hobby
         assertParseFailure(parser, validExpectedPatientString + INVALID_HOBBY_DESC,

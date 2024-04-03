@@ -40,7 +40,7 @@ public class EditPatientDescriptorBuilder {
         descriptor.setName(patient.getName());
         descriptor.setPreferredName(patient.getPreferredName());
         descriptor.setFoodPreferences(patient.getFoodPreferences());
-        descriptor.setFamilyCondition(patient.getFamilyCondition());
+        descriptor.setFamilyConditions(patient.getFamilyConditions());
         descriptor.setHobby(patient.getHobby());
         descriptor.setTags(patient.getTags());
     }
@@ -81,10 +81,12 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code FamilyCondition} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code familyConditions} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withFamilyCondition(String familyCondition) {
-        descriptor.setFamilyCondition(new FamilyCondition(familyCondition));
+    public EditPatientDescriptorBuilder withFamilyConditions(String... familyConditions) {
+        Set<FamilyCondition> familyConditionSet = Stream.of(familyConditions).map(FamilyCondition::new)
+            .collect(Collectors.toSet());
+        descriptor.setFamilyConditions(familyConditionSet);
         return this;
     }
 
