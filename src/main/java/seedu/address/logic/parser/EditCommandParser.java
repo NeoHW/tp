@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
 import seedu.address.model.tag.Tag;
 
@@ -63,10 +64,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseFoodPreferenceForEdit(argMultimap.getAllValues(PREFIX_FOOD_PREFERENCE)).ifPresent(
             editPatientDescriptor::setFoodPreferences);
 
-        if (argMultimap.getValue(PREFIX_FAMILY_CONDITION).isPresent()) {
-            editPatientDescriptor.setFamilyCondition(ParserUtil.parseFamilyCondition(
-                argMultimap.getValue(PREFIX_FAMILY_CONDITION).get()));
-        }
+        parseFamilyConditionForEdit(argMultimap.getAllValues(PREFIX_FAMILY_CONDITION)).ifPresent(
+            editPatientDescriptor::setFamilyConditions);
+
         if (argMultimap.getValue(PREFIX_HOBBY).isPresent()) {
             editPatientDescriptor.setHobby(ParserUtil.parseHobby(
                 argMultimap.getValue(PREFIX_HOBBY).get()));
@@ -95,6 +95,23 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> foodPreferenceSet = foodPreferences.size() == 1 && foodPreferences.contains("")
             ? Collections.emptySet() : foodPreferences;
         return Optional.of(ParserUtil.parseFoodPreferences(foodPreferenceSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> familyConditions} into a {@code Set<FamilyCondition>}
+     * if {@code familyConditions} is non-empty.
+     * If {@code familyConditions} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FamilyCondition>} containing zero familyCondition.
+     */
+    private Optional<Set<FamilyCondition>> parseFamilyConditionForEdit(
+        Collection<String> familyConditions) throws ParseException {
+        assert familyConditions != null;
+        if (familyConditions.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> familyConditionSet = familyConditions.size() == 1 && familyConditions.contains("")
+            ? Collections.emptySet() : familyConditions;
+        return Optional.of(ParserUtil.parseFamilyConditions(familyConditionSet));
     }
 
     /**

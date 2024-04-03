@@ -105,15 +105,15 @@ public class EditCommand extends Command {
             .orElse(patientToEdit.getPreferredName());
         Set<FoodPreference> updatedFoodPreferences = editPatientDescriptor.getFoodPreferences()
             .orElse(patientToEdit.getFoodPreferences());
-        FamilyCondition updatedFamilyCondition = editPatientDescriptor.getFamilyCondition()
-            .orElse(patientToEdit.getFamilyCondition());
+        Set<FamilyCondition> updatedFamilyConditions = editPatientDescriptor.getFamilyConditions()
+            .orElse(patientToEdit.getFamilyConditions());
         Hobby updatedHobby = editPatientDescriptor.getHobby().orElse(patientToEdit.getHobby());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
         Set<Event> updatedEvents = editPatientDescriptor.getEvents()
                 .orElse(patientToEdit.getEvents());
 
         return new Patient(originalPatientHospitalId, updatedName, updatedPreferredName, updatedFoodPreferences,
-            updatedFamilyCondition, updatedHobby, updatedTags, updatedEvents);
+            updatedFamilyConditions, updatedHobby, updatedTags, updatedEvents);
     }
 
     @Override

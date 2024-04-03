@@ -133,6 +133,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> familyConditions} into a {@code Set<Tag>}.
+     */
+    public static Set<FamilyCondition> parseFamilyConditions(Collection<String> familyConditions)
+            throws ParseException {
+        requireNonNull(familyConditions);
+        final Set<FamilyCondition> familyConditionSet = new HashSet<>();
+        for (String familyConditionName : familyConditions) {
+            familyConditionSet.add(parseFamilyCondition(familyConditionName));
+        }
+        if (familyConditionSet.isEmpty()) {
+            throw new ParseException(FamilyCondition.MESSAGE_CONSTRAINTS);
+        }
+        return familyConditionSet;
+    }
+
+    /**
      * Parses a {@code String hobby} into an {@code Hobby}.
      * Leading and trailing whitespaces will be trimmed.
      *

@@ -26,7 +26,7 @@ public class SampleDataUtil {
                 new Name("Alex Yeoh Jia Jun"),
                 new PreferredName("Alex"),
                 getFoodPreferenceSet("diabetes"),
-                new FamilyCondition("Stable, Has 2 sons that visits him regularly"),
+                getFamilyConditionSet("Stable ", "Has 2 sons that visits him regularly"),
                 new Hobby("Singing karaoke"),
                 getTagSet("diabetes"),
                 getEventSet(new String[]{"Birthday"}, new String[]{"20-01-2022"})),
@@ -34,7 +34,7 @@ public class SampleDataUtil {
                 new Name("Bernice Yu Sheng Huat"),
                 new PreferredName("Bern"),
                 getFoodPreferenceSet("Char Kuay Tiao", "Black Carrot Cake"),
-                new FamilyCondition("Lives alone, no family members around"),
+                getFamilyConditionSet("Lives alone", "no family members around"),
                 new Hobby("Playing Mahjong"),
                 getTagSet("high blood pressure"),
                 getEventSet(new String[]{"Family Visit"}, new String[]{"30-03-2022, 15:00 - 18:00"})),
@@ -42,28 +42,28 @@ public class SampleDataUtil {
                 new Name("Mary Jane"),
                 new PreferredName("Mary"),
                 getFoodPreferenceSet("Korean"),
-                new FamilyCondition("Lives with only daughter, quarrels regularly with daughter"),
+                getFamilyConditionSet("Lives with only daughter", "quarrels regularly with daughter"),
                 new Hobby("Watching Drama"),
                 getTagSet("fall risk")),
             new Patient(new PatientHospitalId("12348"),
                 new Name("David Li"),
                 new PreferredName("David"),
                 getFoodPreferenceSet("Bak Kut Teh"),
-                new FamilyCondition("Son visits him every weekend"),
+                getFamilyConditionSet("Son visits him every weekend"),
                 new Hobby("Plays erhu"),
                 getTagSet("diabetes", "skin irritation")),
             new Patient(new PatientHospitalId("12349"),
                 new Name("Irfan Ibrahim"),
                 new PreferredName("Fan"),
                 getFoodPreferenceSet("Roti Prata"),
-                new FamilyCondition("Children encountered accident 2 months ago"),
+                getFamilyConditionSet("Children encountered accident 2 months ago"),
                 new Hobby("Plays badminton"),
                 getTagSet("tumour")),
             new Patient(new PatientHospitalId("12350"),
                 new Name("Roy Balakrishnan"),
                 new PreferredName("Rony"),
                 getFoodPreferenceSet("Fish Ball Soup"),
-                new FamilyCondition("Financial problem"),
+                getFamilyConditionSet("Financial problem"),
                 new Hobby("Jog around park"),
                 getTagSet("wheelchair")),
         };
@@ -75,6 +75,15 @@ public class SampleDataUtil {
             sampleAb.addPatient(samplePatient);
         }
         return sampleAb;
+    }
+
+    /**
+     * Returns a family condition set containing the list of strings given.
+     */
+    public static Set<FamilyCondition> getFamilyConditionSet(String... strings) {
+        return Arrays.stream(strings)
+            .map(FamilyCondition::new)
+            .collect(Collectors.toSet());
     }
 
     /**

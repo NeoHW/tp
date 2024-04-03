@@ -44,9 +44,9 @@ public class Messages {
                 .append(patient.getPatientHospitalId())
                 .append("; FoodPreferences: ");
         patient.getFoodPreferences().forEach(builder::append);
-        builder.append("; FamilyCondition: ")
-                .append(patient.getFamilyCondition())
-                .append("; Hobby: ")
+        builder.append("; FamilyConditions: ");
+        patient.getFamilyConditions().forEach(builder::append);
+        builder.append("; Hobby: ")
                 .append(patient.getHobby())
                 .append("; Tags: ");
         patient.getTags().forEach(builder::append);
