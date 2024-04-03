@@ -26,8 +26,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortCommandWithSortAttributeName_success() {
 
-        String sortAttribute = "name";
-        SortCommand sortCommand = new SortCommand(NAME_COMPARATOR, sortAttribute);
+        SortCommand sortCommand = new SortCommand(NAME_COMPARATOR);
 
         List<Patient> patientList = expectedModel.getFullPatientList();
         List<Patient> patientArrayList = new ArrayList<>(patientList);
@@ -45,7 +44,7 @@ public class SortCommandTest {
     public void execute_sortCommandWithSortAttributePreferredName_success() {
 
         String sortAttribute = "preferred name";
-        SortCommand sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, sortAttribute);
+        SortCommand sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR);
 
         List<Patient> patientList = expectedModel.getFullPatientList();
         List<Patient> patientArrayList = new ArrayList<>(patientList);
@@ -60,28 +59,13 @@ public class SortCommandTest {
     }
 
     @Test
-    public void initialise_sortCommandWithMismatchSortAttributeAndComparator_failure() throws AssertionError {
-        try {
-            SortCommand sortCommand = new SortCommand(NAME_COMPARATOR, "preferred name");
-        } catch (AssertionError e) {
-            assertEquals("Sort Attribute and Comparator mismatch!", e.getMessage());
-        }
-
-        try {
-            SortCommand sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, "name");
-        } catch (AssertionError e) {
-            assertEquals("Sort Attribute and Comparator mismatch!", e.getMessage());
-        }
-    }
-
-    @Test
     public void equals() {
         String sortAttribute = "name";
 
-        final SortCommand standardCommand = new SortCommand(NAME_COMPARATOR, sortAttribute);
+        final SortCommand standardCommand = new SortCommand(NAME_COMPARATOR);
 
         // same values -> returns true
-        SortCommand commandWithSameValues = new SortCommand(NAME_COMPARATOR, "name");
+        SortCommand commandWithSameValues = new SortCommand(NAME_COMPARATOR);
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
@@ -94,30 +78,20 @@ public class SortCommandTest {
         assertNotEquals(standardCommand, new ListCommand());
 
         // different comparator -> returns false
-        assertNotEquals(standardCommand, new SortCommand(PREFERRED_NAME_COMPARATOR, sortAttribute));
-
-        // different sort attribute -> returns false
-        assertNotEquals(standardCommand, new SortCommand(NAME_COMPARATOR, "hello"));
+        assertNotEquals(standardCommand, new SortCommand(PREFERRED_NAME_COMPARATOR));
     }
 
     @Test
     public void toStringTest() {
         // test case 1
-        String sortAttribute = "name";
-        SortCommand sortCommand = new SortCommand(NAME_COMPARATOR, "name");
+        SortCommand sortCommand = new SortCommand(NAME_COMPARATOR);
 
-        String expected = SortCommand.class.getCanonicalName() + "{comparator=" + NAME_COMPARATOR + ", sort attribute="
-                + sortAttribute
-                + "}";
+        String expected = SortCommand.class.getCanonicalName() + "{comparator=" + NAME_COMPARATOR + "}";
         assertEquals(expected, sortCommand.toString());
 
         // test case 2
-        sortAttribute = "preferred name";
-        sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, "preferred name");
-        expected = SortCommand.class.getCanonicalName() + "{comparator=" + PREFERRED_NAME_COMPARATOR
-                + ", sort attribute="
-                + sortAttribute
-                + "}";
+        sortCommand = new SortCommand(PREFERRED_NAME_COMPARATOR);
+        expected = SortCommand.class.getCanonicalName() + "{comparator=" + PREFERRED_NAME_COMPARATOR + "}";
         assertEquals(expected, sortCommand.toString());
 
     }

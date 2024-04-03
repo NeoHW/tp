@@ -71,21 +71,21 @@ public class SortCommandParserTest {
         // Test for arg: n
         String userInput = "n";
 
-        SortCommand expectedCommand = new SortCommand(NAME_COMPARATOR, "name");
+        SortCommand expectedCommand = new SortCommand(NAME_COMPARATOR);
         SortCommand command = parser.parse(userInput);
         assertEquals(expectedCommand, command);
 
         // Test for arg: ""
         userInput = "";
 
-        expectedCommand = new SortCommand(NAME_COMPARATOR, "name");
+        expectedCommand = new SortCommand(NAME_COMPARATOR);
         command = parser.parse(userInput);
         assertEquals(expectedCommand, command);
 
         // Test for arg: p
         userInput = "p";
 
-        expectedCommand = new SortCommand(PREFERRED_NAME_COMPARATOR, "preferred name");
+        expectedCommand = new SortCommand(PREFERRED_NAME_COMPARATOR);
         command = parser.parse(userInput);
         assertEquals(expectedCommand, command);
     }

@@ -139,7 +139,7 @@ public class AddressBookParserTest {
         String args = "n";
         SortCommand command = (SortCommand) parser.parseCommand(
                 SortCommand.COMMAND_WORD + " " + args);
-        assertEquals(new SortCommand(NAME_COMPARATOR, "name"), command);
+        assertEquals(new SortCommand(NAME_COMPARATOR), command);
     }
 
     @Test
