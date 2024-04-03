@@ -36,6 +36,15 @@ public class EditEventCommandParserTest {
         assertThrows(ParseException.class, () -> editEventCommandParser.parse("1 "
                 + PREFIX_EVENT + " -1 " + PREFIX_NAME + VALID_EVENT_NAME + " " + PREFIX_DATETIME
                 + VALID_EVENT_DATE));
+
+        assertThrows(ParseException.class, () -> editEventCommandParser.parse(
+                "1 e/1 n/Valid d/12-12-2024 t/Something"));
+        assertThrows(ParseException.class, () -> editEventCommandParser.parse(
+                "1 e/1 n/Valid c/Test d/12-12-2024"));
+        assertThrows(ParseException.class, () -> editEventCommandParser.parse(
+                "1 e/1 p/Another n/Valid d/12-12-2024"));
+        assertThrows(ParseException.class, () -> editEventCommandParser.parse(
+                "1 p/test e/1 n/Valid d/12-12-2024"));
     }
 
     @Test

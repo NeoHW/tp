@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentTokenizer.checkInvalidPrefixesForEditEvent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -12,7 +13,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Event;
@@ -31,6 +31,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
     public EditEventCommand parse(String args) throws ParseException {
         logger.log(Level.INFO, "Received arguments: " + args + " for EditEventCommand; Attempting to parse..");
         requireNonNull(args);
+        checkInvalidPrefixesForEditEvent(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT, PREFIX_NAME, PREFIX_DATETIME);
 
@@ -46,7 +47,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         try {
             patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
             eventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EVENT).get());
-        } catch (IllegalValueException e) {
+        } catch (ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditEventCommand.MESSAGE_USAGE), e);
         }

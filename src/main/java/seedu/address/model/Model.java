@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -80,10 +81,19 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
 
+    /** Returns an unmodifiable view of the full patient list */
+    ObservableList<Patient> getFullPatientList();
+
     /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Replaces the current patient list with {@code updatedPatientList}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updatePatientList(List<Patient> updatedPatientList);
 
 }
