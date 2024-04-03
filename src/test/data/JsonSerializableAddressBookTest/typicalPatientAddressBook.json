@@ -6,7 +6,7 @@
     "preferredName" : "Alice",
     "foodPreferences" : [ "Duck rice", "Ban Mian" ],
     "familyConditions" : [ "Have 2 daughters working overseas" ],
-    "hobby" : "Watching Hong Kong drama",
+    "hobbies" : [ "Watching Hong Kong drama" ],
     "tags" : [ "depression" ],
     "importantDates" : [],
     "events" : []
@@ -16,7 +16,7 @@
     "preferredName" : "Benson",
     "foodPreferences" : [ "Kampung Fried Rice" ],
     "familyConditions" : [ "Wife in ICU", "No children" ],
-    "hobby" : "Listen to Coldplay songs",
+    "hobbies" : [ "Listen to Coldplay songs" ],
     "tags" : [ "diabetes", "cholesterol" ],
     "events" : [ {
       "name": "Birthday",
@@ -31,7 +31,7 @@
     "preferredName" : "Ah Carl",
     "foodPreferences" : [ "Sambal fish" ],
     "familyConditions" : [ "Has no children" ],
-    "hobby" : "Likes to play mahjong",
+    "hobbies" : [ "Likes to play mahjong" ],
     "tags" : [ ],
     "events" : []
   }, {
@@ -40,7 +40,7 @@
     "preferredName" : "Ah Da",
     "foodPreferences" : [ "Steak" ],
     "familyConditions" : [ "Nieces not around Singapore" ],
-    "hobby" : "Cycling",
+    "hobbies" : [ "Cycling" ],
     "tags" : [ "eczema" ],
     "importantDates" : [],
     "events" : []
@@ -50,7 +50,7 @@
     "preferredName" : "Elle",
     "foodPreferences" : [ "Maggie Goreng" ],
     "familyConditions" : [ "Husband working overseas" ],
-    "hobby": "Dancing",
+    "hobbies": [ "Dancing", "Singing" ],
     "tags" : [ ],
     "events" : []
   }, {
@@ -59,7 +59,7 @@
     "preferredName" : "Ms Fi",
     "foodPreferences" : [ "Fish soup without milk" ],
     "familyConditions" : [ "Daughter fights with her every week" ],
-    "hobby" : "dancing",
+    "hobbies" : [ "dancing" ],
     "tags" : [ ],
     "events" : []
   }, {
@@ -68,7 +68,7 @@
     "preferredName" : "George",
     "foodPreferences" : [ "Salmon with lemon" ],
     "familyConditions" : [ "no children" ],
-    "hobby" : "reading books",
+    "hobbies" : [ "reading books" ],
     "tags" : [ ],
     "events" : []
   } ]

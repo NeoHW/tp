@@ -5,7 +5,7 @@
     "preferredName" : "Alice",
     "foodPreferences" : [ "Duck rice" ],
     "familyConditions" : [ "Have 2 daughters working overseas" ],
-    "hobby" : "Watching Hong Kong drama",
+    "hobbies" : [ "Watching Hong Kong drama" ],
     "tags" : [ "depression" ]
   }, {
     "patientHospitalId" : "12234",
@@ -13,7 +13,7 @@
     "preferredName" : "Alice",
     "foodPreferences" : [ "Duck rice" ],
     "familyConditions" : [ "Have 2 daughters working overseas" ],
-    "hobby" : "Watching Hong Kong drama",
+    "hobbies" : [ "Watching Hong Kong drama" ],
     "tags" : [ "depression" ]
   } ]
 }

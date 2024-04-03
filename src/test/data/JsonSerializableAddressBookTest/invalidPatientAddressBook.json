@@ -5,7 +5,7 @@
     "preferredName": "Hans",
     "foodPreferences": [ "pizza" ],
     "familyConditions": [ "no children" ],
-    "hobby": "singing",
+    "hobbies": [ "singing" ],
     "tags": [ ]
   } ]
 }
