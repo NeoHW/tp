@@ -32,7 +32,7 @@ class JsonAdaptedPatient {
     private final String preferredName;
     private final List<JsonAdaptedFoodPreference> foodPreferences = new ArrayList<>();
     private final List<JsonAdaptedFamilyCondition> familyConditions = new ArrayList<>();
-    private final String hobby;
+    private final List<JsonAdaptedHobby> hobbies = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
@@ -44,7 +44,7 @@ class JsonAdaptedPatient {
                               @JsonProperty("name") String name, @JsonProperty("preferredName") String preferredName,
                               @JsonProperty("foodPreferences") List<JsonAdaptedFoodPreference> foodPreferences,
                               @JsonProperty("familyConditions") List<JsonAdaptedFamilyCondition> familyConditions,
-                              @JsonProperty("hobby") String hobby,
+                              @JsonProperty("hobbies") List<JsonAdaptedHobby> hobbies,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.patientHospitalId = patientHospitalId;
@@ -56,7 +56,9 @@ class JsonAdaptedPatient {
         if (familyConditions != null) {
             this.familyConditions.addAll(familyConditions);
         }
-        this.hobby = hobby;
+        if (hobbies != null) {
+            this.hobbies.addAll(hobbies);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -78,7 +80,9 @@ class JsonAdaptedPatient {
         familyConditions.addAll(source.getFamilyConditions().stream()
             .map(JsonAdaptedFamilyCondition::new)
             .collect(Collectors.toList()));
-        hobby = source.getHobby().hobby;
+        hobbies.addAll(source.getHobbies().stream()
+            .map(JsonAdaptedHobby::new)
+            .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -109,6 +113,15 @@ class JsonAdaptedPatient {
         if (patientFamilyConditions.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 FamilyCondition.class.getSimpleName()));
+        }
+
+        final List<Hobby> patientHobbies = new ArrayList<>();
+        for (JsonAdaptedHobby hobby : hobbies) {
+            patientHobbies.add(hobby.toModelType());
+        }
+        if (patientHobbies.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Hobby.class.getSimpleName()));
         }
 
         final List<Tag> patientTags = new ArrayList<>();
@@ -151,20 +164,12 @@ class JsonAdaptedPatient {
 
         final Set<FoodPreference> modelFoodPreferences = new HashSet<>(patientFoodPreferences);
         final Set<FamilyCondition> modelFamilyConditions = new HashSet<>(patientFamilyConditions);
-
-        if (hobby == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Hobby.class.getSimpleName()));
-        }
-        if (!Hobby.isValidHobby(hobby)) {
-            throw new IllegalValueException(Hobby.MESSAGE_CONSTRAINTS);
-        }
-        final Hobby modelHobby = new Hobby(hobby);
-
+        final Set<Hobby> modelHobbies = new HashSet<>(patientHobbies);
         final Set<Tag> modelTags = new HashSet<>(patientTags);
         final Set<Event> modelEvents = new HashSet<>(patientEvents);
 
         return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreferences,
-            modelFamilyConditions, modelHobby, modelTags, modelEvents);
+            modelFamilyConditions, modelHobbies, modelTags, modelEvents);
     }
 
 }
