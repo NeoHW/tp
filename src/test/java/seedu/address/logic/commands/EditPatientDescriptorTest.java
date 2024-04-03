@@ -63,7 +63,7 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different hobby -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withHobby(VALID_HOBBY_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withHobbies(VALID_HOBBY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
@@ -87,8 +87,8 @@ public class EditPatientDescriptorTest {
                 + editPatientDescriptor.getName().orElse(null) + ", preferredName="
                 + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreferences="
                 + editPatientDescriptor.getFoodPreferences().orElse(null) + ", familyConditions="
-                + editPatientDescriptor.getFamilyConditions().orElse(null) + ", hobby="
-                + editPatientDescriptor.getHobby().orElse(null) + ", tags="
+                + editPatientDescriptor.getFamilyConditions().orElse(null) + ", hobbies="
+                + editPatientDescriptor.getHobbies().orElse(null) + ", tags="
                 + editPatientDescriptor.getTags().orElse(null) + ", events="
                 + editPatientDescriptor.getEvents().orElse(null) + "}";
         assertEquals(expected, editPatientDescriptor.toString());

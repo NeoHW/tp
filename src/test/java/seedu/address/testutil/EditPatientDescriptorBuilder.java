@@ -41,7 +41,7 @@ public class EditPatientDescriptorBuilder {
         descriptor.setPreferredName(patient.getPreferredName());
         descriptor.setFoodPreferences(patient.getFoodPreferences());
         descriptor.setFamilyConditions(patient.getFamilyConditions());
-        descriptor.setHobby(patient.getHobby());
+        descriptor.setHobbies(patient.getHobbies());
         descriptor.setTags(patient.getTags());
     }
 
@@ -91,10 +91,12 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Hobby} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code hobbies} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withHobby(String hobby) {
-        descriptor.setHobby(new Hobby(hobby));
+    public EditPatientDescriptorBuilder withHobbies(String... hobbies) {
+        Set<Hobby> hobbySet = Stream.of(hobbies).map(Hobby::new)
+            .collect(Collectors.toSet());
+        descriptor.setHobbies(hobbySet);
         return this;
     }
 

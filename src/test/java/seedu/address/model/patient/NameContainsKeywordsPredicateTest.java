@@ -55,7 +55,7 @@ public class NameContainsKeywordsPredicateTest {
             "in", "Singapore", "swimming", "depression"));
         assertFalse(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Caroline Li")
             .withPreferredName("Carol").withFoodPreferences("Pasta").withFamilyConditions("Daughter not in Singapore")
-            .withHobby("swimming").withTags("depression").build()));
+            .withHobbies("swimming").withTags("depression").build()));
     }
 
     @Test

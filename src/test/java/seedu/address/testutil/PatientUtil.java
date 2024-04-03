@@ -41,11 +41,12 @@ public class PatientUtil {
         patient.getFamilyConditions().stream().forEach(
             s -> sb.append(PREFIX_FAMILY_CONDITION + s.familyCondition + " ")
         );
-        sb.append(PREFIX_HOBBY + patient.getHobby().hobby + " ");
+        patient.getHobbies().stream().forEach(
+            s -> sb.append(PREFIX_HOBBY + s.hobby + " ")
+        );
         patient.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        System.out.println("sb: " + sb);
         return sb.toString();
     }
 
@@ -74,7 +75,13 @@ public class PatientUtil {
             }
         });
 
-        descriptor.getHobby().ifPresent(hobby -> sb.append(PREFIX_HOBBY).append(hobby.hobby).append(" "));
+        descriptor.getHobbies().ifPresent(hobbies -> {
+            if (!hobbies.isEmpty()) {
+                hobbies.forEach(hobby -> sb.append(PREFIX_HOBBY)
+                    .append(hobby.hobby).append(" "));
+            }
+        });
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -53,7 +53,7 @@ public class TagContainsKeywordsPredicateTest {
                 "Daughter", "not", "in", "Singapore", "swimming", "diabetes"));
         assertFalse(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Caroline Li")
                 .withPreferredName("Carol").withFoodPreferences("Pasta")
-                .withFamilyConditions("Daughter not in Singapore").withHobby("swimming").withTags("depression")
+                .withFamilyConditions("Daughter not in Singapore").withHobbies("swimming").withTags("depression")
             .build()));
     }
 
@@ -71,7 +71,8 @@ public class TagContainsKeywordsPredicateTest {
                 "Son", "at", "China", "dancing", "diabetes"));
         assertTrue(predicate.test(new PatientBuilder().withPatientHospitalId("12344").withName("Caroline Li")
                 .withPreferredName("Carol").withFoodPreferences("Pasta")
-                .withFamilyConditions("Daughter not in Singapore").withHobby("swimming").withTags("diabetes").build()));
+                .withFamilyConditions("Daughter not in Singapore").withHobbies("swimming").withTags("diabetes")
+            .build()));
     }
 
     @Test

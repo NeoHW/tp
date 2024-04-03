@@ -37,8 +37,8 @@ public class PatientTest {
         // same id, all other attributes different -> returns true
         Patient editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB)
             .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreferences(VALID_FOOD_BOB)
-            .withFamilyConditions(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB).withTags(VALID_TAG_DEPRESSION)
-            .build();
+            .withFamilyConditions(VALID_FAMILY_CONDITION_BOB).withHobbies(VALID_HOBBY_BOB)
+            .withTags(VALID_TAG_DEPRESSION).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
         // different id, all other attributes same -> returns false
@@ -85,7 +85,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different hobby -> returns false
-        editedAlice = new PatientBuilder(ALICE).withHobby(VALID_HOBBY_BOB).build();
+        editedAlice = new PatientBuilder(ALICE).withHobbies(VALID_HOBBY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -94,7 +94,7 @@ public class PatientTest {
         String expected = Patient.class.getCanonicalName() + "{patientHospitalId=" + ALICE.getPatientHospitalId()
             + ", name=" + ALICE.getName() + ", preferredName=" + ALICE.getPreferredName()
             + ", foodPreferences=" + ALICE.getFoodPreferences() + ", familyConditions=" + ALICE.getFamilyConditions()
-            + ", hobby=" + ALICE.getHobby() + ", tags=" + ALICE.getTags() + ", events=" + ALICE.getEvents() + "}";
+            + ", hobbies=" + ALICE.getHobbies() + ", tags=" + ALICE.getTags() + ", events=" + ALICE.getEvents() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -31,7 +31,7 @@ public class PatientBuilder {
     private PreferredName preferredName;
     private Set<FoodPreference> foodPreferences;
     private Set<FamilyCondition> familyConditions;
-    private Hobby hobby;
+    private Set<Hobby> hobbies;
     private Set<Tag> tags;
     private Set<Event> events;
 
@@ -42,10 +42,10 @@ public class PatientBuilder {
         patientHospitalId = new PatientHospitalId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         preferredName = new PreferredName(DEFAULT_PREFERRED_NAME);
-        // Include the default food preference, family condition
+        // Include the default food preference, family condition, hobby
         foodPreferences = SampleDataUtil.getFoodPreferenceSet(DEFAULT_FOOD_PREFERENCE);
         familyConditions = SampleDataUtil.getFamilyConditionSet(DEFAULT_FAMILY_CONDITION);
-        hobby = new Hobby(DEFAULT_HOBBY);
+        hobbies = SampleDataUtil.getHobbySet(DEFAULT_HOBBY);
         tags = new HashSet<>();
         events = new HashSet<>();
     }
@@ -59,7 +59,7 @@ public class PatientBuilder {
         preferredName = patientToCopy.getPreferredName();
         foodPreferences = new HashSet<>(patientToCopy.getFoodPreferences());
         familyConditions = new HashSet<>(patientToCopy.getFamilyConditions());
-        hobby = patientToCopy.getHobby();
+        hobbies = new HashSet<>(patientToCopy.getHobbies());
         tags = new HashSet<>(patientToCopy.getTags());
         events = new HashSet<>(patientToCopy.getEvents());
     }
@@ -119,8 +119,8 @@ public class PatientBuilder {
     /**
      * Sets the {@code Hobby} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withHobby(String hobby) {
-        this.hobby = new Hobby(hobby);
+    public PatientBuilder withHobbies(String ... hobbies) {
+        this.hobbies = SampleDataUtil.getHobbySet(hobbies);
         return this;
     }
 
@@ -141,8 +141,8 @@ public class PatientBuilder {
      * Builds {@code Patient} with new Patient.
      */
     public Patient build() {
-        return new Patient(patientHospitalId, name, preferredName, this.foodPreferences, familyConditions, hobby, tags,
-            events);
+        return new Patient(patientHospitalId, name, preferredName, this.foodPreferences, familyConditions, hobbies,
+            tags, events);
     }
 
 }
