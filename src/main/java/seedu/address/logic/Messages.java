@@ -46,9 +46,9 @@ public class Messages {
         patient.getFoodPreferences().forEach(builder::append);
         builder.append("; FamilyConditions: ");
         patient.getFamilyConditions().forEach(builder::append);
-        builder.append("; Hobby: ")
-                .append(patient.getHobby())
-                .append("; Tags: ");
+        builder.append("; Hobbies: ");
+        patient.getHobbies().forEach(builder::append);
+        builder.append("; Tags: ");
         patient.getTags().forEach(builder::append);
         return builder.toString();
     }

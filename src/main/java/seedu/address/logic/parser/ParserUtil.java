@@ -164,6 +164,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> hobbies} into a {@code Set<Hobbies>}.
+     */
+    public static Set<Hobby> parseHobbies(Collection<String> hobbies) throws ParseException {
+        requireNonNull(hobbies);
+        final Set<Hobby> hobbySet = new HashSet<>();
+        for (String hobbyName : hobbies) {
+            hobbySet.add(parseHobby(hobbyName));
+        }
+        if (hobbySet.isEmpty()) {
+            throw new ParseException(Hobby.MESSAGE_CONSTRAINTS);
+        }
+        return hobbySet;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

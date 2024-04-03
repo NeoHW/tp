@@ -21,6 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.FamilyCondition;
 import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,10 +68,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseFamilyConditionForEdit(argMultimap.getAllValues(PREFIX_FAMILY_CONDITION)).ifPresent(
             editPatientDescriptor::setFamilyConditions);
 
-        if (argMultimap.getValue(PREFIX_HOBBY).isPresent()) {
-            editPatientDescriptor.setHobby(ParserUtil.parseHobby(
-                argMultimap.getValue(PREFIX_HOBBY).get()));
-        }
+        parseHobbyForEdit(argMultimap.getAllValues(PREFIX_HOBBY)).ifPresent(editPatientDescriptor::setHobbies);
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPatientDescriptor::setTags);
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
@@ -112,6 +111,22 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> familyConditionSet = familyConditions.size() == 1 && familyConditions.contains("")
             ? Collections.emptySet() : familyConditions;
         return Optional.of(ParserUtil.parseFamilyConditions(familyConditionSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> hobbies} into a {@code Set<Hobby>}
+     * if {@code hobbies} is non-empty.
+     * If {@code hobbies} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Hobby>} containing zero familyCondition.
+     */
+    private Optional<Set<Hobby>> parseHobbyForEdit(Collection<String> hobbies) throws ParseException {
+        assert hobbies != null;
+        if (hobbies.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> hobbySet = hobbies.size() == 1 && hobbies.contains("")
+            ? Collections.emptySet() : hobbies;
+        return Optional.of(ParserUtil.parseHobbies(hobbySet));
     }
 
     /**
