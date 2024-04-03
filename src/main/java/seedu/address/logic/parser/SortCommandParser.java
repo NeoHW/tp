@@ -54,26 +54,26 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     /**
-     * Parses the sorting attribute
+     * Parses the {@code args} to check for valid sort attribute
      *
      * @param args
-     * @return the parsed sorting attribute
+     * @return the parsed valid sort attribute
      * @throws ParseException if the user input does not conform to the expected format
      */
     public String parseSortAttribute(String args) throws ParseException {
-        String trimmedArgs = args.trim().toLowerCase();
-        logger.log(Level.INFO, "trimmed argument: " + trimmedArgs);
+        String trimmedSortAttribute = args.trim().toLowerCase();
+        logger.log(Level.INFO, "trimmed sort attribute: " + trimmedSortAttribute);
 
-        if (trimmedArgs.length() > 1) {
-            logger.log(Level.WARNING, "Invalid argument length (> 1) received.");
+        if (trimmedSortAttribute.length() > 1) {
+            logger.log(Level.WARNING, "Invalid sort attribute length (> 1) received.");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        if (!trimmedArgs.isEmpty() && !VALID_SORT_ATTRIBUTES_LIST.contains(trimmedArgs)) {
-            logger.log(Level.WARNING, "Invalid sorting attribute received!");
+        if (!trimmedSortAttribute.isEmpty() && !VALID_SORT_ATTRIBUTES_LIST.contains(trimmedSortAttribute)) {
+            logger.log(Level.WARNING, "Invalid sort attribute received!");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        return trimmedArgs;
+        return trimmedSortAttribute;
     }
 }

@@ -24,7 +24,7 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SORT_SUCCESS = "Successfully sorted all patients by ";
+    public static final String MESSAGE_SORT_SUCCESS = "Successfully sorted all patients by %1s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort all persons by the specified attribute "
             + "and displays them as a list with index numbers.\n"
@@ -55,11 +55,11 @@ public class SortCommand extends Command {
         requireNonNull(model);
 
         if (this.comparator.equals(NAME_COMPARATOR)) {
-            assert (sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
+            assert (this.sortAttribute.equals("name")) : "Sort Attribute and Comparator mismatch!";
         }
 
         if (this.comparator.equals(PREFERRED_NAME_COMPARATOR)) {
-            assert (sortAttribute.equals("preferred name")) : "Sort Attribute and Comparator mismatch!";
+            assert (this.sortAttribute.equals("preferred name")) : "Sort Attribute and Comparator mismatch!";
         }
 
         List<Patient> patientList = model.getFullPatientList();
@@ -72,7 +72,7 @@ public class SortCommand extends Command {
 
         logger.log(Level.INFO, "Successfully sorted the patient list by " + this.sortAttribute);
 
-        return new CommandResult(MESSAGE_SORT_SUCCESS + sortAttribute);
+        return new CommandResult(String.format(MESSAGE_SORT_SUCCESS, this.sortAttribute));
     }
 
     @Override
