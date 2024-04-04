@@ -18,7 +18,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DeleteEventCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Event;
@@ -43,6 +42,7 @@ public class DeleteEventCommand extends Command {
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully deleted "
             + "for Patient %4$s with ID %5$s";
+    private static final Logger logger = LogsCenter.getLogger(DeleteEventCommand.class);
 
     private final Index targetPatientIndex;
     private final Index targetEventIndex;
@@ -63,10 +63,13 @@ public class DeleteEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Attempting to execute DeleteEventCommand");
+
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (targetPatientIndex.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "targetPatientIndex is larger than the number of patients in the list!");
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
@@ -74,8 +77,11 @@ public class DeleteEventCommand extends Command {
         Set<Event> eventSet = patientToDeleteEvent.getEvents();
 
         if (targetEventIndex.getZeroBased() >= eventSet.size()) {
+            logger.log(Level.WARNING, "targetEventIndex is larger than the number of events in the event set!");
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
+
+        logger.log(Level.INFO, "Both patient index and event index are valid. Attempting to delete event: ");
 
         Set<Event> currEventSet = new HashSet<>(patientToDeleteEvent.getEvents());
         List<Event> currEventList = new ArrayList<>(currEventSet);
@@ -85,24 +91,16 @@ public class DeleteEventCommand extends Command {
         currEventList.remove(targetEventIndex.getZeroBased());
         Set<Event> newEventSet = new HashSet<>(currEventList);
 
-        Logger logger = LogsCenter.getLogger(DeleteEventCommandParser.class);
-        logger.log(Level.INFO, "old set: " + currEventSet);
-        logger.log(Level.INFO, "new set: " + newEventSet);
+        logger.log(Level.INFO, "Event deleted from event set.\nUpdated Event Set: " + newEventSet);
 
-        editPatientDescriptor.setName(patientToDeleteEvent.getName());
-        editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
-        editPatientDescriptor.setPatientHospitalId(patientToDeleteEvent.getPatientHospitalId());
-        editPatientDescriptor.setPreferredName(patientToDeleteEvent.getPreferredName());
-        editPatientDescriptor.setFoodPreference(patientToDeleteEvent.getFoodPreference());
-        editPatientDescriptor.setFamilyCondition(patientToDeleteEvent.getFamilyCondition());
-        editPatientDescriptor.setHobby(patientToDeleteEvent.getHobby());
-        editPatientDescriptor.setName(patientToDeleteEvent.getName());
-        editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
         editPatientDescriptor.setEvents(newEventSet);
 
         Patient editedPatient = createEditedPatient(patientToDeleteEvent, editPatientDescriptor);
         model.setPatient(patientToDeleteEvent, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
+        logger.log(Level.INFO, "Event successfully deleted from patient and patient list is updated.");
+
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.name,
                 targetEventIndex.getOneBased(), eventToDelete.date, patientToDeleteEvent.getName(),
                 targetPatientIndex.getOneBased()));
