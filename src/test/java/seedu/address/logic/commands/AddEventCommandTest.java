@@ -25,7 +25,7 @@ import seedu.address.model.patient.Patient;
 public class AddEventCommandTest {
     private final Event validDate = new Event("Test", "20-02-9999");
     private final Event secondValidDate = new Event("SomethingElse", "20-02-9999"); // different name
-    private final Event thirdValidDate = new Event("Test", "20-12-9999"); // different date
+    private final Event thirdValidDate = new Event("Test", "20-12-1999"); // different date
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 

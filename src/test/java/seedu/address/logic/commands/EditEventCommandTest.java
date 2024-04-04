@@ -30,7 +30,7 @@ public class EditEventCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Event validEvent = new Event("Test", "20-02-9999");
     private final Event secondValidEvent = new Event("SomethingElse", "20-02-9999");
-    private final Event thirdValidEvent = new Event("Test", "20-12-9999");
+    private final Event thirdValidEvent = new Event("Test", "20-12-1999");
 
     @Test
     public void constructor_nullPatientIndex_throwsNullPointerException() {
