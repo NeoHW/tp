@@ -122,8 +122,8 @@ Format: `list`
 
 Edits an existing patient in the address book.
 
-Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]+ [c/FAMILY_CONDITION]+
-[h/HOBBY]+ [t/TAG]…​`
+Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​
+[h/HOBBY]…​ [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -413,7 +413,7 @@ Action     | Format, Examples
 **Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]+ [c/FAMILY_CONDITION]+ [h/HOBBY]+ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
+**Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
