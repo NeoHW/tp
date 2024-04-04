@@ -43,6 +43,10 @@ public class EventTest {
                 validDate + "21-02-2100, 06:00 - 00:00"));
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit",
                 validDate + "21-02-2100, 01:00 - 00:59"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit",
+                validDate + "21-02-2100, 01:00, 00:59"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit",
+                validDate + "21-02-2100, 01:00 - 00:59 - 01:00"));
     }
 
     @Test

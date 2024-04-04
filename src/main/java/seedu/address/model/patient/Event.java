@@ -108,6 +108,10 @@ public class Event implements Comparable<Event> {
     public static boolean isValidDateTimeStr(String timeStr) {
         String[] args = timeStr.split("-");
 
+        if (args.length != 2) {
+            return false;
+        }
+
         try {
             LocalTime start = LocalTime.parse(args[0].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // start time
             LocalTime end = LocalTime.parse(args[1].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // end time
