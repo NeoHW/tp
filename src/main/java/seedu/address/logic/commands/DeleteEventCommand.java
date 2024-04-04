@@ -90,15 +90,6 @@ public class DeleteEventCommand extends Command {
 
         logger.log(Level.INFO, "Target Event deleted from event set. New Event set: " + newEventSet);
 
-        editPatientDescriptor.setName(patientToDeleteEvent.getName());
-        editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
-        editPatientDescriptor.setPatientHospitalId(patientToDeleteEvent.getPatientHospitalId());
-        editPatientDescriptor.setPreferredName(patientToDeleteEvent.getPreferredName());
-        editPatientDescriptor.setFoodPreferences(patientToDeleteEvent.getFoodPreferences());
-        editPatientDescriptor.setFamilyConditions(patientToDeleteEvent.getFamilyConditions());
-        editPatientDescriptor.setHobbies(patientToDeleteEvent.getHobbies());
-        editPatientDescriptor.setName(patientToDeleteEvent.getName());
-        editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
         editPatientDescriptor.setEvents(newEventSet);
 
         Patient editedPatient = createEditedPatient(patientToDeleteEvent, editPatientDescriptor);
