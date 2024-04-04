@@ -38,6 +38,8 @@ public class AddEventCommand extends Command {
             + PREFIX_DATETIME + "29-09-1789";
     public static final String MESSAGE_SUCCESS = "Event %1$s successfully added for Patient %2$s with ID %3$s for %4$s";
     public static final String MESSAGE_DUPLICATE = "Event %1$s already exists for Patient %2$s with ID %3$s for %4$s";
+    public static final String MESSAGE_PAST_EVENT_WARNING = "Warning: This Event occurred before the current "
+            + "date / datetime";
 
     private static final Logger logger = LogsCenter.getLogger(AddEventCommand.class);
 
@@ -94,6 +96,11 @@ public class AddEventCommand extends Command {
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
 
         logger.info("Event added to patient's event set");
+
+        if (this.eventToAdd.isPastEvent()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd.name,
+                    editedPatient.getName(), index.getOneBased(), eventToAdd.date) + "\n" + MESSAGE_PAST_EVENT_WARNING);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd.name, editedPatient.getName(),
                 index.getOneBased(), eventToAdd.date));

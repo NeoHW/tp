@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_EVENT_NAME = "Birthday";
-    public static final String VALID_EVENT_DATE = "20-02-2022";
-    public static final String VALID_EVENT_DATETIME = "20-02-2022, 12:12 - 15:15";
+    public static final String VALID_EVENT_DATE = "20-02-9999";
+    public static final String VALID_EVENT_DATETIME = "20-02-9999, 12:12 - 15:15";
     public static final String VALID_PREFERRED_NAME_AMY = "Amy";
     public static final String VALID_PREFERRED_NAME_BOB = "Bob";
     public static final String VALID_FOOD_AMY = "Dim sum";

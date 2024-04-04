@@ -166,10 +166,10 @@ e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
 e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
 Examples:
-* find `Alex` returns `alex` and `Alex becker`
-* find `alex becker` returns `alex`, `Alex Becker` and `Becker Li`
+* `find Alex` returns `alex` and `Alex becker`
+* `find alex becker` returns `alex`, `Alex Becker` and `Becker Li`
 
-![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
+![result for 'find patients whose name is alex ali'](images/findPatientAlexAliResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,7 +187,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 
-![result for 'delete 2'](images/deleteResult.png)
+![result for 'delete 2'](images/deletePatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -261,8 +261,8 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
   e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`
 
 Examples:
-* find `depression` returns `depression` and `depression diabetes`
-* find `depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
+* `findt depression` returns `depression` and `depression diabetes`
+* `findt depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
 
 ![result for 'find tags'](images/findTagsResult.png)
 
@@ -272,7 +272,7 @@ Examples:
 
 Adds an Event to a patient in the address book.
 
-Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+Format: `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 
 * Adds an Event with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
 * The index **must be a positive integer** 1, 2, 3, ...
@@ -280,6 +280,7 @@ Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_
 * The Name must be alphanumerical
 * The format of the Date must be: DD-MM-YYYY
 * If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm, where the End Time must be after or equal to the Start Time
+* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
 * There is currently no support for Events spanning multiple days 
 
 Examples:
@@ -294,7 +295,7 @@ Examples:
 
 Deletes an Event from a patient in the address book.
 
-Format `deletee PATIENT_INDEX [e/EVENT_INDEX]`
+Format `deletee PATIENT_INDEX e/EVENT_INDEX`
 
 * Deletes an Event from a specified Patient using `PATIENT_INDEX` and `EVENT_INDEX`.
 * `PATIENT_INDEX` is the index of the patient shown in the UI after using `list` or `find` command.
@@ -316,7 +317,7 @@ Examples:
 
 Edits an Event for a Patient in the address book.
 
-Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 
 * Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and
   `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`.
@@ -325,6 +326,7 @@ Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DA
 * Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 * The format of `DATE_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY.
 * The format of `DATETIME_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY, HH:mm - HH:mm.
+* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
   Patients/Events).
@@ -428,9 +430,9 @@ Action     | Format, Examples
 **Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
 **Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]`<br> e.g. `findt depression diabetes`
-**AddEvent** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
-**DeleteEvent** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
-**EditEvent** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+**Add Event** | `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
+**Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
+**Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
 **Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`
