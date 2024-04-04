@@ -24,7 +24,6 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel Lim";
     private static final String INVALID_PREFERRED_NAME = "R@chel";
     private static final String INVALID_FOOD_PREFERENCE = " ";
-    private static final String INVALID_FAMILY_CONDITION = " ";
     private static final String INVALID_HOBBY = " ";
     private static final String INVALID_TAG = "#Diabetes";
     private static final String INVALID_EVENT_DATETIME_STR = "Something";

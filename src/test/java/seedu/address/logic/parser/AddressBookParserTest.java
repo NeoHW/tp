@@ -100,7 +100,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addEvent() throws Exception {
         String name = "Birthday";
-        String date = "20-01-2022";
+        String date = "20-01-9999";
         String args = "1 " + PREFIX_NAME + name + " " + PREFIX_DATETIME + date;
         AddEventCommand command = (AddEventCommand) parser.parseCommand(
                 AddEventCommand.COMMAND_WORD + " " + args);
