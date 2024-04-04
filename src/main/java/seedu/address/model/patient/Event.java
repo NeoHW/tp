@@ -7,14 +7,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Represents Events for a Patient
  */
 public class Event implements Comparable<Event> {
     public static final String NAME_MESSAGE_CONSTAINTS = "The Name of the Event should be alphanumerical and non-empty";
-    public static final String DATETIME_MESSAGE_CONSTRAINTS = "Dates should be in the format: DD-MM-YYYY, "
-            + "HH:mm - HH:mm, where the End Time is after the Start Time, \n"
+    public static final String DATETIME_MESSAGE_CONSTRAINTS = "Dates should not start before the current day and"
+            + " must be in the format: DD-MM-YYYY, HH:mm - HH:mm, where the End Time is after the Start Time, \n"
             + "OR if there is no time period, in the format: DD-MM-YYYY";
     public static final String NAME_PATTERN = "^.*[^a-zA-Z0-9 ].*$";
     public static final String DATE_PATTERN = "dd-MM-yyyy";
@@ -78,9 +79,14 @@ public class Event implements Comparable<Event> {
     public static boolean isValidEvent(String test) {
         String[] args = test.split(",");
 
+        LocalDate date;
         try {
-            LocalDate.parse(args[0].trim(), DateTimeFormatter.ofPattern(DATE_PATTERN));
+            date = LocalDate.parse(args[0].trim(), DateTimeFormatter.ofPattern(DATE_PATTERN));
         } catch (DateTimeParseException e) {
+            return false;
+        }
+
+        if (date.isBefore(LocalDate.now())) {
             return false;
         }
 
@@ -101,6 +107,7 @@ public class Event implements Comparable<Event> {
      */
     public static boolean isValidDateTimeStr(String timeStr) {
         String[] args = timeStr.split("-");
+
         try {
             LocalTime start = LocalTime.parse(args[0].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // start time
             LocalTime end = LocalTime.parse(args[1].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // end time
