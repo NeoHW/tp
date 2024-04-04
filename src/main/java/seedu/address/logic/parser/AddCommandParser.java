@@ -10,8 +10,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.FamilyCondition;
@@ -27,6 +30,7 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+    private static final Logger logger = LogsCenter.getLogger(AddCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -34,14 +38,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        logger.info("Received arguments: " + args + " for AddCommand; Attempting to parse..");
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME, PREFIX_FOOD_PREFERENCE,
                     PREFIX_FAMILY_CONDITION, PREFIX_HOBBY, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME, PREFIX_FOOD_PREFERENCE,
             PREFIX_FAMILY_CONDITION, PREFIX_HOBBY) || !argMultimap.getPreamble().isEmpty()) {
+            logger.log(Level.WARNING, "Required prefix(s) not found in AddCommand");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        logger.info("All prefixes required are present.");
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME);
 
@@ -58,6 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Patient patient = new Patient(patientHospitalId, name, preferredName, foodPreferenceList, familyConditionList,
             hobbyList, tagList);
 
+        logger.info("All arguments received are valid");
         return new AddCommand(patient);
     }
 
