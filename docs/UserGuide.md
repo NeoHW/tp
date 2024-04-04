@@ -268,9 +268,11 @@ Format: `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_
 * The index **must be a positive integer** 1, 2, 3, ...
 * Neither the Name or the Date / DateTime can be empty (after trimming whitespaces)
 * The Name must be alphanumerical
+* The Date must not fall before the current date; If the Time exists, it can occur anytime within the day even if its on the current date
 * The format of the Date must be: DD-MM-YYYY
 * If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm, where the End Time must be after or equal to the Start Time
 * There is currently no support for Events spanning multiple days 
+* There is currently no support for the automatic removal of past Events
 
 Examples:
 * `adde 1 n/Birthday d/20-01-2022`
