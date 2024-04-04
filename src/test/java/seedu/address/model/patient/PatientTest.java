@@ -2,6 +2,7 @@ package seedu.address.model.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
@@ -88,6 +89,21 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withHobbies(VALID_HOBBY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    void hashCode_equalPatients_sameHashCodes() {
+        Patient patient1 = new PatientBuilder().build();
+        Patient patient2 = new PatientBuilder().build();
+        assertEquals(patient1.hashCode(), patient2.hashCode());
+    }
+
+    @Test
+    void hashCode_differentPatients_differentHashCodes() {
+        Patient patient1 = new PatientBuilder().withPatientHospitalId("1").build();
+        Patient patient2 = new PatientBuilder().withPatientHospitalId("2").build();
+        assertNotEquals(patient1.hashCode(), patient2.hashCode());
+    }
+
 
     @Test
     public void toStringMethod() {

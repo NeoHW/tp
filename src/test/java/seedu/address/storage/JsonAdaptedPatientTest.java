@@ -40,6 +40,7 @@ public class JsonAdaptedPatientTest {
         .map(JsonAdaptedFamilyCondition::new)
         .collect(Collectors.toList());
 
+    private static final String VALID_HOBBY = "Reading";
     private static final List<JsonAdaptedHobby> VALID_HOBBIES = BENSON.getHobbies()
         .stream()
         .map(JsonAdaptedHobby::new)
@@ -130,6 +131,16 @@ public class JsonAdaptedPatientTest {
     }
 
     @Test
+    public void constructor_nullFoodPreference_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new JsonAdaptedFoodPreference((String) null));
+    }
+
+    @Test
+    public void constructor_emptyFoodPreference_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new JsonAdaptedFoodPreference(""));
+    }
+
+    @Test
     public void toModelType_invalidFamilyCondition_throwsIllegalValueException() {
         List<JsonAdaptedFamilyCondition> invalidFamilyConditions = new ArrayList<>(VALID_FAMILY_CONDITIONS);
         invalidFamilyConditions.add(new JsonAdaptedFamilyCondition(INVALID_FOOD_PREFERENCE));
@@ -149,6 +160,16 @@ public class JsonAdaptedPatientTest {
     }
 
     @Test
+    public void constructor_nullFamilyCondition_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new JsonAdaptedFamilyCondition((String) null));
+    }
+
+    @Test
+    public void constructor_emptyFamilyCondition_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new JsonAdaptedFamilyCondition(""));
+    }
+
+    @Test
     public void toModelType_invalidHobby_throwsIllegalValueException() {
         List<JsonAdaptedHobby> invalidHobbies = new ArrayList<>(VALID_HOBBIES);
         invalidHobbies.add(new JsonAdaptedHobby(INVALID_HOBBY));
@@ -165,6 +186,22 @@ public class JsonAdaptedPatientTest {
             VALID_FOOD_PREFERENCES, VALID_FAMILY_CONDITIONS, null, VALID_TAGS, VALID_EVENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Hobby.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidHobbyName_throwsIllegalValueException() {
+        JsonAdaptedHobby adaptedHobby = new JsonAdaptedHobby(INVALID_HOBBY);
+        assertThrows(IllegalValueException.class, adaptedHobby::toModelType);
+    }
+
+    @Test
+    public void constructor_nullHobbyName_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new JsonAdaptedHobby((String) null));
+    }
+
+    @Test
+    public void constructor_emptyHobbyName_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new JsonAdaptedHobby(""));
     }
 
     @Test

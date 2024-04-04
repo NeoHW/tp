@@ -11,7 +11,6 @@ import seedu.address.model.patient.FoodPreference;
  */
 class JsonAdaptedFoodPreference {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
     private final String foodPreferenceName;
 
     /**
@@ -43,10 +42,6 @@ class JsonAdaptedFoodPreference {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public FoodPreference toModelType() throws IllegalValueException {
-        if (foodPreferenceName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                FoodPreference.class.getSimpleName()));
-        }
         if (!FoodPreference.isValidFoodPreference(foodPreferenceName)) {
             throw new IllegalValueException(FoodPreference.MESSAGE_CONSTRAINTS);
         }

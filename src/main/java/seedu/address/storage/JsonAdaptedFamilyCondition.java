@@ -11,7 +11,6 @@ import seedu.address.model.patient.FamilyCondition;
  */
 class JsonAdaptedFamilyCondition {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
     private final String familyConditionName;
 
     /**
@@ -43,10 +42,6 @@ class JsonAdaptedFamilyCondition {
      * @throws IllegalValueException if there were any data constraints violated in the adapted family condition.
      */
     public FamilyCondition toModelType() throws IllegalValueException {
-        if (familyConditionName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                FamilyCondition.class.getSimpleName()));
-        }
         if (!FamilyCondition.isValidFamilyCondition(familyConditionName)) {
             throw new IllegalValueException(FamilyCondition.MESSAGE_CONSTRAINTS);
         }

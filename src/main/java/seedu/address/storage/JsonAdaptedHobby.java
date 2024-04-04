@@ -11,7 +11,6 @@ import seedu.address.model.patient.Hobby;
  */
 class JsonAdaptedHobby {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
     private final String hobbyName;
 
     /**
@@ -43,10 +42,6 @@ class JsonAdaptedHobby {
      * @throws IllegalValueException if there were any data constraints violated in the adapted hobby.
      */
     public Hobby toModelType() throws IllegalValueException {
-        if (hobbyName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Hobby.class.getSimpleName()));
-        }
         if (!Hobby.isValidHobby(hobbyName)) {
             throw new IllegalValueException(Hobby.MESSAGE_CONSTRAINTS);
         }
