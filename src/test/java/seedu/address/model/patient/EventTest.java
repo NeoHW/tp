@@ -70,6 +70,14 @@ public class EventTest {
         assertTrue(Event.isValidEvent("21-02-2022, 00:00 - 00:00"));
     }
 
+    @Test
+    public void isPastEvent() {
+        assertTrue(new Event("Family Visit", "01-01-1999, 12:12 - 19:12").isPastEvent());
+        assertTrue(new Event("Family Visit", "01-01-2022, 12:12 - 19:12").isPastEvent());
+        assertTrue(new Event("Family Visit", "01-01-2024, 12:12 - 19:12").isPastEvent());
+
+        assertFalse(new Event("Family Visit", "01-01-9999, 12:12 - 19:12").isPastEvent());
+    }
 
     @Test
     public void compareTo() {
