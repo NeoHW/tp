@@ -25,7 +25,7 @@ import seedu.address.model.patient.Patient;
 public class AddEventCommandTest {
     private final Event validDate = new Event("Test", "20-02-9999");
     private final Event secondValidDate = new Event("SomethingElse", "20-02-9999"); // different name
-    private final Event thirdValidDate = new Event("Test", "20-12-1999"); // different date
+    private final Event pastDate = new Event("Test", "20-12-1999"); // different date
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -63,6 +63,22 @@ public class AddEventCommandTest {
         Patient editedPatient = model.getFilteredPatientList().get(validIndex.getZeroBased());
         String expected = String.format(AddEventCommand.MESSAGE_SUCCESS, validDate.name,
                 editedPatient.getName(), validIndex.getOneBased(), validDate.date);
+        assertEquals(expected, result.getFeedbackToUser());
+
+        Set<Event> expectedEvents = new HashSet<>(editedPatient.getEvents());
+        assertTrue(editedPatient.getEvents().equals(expectedEvents));
+    }
+
+    @Test
+    public void execute_addPastEvent_success() throws CommandException {
+        Index validIndex = Index.fromZeroBased(1);
+        AddEventCommand addEventCommand = new AddEventCommand(validIndex, pastDate);
+        CommandResult result = addEventCommand.execute(model);
+
+        Patient editedPatient = model.getFilteredPatientList().get(validIndex.getZeroBased());
+        String expected = String.format(AddEventCommand.MESSAGE_SUCCESS, pastDate.name,
+                editedPatient.getName(), validIndex.getOneBased(), pastDate.date
+                        + "\n" + AddEventCommand.MESSAGE_PAST_EVENT_WARNING);
         assertEquals(expected, result.getFeedbackToUser());
 
         Set<Event> expectedEvents = new HashSet<>(editedPatient.getEvents());
@@ -110,7 +126,7 @@ public class AddEventCommandTest {
         AddEventCommand addEventCommandThird = new AddEventCommand(
                 INDEX_FIRST_PATIENT, secondValidDate);
         AddEventCommand addEventCommandFourth = new AddEventCommand(
-                INDEX_FIRST_PATIENT, thirdValidDate);
+                INDEX_FIRST_PATIENT, pastDate);
 
 
         assertFalse(addEventCommandFirst.equals(addEventCommandSecond));
