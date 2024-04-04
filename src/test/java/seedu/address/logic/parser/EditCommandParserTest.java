@@ -4,7 +4,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FAMILY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.FOOD_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.HOBBY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.HOBBY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_FAMILY_DESC;
@@ -15,18 +17,25 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PREFERRED_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PREFERRED_NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DEPRESSION;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIABETES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FAMILY_CONDITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FOOD_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOBBY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERRED_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEPRESSION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIABETES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -37,6 +46,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PATIENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.FamilyCondition;
@@ -53,7 +63,7 @@ public class EditCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -108,14 +118,14 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_ID_DESC + INVALID_NAME_DESC + INVALID_PREFERRED_NAME_DESC
-                + VALID_FOOD_AMY + VALID_FAMILY_CONDITION_AMY + VALID_HOBBY_AMY, PatientHospitalId.MESSAGE_CONSTRAINTS);
+            + VALID_FOOD_AMY + VALID_FAMILY_CONDITION_AMY + VALID_HOBBY_AMY, PatientHospitalId.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PATIENT;
         String userInput = targetIndex.getOneBased() + ID_DESC_AMY + NAME_DESC_AMY + TAG_DESC_DEPRESSION
-                + PREFERRED_NAME_DESC_AMY + FOOD_DESC_AMY + FAMILY_DESC_AMY + HOBBY_DESC_AMY + TAG_DESC_DIABETES;
+            + PREFERRED_NAME_DESC_AMY + FOOD_DESC_AMY + FAMILY_DESC_AMY + HOBBY_DESC_AMY + TAG_DESC_DIABETES;
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
             .withPatientHospitalId(VALID_ID_AMY).withName(VALID_NAME_AMY).withPreferredName(VALID_PREFERRED_NAME_AMY)
@@ -145,7 +155,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PATIENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditPatientDescriptor descriptor =
-                new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).build();
+            new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -199,6 +209,71 @@ public class EditCommandParserTest {
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_ID_DESC + INVALID_ID_DESC;
     }
+
+    @Test
+    public void parse_repeatedNonTagValue_failure() {
+        String validExpectedPatientString = ID_DESC_BOB + NAME_DESC_BOB + PREFERRED_NAME_DESC_BOB + FOOD_DESC_BOB
+            + FAMILY_DESC_BOB + HOBBY_DESC_BOB + TAG_DESC_DIABETES;
+
+        // multiple patient hospital ID
+        assertParseFailure(parser, ID_DESC_AMY + validExpectedPatientString,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
+
+        // multiple names
+        assertParseFailure(parser, NAME_DESC_AMY + validExpectedPatientString,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+
+        // multiple preferred names
+        assertParseFailure(parser, PREFERRED_NAME_DESC_AMY + validExpectedPatientString,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
+    }
+
+    @Test
+    public void parse_duplicatePrefixes_success() {
+        // Duplicate food preference input
+        String userInput = "1 " + FOOD_DESC_AMY + FOOD_DESC_BOB;
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
+            .withFoodPreferences(VALID_FOOD_AMY, VALID_FOOD_BOB)
+            .build();
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_PATIENT, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // Duplicate family condition input
+        userInput = "1 " + FAMILY_DESC_AMY + FAMILY_DESC_BOB;
+        descriptor = new EditPatientDescriptorBuilder()
+            .withFamilyConditions(VALID_FAMILY_CONDITION_AMY, VALID_FAMILY_CONDITION_BOB)
+            .build();
+        expectedCommand = new EditCommand(INDEX_FIRST_PATIENT, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // Duplicate hobby input
+        userInput = "1 " + HOBBY_DESC_AMY + HOBBY_DESC_BOB;
+        descriptor = new EditPatientDescriptorBuilder()
+            .withHobbies(VALID_HOBBY_AMY, VALID_HOBBY_BOB)
+            .build();
+        expectedCommand = new EditCommand(INDEX_FIRST_PATIENT, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_duplicatePrefixes_failure() {
+        // Duplicate patient hospital ID
+        String userInput = "1 " + ID_DESC_AMY + ID_DESC_BOB;
+        assertParseFailure(parser, userInput,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PID));
+
+        // Duplicate names
+        userInput = "1 " + NAME_DESC_AMY + NAME_DESC_BOB;
+        assertParseFailure(parser, userInput,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+
+        // Duplicate preferred names
+        userInput = "1 " + PREFERRED_NAME_DESC_AMY + PREFERRED_NAME_DESC_BOB;
+        assertParseFailure(parser, userInput,
+            Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PREFERRED_NAME));
+    }
+
+
 
     @Test
     public void parse_resetTags_success() {

@@ -14,7 +14,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,6 +31,7 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+    private static final Logger logger = LogsCenter.getLogger(EditCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -35,10 +39,14 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
+        logger.log(Level.INFO, "Received arguments: " + args + " for EditCommand; Attempting to parse..");
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME, PREFIX_FOOD_PREFERENCE,
                     PREFIX_FAMILY_CONDITION, PREFIX_HOBBY, PREFIX_TAG);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME);
 
         Index index;
 
@@ -47,6 +55,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
+        logger.log(Level.INFO, "Patient Index is valid.");
 
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
 
@@ -76,6 +85,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
+        logger.log(Level.INFO, "All arguments are valid.");
         return new EditCommand(index, editPatientDescriptor);
     }
 

@@ -9,6 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERRED_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -44,6 +48,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book";
 
+    private static final Logger logger = LogsCenter.getLogger(AddCommand.class);
+
     private final Patient toAdd;
 
     /**
@@ -56,13 +62,17 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Attempting to execute AddCommand.");
         requireNonNull(model);
 
         if (model.hasPatient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
+        logger.log(Level.INFO, "Patient is a new entry.");
 
         model.addPatient(toAdd);
+        logger.log(Level.INFO, "Patient details successfully added.");
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName(), toAdd.getPatientHospitalId()));
     }
 

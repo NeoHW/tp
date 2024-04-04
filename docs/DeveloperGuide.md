@@ -188,6 +188,9 @@ The `AddCommand` class is responsible for adding new patient's information in th
 * `tag` field is optional in the AddCommand and can be added later on using the `AddTagsCommand`.
 * If any of the fields are repeated during the adding of patient or missing fields, error message will be thrown.
 
+The activity diagram below outlines the steps involved when a user initiates a Add command.
+<puml src="diagrams/AddActivityDiagram.puml" alt="AddActivityDiagram" />
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -483,6 +486,9 @@ The `EditCommand` class is responsible for editing current patient's information
 * All fields are optional in the EditCommand except for `INDEX`.
 * Fields such as `foodPreference`, `familyCondition`, `hobby` and `tag` can be repeated for multiple inputs.
 * If the fields for `patientHospitalId`, `name` and `preferredName` are repeated during the editing of patient, error message will be thrown.
+
+The activity diagram below outlines the steps involved when a user initiates a Edit command.
+<puml src="diagrams/EditActivityDiagram.puml" alt="EditActivityDiagram" />
 
 #### Example Usage Scenario
 

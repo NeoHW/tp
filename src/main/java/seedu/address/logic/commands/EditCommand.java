@@ -12,7 +12,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -54,6 +57,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the address book.";
+    private static final Logger logger = LogsCenter.getLogger(EditCommand.class);
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -63,6 +67,7 @@ public class EditCommand extends Command {
      * @param editPatientDescriptor details to edit the patient with
      */
     public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
+        logger.log(Level.INFO, "Attempting to execute EditCommand.");
         requireNonNull(index);
         requireNonNull(editPatientDescriptor);
 
@@ -76,8 +81,10 @@ public class EditCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid patient index for EditCommand: " + index.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
+        logger.log(Level.INFO, "Target index is valid.");
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
@@ -85,9 +92,11 @@ public class EditCommand extends Command {
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
+        logger.log(Level.INFO, "Target patient to edit is valid.");
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        logger.log(Level.INFO, "Patient details successfully updated.");
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, Messages.format(editedPatient)));
     }
 
@@ -112,6 +121,7 @@ public class EditCommand extends Command {
         Set<Event> updatedEvents = editPatientDescriptor.getEvents()
                 .orElse(patientToEdit.getEvents());
 
+        logger.log(Level.INFO, "Attempting to update the information on the patient with the updated fields");
         return new Patient(originalPatientHospitalId, updatedName, updatedPreferredName, updatedFoodPreferences,
             updatedFamilyConditions, updatedHobbies, updatedTags, updatedEvents);
     }
