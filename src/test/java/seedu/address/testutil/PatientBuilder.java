@@ -29,9 +29,9 @@ public class PatientBuilder {
     private PatientHospitalId patientHospitalId;
     private Name name;
     private PreferredName preferredName;
-    private FoodPreference foodPreference;
-    private FamilyCondition familyCondition;
-    private Hobby hobby;
+    private Set<FoodPreference> foodPreferences;
+    private Set<FamilyCondition> familyConditions;
+    private Set<Hobby> hobbies;
     private Set<Tag> tags;
     private Set<Event> events;
 
@@ -42,9 +42,10 @@ public class PatientBuilder {
         patientHospitalId = new PatientHospitalId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         preferredName = new PreferredName(DEFAULT_PREFERRED_NAME);
-        foodPreference = new FoodPreference(DEFAULT_FOOD_PREFERENCE);
-        familyCondition = new FamilyCondition(DEFAULT_FAMILY_CONDITION);
-        hobby = new Hobby(DEFAULT_HOBBY);
+        // Include the default food preference, family condition, hobby
+        foodPreferences = SampleDataUtil.getFoodPreferenceSet(DEFAULT_FOOD_PREFERENCE);
+        familyConditions = SampleDataUtil.getFamilyConditionSet(DEFAULT_FAMILY_CONDITION);
+        hobbies = SampleDataUtil.getHobbySet(DEFAULT_HOBBY);
         tags = new HashSet<>();
         events = new HashSet<>();
     }
@@ -56,9 +57,9 @@ public class PatientBuilder {
         patientHospitalId = patientToCopy.getPatientHospitalId();
         name = patientToCopy.getName();
         preferredName = patientToCopy.getPreferredName();
-        foodPreference = patientToCopy.getFoodPreference();
-        familyCondition = patientToCopy.getFamilyCondition();
-        hobby = patientToCopy.getHobby();
+        foodPreferences = new HashSet<>(patientToCopy.getFoodPreferences());
+        familyConditions = new HashSet<>(patientToCopy.getFamilyConditions());
+        hobbies = new HashSet<>(patientToCopy.getHobbies());
         tags = new HashSet<>(patientToCopy.getTags());
         events = new HashSet<>(patientToCopy.getEvents());
     }
@@ -96,26 +97,30 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code FoodPreference} of the {@code Patient} that we are building.
+     * Sets the FoodPreference of the {@code Patient} that we are building.
+     * @param foodPreferences array of string of preferred food
+     * @return return PatientBuilder withFoodPreferences
      */
-    public PatientBuilder withFoodPreference(String foodPreference) {
-        this.foodPreference = new FoodPreference(foodPreference);
+    public PatientBuilder withFoodPreferences(String ... foodPreferences) {
+        this.foodPreferences = SampleDataUtil.getFoodPreferenceSet(foodPreferences);
         return this;
     }
 
     /**
-     * Sets the {@code FamilyCondition} of the {@code Patient} that we are building.
+     * Sets the FamilyCondition of the {@code Patient} that we are building.
+     * @param familyConditions array of string of preferred food
+     * @return return PatientBuilder withFamilyConditions
      */
-    public PatientBuilder withFamilyCondition(String familyCondition) {
-        this.familyCondition = new FamilyCondition(familyCondition);
+    public PatientBuilder withFamilyConditions(String ... familyConditions) {
+        this.familyConditions = SampleDataUtil.getFamilyConditionSet(familyConditions);
         return this;
     }
 
     /**
      * Sets the {@code Hobby} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withHobby(String hobby) {
-        this.hobby = new Hobby(hobby);
+    public PatientBuilder withHobbies(String ... hobbies) {
+        this.hobbies = SampleDataUtil.getHobbySet(hobbies);
         return this;
     }
 
@@ -136,8 +141,8 @@ public class PatientBuilder {
      * Builds {@code Patient} with new Patient.
      */
     public Patient build() {
-        return new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
-            events);
+        return new Patient(patientHospitalId, name, preferredName, this.foodPreferences, familyConditions, hobbies,
+            tags, events);
     }
 
 }

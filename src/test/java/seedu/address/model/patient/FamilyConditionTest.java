@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,6 +33,20 @@ public class FamilyConditionTest {
         assertTrue(FamilyCondition.isValidFamilyCondition("Wife not around")); // with spaces
         assertTrue(FamilyCondition.isValidFamilyCondition("Overseas")); // without spaces
         assertTrue(FamilyCondition.isValidFamilyCondition("Has 2 sons")); // allow numeric and alphabets
+    }
+
+    @Test
+    public void compareTo() {
+        // Test when familyCondition are equal
+        FamilyCondition familyCondition1 = new FamilyCondition("No children");
+        FamilyCondition familyCondition2 = new FamilyCondition("No children");
+        assertEquals(0, familyCondition1.compareTo(familyCondition2));
+
+        FamilyCondition familyCondition3 = new FamilyCondition("Wife in ward");
+        assertTrue(familyCondition1.compareTo(familyCondition3) < 0);
+
+        FamilyCondition familyCondition4 = new FamilyCondition("Son not in Singapore");
+        assertTrue(familyCondition4.compareTo(familyCondition1) > 0);
     }
 
     @Test

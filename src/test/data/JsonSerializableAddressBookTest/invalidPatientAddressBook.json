@@ -3,9 +3,9 @@
     "patientHospitalId" : "",
     "name": "Hans Muster",
     "preferredName": "Hans",
-    "foodPreference": "pizza",
-    "familyCondition": "no children",
-    "hobby": "singing",
+    "foodPreferences": [ "pizza" ],
+    "familyConditions": [ "no children" ],
+    "hobbies": [ "singing" ],
     "tags": [ ]
   } ]
 }

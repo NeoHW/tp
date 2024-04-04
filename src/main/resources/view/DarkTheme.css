@@ -130,6 +130,7 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+    -fx-font-weight: bold;
 }
 
 .stack-pane {
@@ -349,4 +350,17 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.vbox-labels .label {
+    -fx-font-size: 13px;
+}
+
+.hbox-labels {
+    -fx-padding: 6px 0 0 0;
+    -fx-font-weight: bold;
+}
+
+.bold-label {
+    -fx-font-weight: bold;
 }

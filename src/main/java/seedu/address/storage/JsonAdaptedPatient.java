@@ -30,9 +30,9 @@ class JsonAdaptedPatient {
     private final String patientHospitalId;
     private final String name;
     private final String preferredName;
-    private final String foodPreference;
-    private final String familyCondition;
-    private final String hobby;
+    private final List<JsonAdaptedFoodPreference> foodPreferences = new ArrayList<>();
+    private final List<JsonAdaptedFamilyCondition> familyConditions = new ArrayList<>();
+    private final List<JsonAdaptedHobby> hobbies = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
@@ -42,17 +42,23 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("patientHospitalId") String patientHospitalId,
                               @JsonProperty("name") String name, @JsonProperty("preferredName") String preferredName,
-                              @JsonProperty("foodPreference") String foodPreference,
-                              @JsonProperty("familyCondition") String familyCondition,
-                              @JsonProperty("hobby") String hobby,
+                              @JsonProperty("foodPreferences") List<JsonAdaptedFoodPreference> foodPreferences,
+                              @JsonProperty("familyConditions") List<JsonAdaptedFamilyCondition> familyConditions,
+                              @JsonProperty("hobbies") List<JsonAdaptedHobby> hobbies,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.foodPreference = foodPreference;
-        this.familyCondition = familyCondition;
-        this.hobby = hobby;
+        if (foodPreferences != null) {
+            this.foodPreferences.addAll(foodPreferences);
+        }
+        if (familyConditions != null) {
+            this.familyConditions.addAll(familyConditions);
+        }
+        if (hobbies != null) {
+            this.hobbies.addAll(hobbies);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -68,15 +74,21 @@ class JsonAdaptedPatient {
         patientHospitalId = source.getPatientHospitalId().patientHospitalId;
         name = source.getName().fullName;
         preferredName = source.getPreferredName().preferredName;
-        foodPreference = source.getFoodPreference().foodPreference;
-        familyCondition = source.getFamilyCondition().familyCondition;
-        hobby = source.getHobby().hobby;
+        foodPreferences.addAll(source.getFoodPreferences().stream()
+            .map(JsonAdaptedFoodPreference::new)
+            .collect(Collectors.toList()));
+        familyConditions.addAll(source.getFamilyConditions().stream()
+            .map(JsonAdaptedFamilyCondition::new)
+            .collect(Collectors.toList()));
+        hobbies.addAll(source.getHobbies().stream()
+            .map(JsonAdaptedHobby::new)
+            .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
         events.addAll(source.getEvents().stream()
-                .map(JsonAdaptedEvent::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedEvent::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -85,6 +97,33 @@ class JsonAdaptedPatient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
+        final List<FoodPreference> patientFoodPreferences = new ArrayList<>();
+        for (JsonAdaptedFoodPreference foodPreference : foodPreferences) {
+            patientFoodPreferences.add(foodPreference.toModelType());
+        }
+        if (patientFoodPreferences.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                FoodPreference.class.getSimpleName()));
+        }
+
+        final List<FamilyCondition> patientFamilyConditions = new ArrayList<>();
+        for (JsonAdaptedFamilyCondition familyCondition : familyConditions) {
+            patientFamilyConditions.add(familyCondition.toModelType());
+        }
+        if (patientFamilyConditions.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                FamilyCondition.class.getSimpleName()));
+        }
+
+        final List<Hobby> patientHobbies = new ArrayList<>();
+        for (JsonAdaptedHobby hobby : hobbies) {
+            patientHobbies.add(hobby.toModelType());
+        }
+        if (patientHobbies.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Hobby.class.getSimpleName()));
+        }
+
         final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             patientTags.add(tag.toModelType());
@@ -123,37 +162,14 @@ class JsonAdaptedPatient {
         }
         final PreferredName modelPreferredName = new PreferredName(preferredName);
 
-        if (foodPreference == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                FoodPreference.class.getSimpleName()));
-        }
-        if (!FoodPreference.isValidFoodPreference(foodPreference)) {
-            throw new IllegalValueException(FoodPreference.MESSAGE_CONSTRAINTS);
-        }
-        final FoodPreference modelFoodPreference = new FoodPreference(foodPreference);
-
-        if (familyCondition == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                FamilyCondition.class.getSimpleName()));
-        }
-        if (!FamilyCondition.isValidFamilyCondition(familyCondition)) {
-            throw new IllegalValueException(FamilyCondition.MESSAGE_CONSTRAINTS);
-        }
-        final FamilyCondition modelFamilyCondition = new FamilyCondition(familyCondition);
-
-        if (hobby == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Hobby.class.getSimpleName()));
-        }
-        if (!Hobby.isValidHobby(hobby)) {
-            throw new IllegalValueException(Hobby.MESSAGE_CONSTRAINTS);
-        }
-        final Hobby modelHobby = new Hobby(hobby);
-
+        final Set<FoodPreference> modelFoodPreferences = new HashSet<>(patientFoodPreferences);
+        final Set<FamilyCondition> modelFamilyConditions = new HashSet<>(patientFamilyConditions);
+        final Set<Hobby> modelHobbies = new HashSet<>(patientHobbies);
         final Set<Tag> modelTags = new HashSet<>(patientTags);
         final Set<Event> modelEvents = new HashSet<>(patientEvents);
 
-        return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreference,
-            modelFamilyCondition, modelHobby, modelTags, modelEvents);
+        return new Patient(modelPatientHospitalId, modelName, modelPreferredName, modelFoodPreferences,
+            modelFamilyConditions, modelHobbies, modelTags, modelEvents);
     }
 
 }

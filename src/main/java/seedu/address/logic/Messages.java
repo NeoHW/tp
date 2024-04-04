@@ -33,6 +33,21 @@ public class Messages {
     }
 
     /**
+     * Appends the elements of the given set to the provided StringBuilder with commas between each element.
+     *
+     * @param builder The StringBuilder to which the elements will be appended.
+     * @param elements The set of elements to be appended to the StringBuilder.
+     * @param <T> The type of elements in the set.
+     */
+    private static <T> void appendWithCommas(StringBuilder builder, Set<T> elements) {
+        if (!elements.isEmpty()) {
+            builder.append(elements.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")));
+        }
+    }
+
+    /**
      * Formats the {@code patient} for display to the user.
      */
     public static String format(Patient patient) {
@@ -42,13 +57,13 @@ public class Messages {
                 .append(patient.getPreferredName())
                 .append("; PatientHospitalId: ")
                 .append(patient.getPatientHospitalId())
-                .append("; FoodPreference: ")
-                .append(patient.getFoodPreference())
-                .append("; FamilyCondition: ")
-                .append(patient.getFamilyCondition())
-                .append("; Hobby: ")
-                .append(patient.getHobby())
-                .append("; Tags: ");
+                .append("; FoodPreferences: ");
+        appendWithCommas(builder, patient.getFoodPreferences());
+        builder.append("; FamilyConditions: ");
+        appendWithCommas(builder, patient.getFamilyConditions());
+        builder.append("; Hobbies: ");
+        appendWithCommas(builder, patient.getHobbies());
+        builder.append("; Tags: ");
         patient.getTags().forEach(builder::append);
         return builder.toString();
     }

@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,6 +32,29 @@ public class HobbyTest {
         // valid hobby
         assertTrue(Hobby.isValidHobby("rock climbing")); // with spaces
         assertTrue(Hobby.isValidHobby("hiking")); // without spaces
+    }
+
+    @Test
+    public void isValidHobby_caseInsensitive() {
+        // Test with uppercase hobby
+        assertTrue(Hobby.isValidHobby("Reading"));
+
+        // Test with lowercase hobby
+        assertTrue(Hobby.isValidHobby("reading"));
+    }
+
+    @Test
+    public void compareTo() {
+        // Test when hobbies are equal
+        Hobby hobby1 = new Hobby("Reading");
+        Hobby hobby2 = new Hobby("Reading");
+        assertEquals(0, hobby1.compareTo(hobby2));
+
+        Hobby hobby3 = new Hobby("Cooking");
+        assertTrue(hobby1.compareTo(hobby3) > 0);
+
+        Hobby hobby4 = new Hobby("Traveling");
+        assertTrue(hobby4.compareTo(hobby1) > 0);
     }
 
     @Test

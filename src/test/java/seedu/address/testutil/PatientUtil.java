@@ -35,9 +35,15 @@ public class PatientUtil {
         sb.append(PREFIX_PID + patient.getPatientHospitalId().patientHospitalId + " ");
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
         sb.append(PREFIX_PREFERRED_NAME + patient.getPreferredName().preferredName + " ");
-        sb.append(PREFIX_FOOD_PREFERENCE + patient.getFoodPreference().foodPreference + " ");
-        sb.append(PREFIX_FAMILY_CONDITION + patient.getFamilyCondition().familyCondition + " ");
-        sb.append(PREFIX_HOBBY + patient.getHobby().hobby + " ");
+        patient.getFoodPreferences().stream().forEach(
+            s -> sb.append(PREFIX_FOOD_PREFERENCE + s.foodPreference + " ")
+        );
+        patient.getFamilyConditions().stream().forEach(
+            s -> sb.append(PREFIX_FAMILY_CONDITION + s.familyCondition + " ")
+        );
+        patient.getHobbies().stream().forEach(
+            s -> sb.append(PREFIX_HOBBY + s.hobby + " ")
+        );
         patient.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -54,11 +60,28 @@ public class PatientUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPreferredName().ifPresent(preferredName -> sb.append(PREFIX_PREFERRED_NAME)
             .append(preferredName.preferredName).append(" "));
-        descriptor.getFoodPreference().ifPresent(foodPreference -> sb.append(PREFIX_FOOD_PREFERENCE)
-            .append(foodPreference.foodPreference).append(" "));
-        descriptor.getFamilyCondition().ifPresent(familyCondition -> sb.append(PREFIX_FAMILY_CONDITION)
-            .append(familyCondition.familyCondition).append(" "));
-        descriptor.getHobby().ifPresent(hobby -> sb.append(PREFIX_HOBBY).append(hobby.hobby).append(" "));
+
+        descriptor.getFoodPreferences().ifPresent(foodPreferences -> {
+            if (!foodPreferences.isEmpty()) {
+                foodPreferences.forEach(food -> sb.append(PREFIX_FOOD_PREFERENCE)
+                    .append(food.foodPreference).append(" "));
+            }
+        });
+
+        descriptor.getFamilyConditions().ifPresent(familyConditions -> {
+            if (!familyConditions.isEmpty()) {
+                familyConditions.forEach(familyCondition -> sb.append(PREFIX_FAMILY_CONDITION)
+                    .append(familyCondition.familyCondition).append(" "));
+            }
+        });
+
+        descriptor.getHobbies().ifPresent(hobbies -> {
+            if (!hobbies.isEmpty()) {
+                hobbies.forEach(hobby -> sb.append(PREFIX_HOBBY)
+                    .append(hobby.hobby).append(" "));
+            }
+        });
+
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

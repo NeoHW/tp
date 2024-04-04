@@ -119,8 +119,8 @@ public class EditCommandParserTest {
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
             .withPatientHospitalId(VALID_ID_AMY).withName(VALID_NAME_AMY).withPreferredName(VALID_PREFERRED_NAME_AMY)
-            .withFoodPreference(VALID_FOOD_AMY).withFamilyCondition(VALID_FAMILY_CONDITION_AMY)
-            .withHobby(VALID_HOBBY_AMY).withTags(VALID_TAG_DIABETES, VALID_TAG_DEPRESSION).build();
+            .withFoodPreferences(VALID_FOOD_AMY).withFamilyConditions(VALID_FAMILY_CONDITION_AMY)
+            .withHobbies(VALID_HOBBY_AMY).withTags(VALID_TAG_DIABETES, VALID_TAG_DEPRESSION).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -132,8 +132,8 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + FAMILY_DESC_BOB + HOBBY_DESC_AMY;
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
-            .withFamilyCondition(VALID_FAMILY_CONDITION_BOB)
-            .withHobby(VALID_HOBBY_AMY).build();
+            .withFamilyConditions(VALID_FAMILY_CONDITION_BOB)
+            .withHobbies(VALID_HOBBY_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -157,19 +157,19 @@ public class EditCommandParserTest {
 
         // food preference
         userInput = targetIndex.getOneBased() + FOOD_DESC_AMY;
-        descriptor = new EditPatientDescriptorBuilder().withFoodPreference(VALID_FOOD_AMY).build();
+        descriptor = new EditPatientDescriptorBuilder().withFoodPreferences(VALID_FOOD_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // family condition
         userInput = targetIndex.getOneBased() + FAMILY_DESC_AMY;
-        descriptor = new EditPatientDescriptorBuilder().withFamilyCondition(VALID_FAMILY_CONDITION_AMY).build();
+        descriptor = new EditPatientDescriptorBuilder().withFamilyConditions(VALID_FAMILY_CONDITION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // hobby
         userInput = targetIndex.getOneBased() + HOBBY_DESC_AMY;
-        descriptor = new EditPatientDescriptorBuilder().withHobby(VALID_HOBBY_AMY).build();
+        descriptor = new EditPatientDescriptorBuilder().withHobbies(VALID_HOBBY_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

@@ -19,6 +19,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,18 +61,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPatientDescriptor.setPreferredName(ParserUtil.parsePreferredName(
                 argMultimap.getValue(PREFIX_PREFERRED_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_FOOD_PREFERENCE).isPresent()) {
-            editPatientDescriptor.setFoodPreference(ParserUtil.parseFoodPreference(
-                argMultimap.getValue(PREFIX_FOOD_PREFERENCE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_FAMILY_CONDITION).isPresent()) {
-            editPatientDescriptor.setFamilyCondition(ParserUtil.parseFamilyCondition(
-                argMultimap.getValue(PREFIX_FAMILY_CONDITION).get()));
-        }
-        if (argMultimap.getValue(PREFIX_HOBBY).isPresent()) {
-            editPatientDescriptor.setHobby(ParserUtil.parseHobby(
-                argMultimap.getValue(PREFIX_HOBBY).get()));
-        }
+
+        parseFoodPreferenceForEdit(argMultimap.getAllValues(PREFIX_FOOD_PREFERENCE)).ifPresent(
+            editPatientDescriptor::setFoodPreferences);
+
+        parseFamilyConditionForEdit(argMultimap.getAllValues(PREFIX_FAMILY_CONDITION)).ifPresent(
+            editPatientDescriptor::setFamilyConditions);
+
+        parseHobbyForEdit(argMultimap.getAllValues(PREFIX_HOBBY)).ifPresent(editPatientDescriptor::setHobbies);
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPatientDescriptor::setTags);
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
@@ -77,6 +77,56 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPatientDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> foodPreferences} into a {@code Set<FoodPreference>} if {@code foodPreferences}
+     * is non-empty.
+     * If {@code foodPreferences} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FoodPreference>} containing zero foodPreference.
+     */
+    private Optional<Set<FoodPreference>> parseFoodPreferenceForEdit(
+        Collection<String> foodPreferences) throws ParseException {
+        assert foodPreferences != null;
+        if (foodPreferences.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> foodPreferenceSet = foodPreferences.size() == 1 && foodPreferences.contains("")
+            ? Collections.emptySet() : foodPreferences;
+        return Optional.of(ParserUtil.parseFoodPreferences(foodPreferenceSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> familyConditions} into a {@code Set<FamilyCondition>}
+     * if {@code familyConditions} is non-empty.
+     * If {@code familyConditions} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FamilyCondition>} containing zero familyCondition.
+     */
+    private Optional<Set<FamilyCondition>> parseFamilyConditionForEdit(
+        Collection<String> familyConditions) throws ParseException {
+        assert familyConditions != null;
+        if (familyConditions.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> familyConditionSet = familyConditions.size() == 1 && familyConditions.contains("")
+            ? Collections.emptySet() : familyConditions;
+        return Optional.of(ParserUtil.parseFamilyConditions(familyConditionSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> hobbies} into a {@code Set<Hobby>}
+     * if {@code hobbies} is non-empty.
+     * If {@code hobbies} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Hobby>} containing zero hobby.
+     */
+    private Optional<Set<Hobby>> parseHobbyForEdit(Collection<String> hobbies) throws ParseException {
+        assert hobbies != null;
+        if (hobbies.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> hobbySet = hobbies.size() == 1 && hobbies.contains("")
+            ? Collections.emptySet() : hobbies;
+        return Optional.of(ParserUtil.parseHobbies(hobbySet));
     }
 
     /**

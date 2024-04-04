@@ -87,20 +87,21 @@ Format: `help`
 
 Adds a patient to the address book.
 
-Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/FAMILY_CONDITION h/HOBBY [t/TAG]…​`
+Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​`
 
 <box type="tip" seamless>
 
 **Tip:** 
 * A patient can have any number of tags (including 0)
+* A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`
 * Parameters can be in any order
 * All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments)
 
 </box>
 
 Examples:
-* `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
-* `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean c/ Lives with only daughter, quarrels regularly with daughter h/ Watching Drama`
+* `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable c/Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
+* `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean f/Chinese food c/ Lives with only daughter c/ quarrels regularly with daughter h/ Watching Drama`
 * `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`
 
 ![result for 'adding patient John Doe'](images/addPatientResult.png)
@@ -121,19 +122,20 @@ Format: `list`
 
 Edits an existing patient in the address book.
 
-Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE] [c/FAMILY_CONDITION]
-[h/HOBBY] [t/TAG]…​`
+Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​
+[h/HOBBY]…​ [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 p/Alex f/Fried rice` Edits the preferred name and food preference of the 1st patient to be `Alex` and `Fried rice` respectively.
 *  `edit 2 c/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.
+*  `edit 3 h/Watch drama h/Plays piano` Edits the hobby of 3rd patient to be `Watch drama` and `Plays piano`.
 
 ![result for 'edit patient'](images/editPatientResult.png)
 
@@ -154,8 +156,8 @@ e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
 e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
 Examples:
-* find `Alex` returns `alex` and `Alex becker`
-* find `alex becker` returns `alex`, `Alex Becker` and `Becker Li`
+* `find Alex` returns `alex` and `Alex becker`
+* `find alex becker` returns `alex`, `Alex Becker` and `Becker Li`
 
 ![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
 
@@ -249,8 +251,8 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
   e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`
 
 Examples:
-* find `depression` returns `depression` and `depression diabetes`
-* find `depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
+* `findt depression` returns `depression` and `depression diabetes`
+* `findt depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
 
 ![result for 'find tags'](images/findTagsResult.png)
 
@@ -260,7 +262,7 @@ Examples:
 
 Adds an Event to a patient in the address book.
 
-Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+Format: `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 
 * Adds an Event with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
 * The index **must be a positive integer** 1, 2, 3, ...
@@ -268,6 +270,7 @@ Format: `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_
 * The Name must be alphanumerical
 * The format of the Date must be: DD-MM-YYYY
 * If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm, where the End Time must be after or equal to the Start Time
+* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
 * There is currently no support for Events spanning multiple days 
 
 Examples:
@@ -282,7 +285,7 @@ Examples:
 
 Deletes an Event from a patient in the address book.
 
-Format `deletee PATIENT_INDEX [e/EVENT_INDEX]`
+Format `deletee PATIENT_INDEX e/EVENT_INDEX`
 
 * Deletes an Event from a specified Patient using `PATIENT_INDEX` and `EVENT_INDEX`.
 * `PATIENT_INDEX` is the index of the patient shown in the UI after using `list` or `find` command.
@@ -304,7 +307,7 @@ Examples:
 
 Edits an Event for a Patient in the address book.
 
-Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]`
+Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 
 * Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and
   `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`.
@@ -313,6 +316,7 @@ Format `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DA
 * Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 * The format of `DATE_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY.
 * The format of `DATETIME_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY, HH:mm - HH:mm.
+* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
   Patients/Events).
@@ -408,17 +412,17 @@ Furthermore, certain edits can cause PatientSync to behave in unexpected ways (e
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE c/FAMILY_CONDITION h/HOBBY [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
+**Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE] [c/FAMILY_CONDITION] [h/HOBBY] [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
+**Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
 **Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]`<br> e.g. `findt depression diabetes`
-**AddEvent** | `adde INDEX [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
-**DeleteEvent** | `deletee PATIENT_INDEX [e/EVENT_INDEX]` <br> e.g. `deletee 1 e/1`
-**EditEvent** | `edite PATIENT_INDEX [e/EVENT_INDEX] [n/NAME_OF_EVENT_ON_THAT_DATE] [d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE]` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+**Add Event** | `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
+**Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
+**Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
 **Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`

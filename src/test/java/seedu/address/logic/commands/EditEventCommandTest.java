@@ -28,9 +28,9 @@ import seedu.address.model.patient.Patient;
 
 public class EditEventCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final Event validEvent = new Event("Test", "20-02-2022");
-    private final Event secondValidEvent = new Event("SomethingElse", "20-02-2022");
-    private final Event thirdValidEvent = new Event("Test", "20-02-2023");
+    private final Event validEvent = new Event("Test", "20-02-9999");
+    private final Event secondValidEvent = new Event("SomethingElse", "20-02-9999");
+    private final Event pastEvent = new Event("Test", "20-12-1999");
 
     @Test
     public void constructor_nullPatientIndex_throwsNullPointerException() {
@@ -84,6 +84,24 @@ public class EditEventCommandTest {
         String expected = String.format(EditEventCommand.MESSAGE_SUCCESS, validEvent.name,
                 INDEX_FIRST_EVENT.getOneBased(), validEvent.date, editedPatient.getName(),
                 INDEX_SECOND_PATIENT.getOneBased());
+
+        assertEquals(expected, result.getFeedbackToUser());
+
+        Set<Event> expectedEvents = new HashSet<>(editedPatient.getEvents());
+
+        assertEquals(editedPatient.getEvents(), expectedEvents);
+    }
+
+    @Test
+    public void execute_editPastEvent_success() throws CommandException {
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_SECOND_PATIENT,
+                INDEX_FIRST_EVENT, pastEvent);
+        CommandResult result = editEventCommand.execute(model);
+        Patient editedPatient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+
+        String expected = String.format(EditEventCommand.MESSAGE_SUCCESS, pastEvent.name,
+                INDEX_FIRST_EVENT.getOneBased(), pastEvent.date, editedPatient.getName(),
+                INDEX_SECOND_PATIENT.getOneBased() + "\n" + EditEventCommand.MESSAGE_PAST_EVENT_WARNING);
 
         assertEquals(expected, result.getFeedbackToUser());
 
@@ -161,7 +179,7 @@ public class EditEventCommandTest {
         EditEventCommand editEventCommandSecond = new EditEventCommand(
                 INDEX_SECOND_PATIENT, INDEX_SECOND_EVENT, secondValidEvent);
         EditEventCommand editEventCommandThird = new EditEventCommand(
-                INDEX_SECOND_PATIENT, INDEX_SECOND_EVENT, thirdValidEvent);
+                INDEX_SECOND_PATIENT, INDEX_SECOND_EVENT, pastEvent);
 
         // Test same patient index, same event index, same event date but different event name
         assertNotEquals(editEventCommandFirst, editEventCommandSecond);
@@ -181,9 +199,9 @@ public class EditEventCommandTest {
     @Test
     public void equals_sameValues_returnTrue() {
         EditEventCommand editEventCommandFirst = new EditEventCommand(
-                INDEX_THIRD_PATIENT, INDEX_THIRD_EVENT, thirdValidEvent);
+                INDEX_THIRD_PATIENT, INDEX_THIRD_EVENT, pastEvent);
         EditEventCommand editEventCommandSecond = new EditEventCommand(
-                INDEX_THIRD_PATIENT, INDEX_THIRD_EVENT, thirdValidEvent);
+                INDEX_THIRD_PATIENT, INDEX_THIRD_EVENT, pastEvent);
 
         // Test with the same object
         assertEquals(editEventCommandFirst, editEventCommandFirst);

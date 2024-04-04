@@ -101,6 +101,11 @@ public class Event implements Comparable<Event> {
      */
     public static boolean isValidDateTimeStr(String timeStr) {
         String[] args = timeStr.split("-");
+
+        if (args.length != 2) {
+            return false;
+        }
+
         try {
             LocalTime start = LocalTime.parse(args[0].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // start time
             LocalTime end = LocalTime.parse(args[1].trim(), DateTimeFormatter.ofPattern(TIME_PATTERN)); // end time
@@ -115,6 +120,24 @@ public class Event implements Comparable<Event> {
         }
     }
 
+    /**
+     * Returns True if the Date / DateTime of the Event is before the current Date / Datetime
+     *
+     * @return True if the Date / DateTime is before the current Date / Datetime
+     *         False otherwise
+     */
+    public boolean isPastEvent() {
+        LocalDate eventDate = LocalDate.parse(this.date, DateTimeFormatter.ofPattern(DATE_PATTERN));
+        LocalDate curDate = LocalDate.now();
+
+        if (eventDate.isBefore(curDate)) {
+            return true;
+        } else if (eventDate.equals(curDate) && this.endTime != null) {
+            return LocalTime.parse(this.endTime, DateTimeFormatter.ofPattern(TIME_PATTERN)).isBefore(LocalTime.now());
+        }
+
+        return false;
+    }
 
     /**
      * Extracts the date and/or time arguments from the user input

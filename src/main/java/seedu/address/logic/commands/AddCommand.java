@@ -23,19 +23,19 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
-            + PREFIX_PID + "PATIENT_HOSPITAL_ID"
+            + PREFIX_PID + "PATIENT_HOSPITAL_ID "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PREFERRED_NAME + "PREFERRED_NAME"
+            + PREFIX_PREFERRED_NAME + "PREFERRED_NAME "
             + PREFIX_FOOD_PREFERENCE + "FOOD_PREFERENCE "
             + PREFIX_FAMILY_CONDITION + "FAMILY_CONDITION "
             + PREFIX_HOBBY + "HOBBY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PID + "12345"
+            + PREFIX_PID + "12345 "
             + PREFIX_NAME + "Alex Yeoh Jia Jun "
             + PREFIX_PREFERRED_NAME + "Alex "
             + PREFIX_FOOD_PREFERENCE + "Curry Chicken "
-            + PREFIX_FAMILY_CONDITION + "Stable, Has 2 sons visit him regularly "
+            + PREFIX_FAMILY_CONDITION + "Stable "
             + PREFIX_HOBBY + "Singing karaoke "
             + PREFIX_TAG + "Diabetes ";
 

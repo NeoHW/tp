@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.patient.comparators.NameComparator.NAME_COMPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 
 import java.util.Arrays;
@@ -24,6 +26,7 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -97,7 +100,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addEvent() throws Exception {
         String name = "Birthday";
-        String date = "20-01-2022";
+        String date = "20-01-9999";
         String args = "1 " + PREFIX_NAME + name + " " + PREFIX_DATETIME + date;
         AddEventCommand command = (AddEventCommand) parser.parseCommand(
                 AddEventCommand.COMMAND_WORD + " " + args);
@@ -132,6 +135,15 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         // this means that "list 123" also works
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteEvent() throws Exception {
+        String args = "1 " + PREFIX_EVENT + "1";
+        DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
+                DeleteEventCommand.COMMAND_WORD + " " + args);
+
+        assertEquals(new DeleteEventCommand(INDEX_FIRST_PATIENT, INDEX_FIRST_EVENT), command);
     }
 
     @Test

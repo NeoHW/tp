@@ -11,6 +11,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.patient.Event;
+import seedu.address.model.patient.FamilyCondition;
+import seedu.address.model.patient.FoodPreference;
+import seedu.address.model.patient.Hobby;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -41,11 +44,11 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label preferredName;
     @FXML
-    private Label foodPreference;
+    private VBox foodPreferences;
     @FXML
-    private Label familyCondition;
+    private VBox familyConditions;
     @FXML
-    private Label hobby;
+    private VBox hobbies;
     @FXML
     private FlowPane tags;
     @FXML
@@ -60,15 +63,37 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         preferredName.setText(patient.getPreferredName().preferredName);
-        foodPreference.setText(patient.getFoodPreference().foodPreference);
-        familyCondition.setText(patient.getFamilyCondition().familyCondition);
-        hobby.setText(patient.getHobby().hobby);
+
+        ArrayList<FoodPreference> allFoodPreferences = new ArrayList<>(patient.getFoodPreferences());
+        Collections.sort(allFoodPreferences);
+        for (int i = 1; i <= allFoodPreferences.size(); i++) {
+            Label foodPreferenceLabel = new Label("\u2981 " + allFoodPreferences.get(i - 1).toString());
+            foodPreferenceLabel.setWrapText(true);
+            foodPreferences.getChildren().add(foodPreferenceLabel);
+        }
+
+        ArrayList<FamilyCondition> allFamilyConditions = new ArrayList<>(patient.getFamilyConditions());
+        Collections.sort(allFamilyConditions);
+        for (int i = 1; i <= allFamilyConditions.size(); i++) {
+            Label familyConditionLabel = new Label("\u2981 " + allFamilyConditions.get(i - 1).toString());
+            familyConditionLabel.setWrapText(true);
+            familyConditions.getChildren().add(familyConditionLabel);
+        }
+
+        ArrayList<Hobby> allHobbies = new ArrayList<>(patient.getHobbies());
+        Collections.sort(allHobbies);
+        for (int i = 1; i <= allHobbies.size(); i++) {
+            Label hobbyLabel = new Label("\u2981 " + allHobbies.get(i - 1).toString());
+            hobbyLabel.setWrapText(true);
+            hobbies.getChildren().add(hobbyLabel);
+        }
+
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         if (patient.getEvents().size() >= 1) {
-            events.getChildren().add(new Label("Upcoming:\n"));
+            events.getChildren().add(new Label("Events:\n"));
 
             ArrayList<Event> allEvents = new ArrayList<>(patient.getEvents());
             Collections.sort(allEvents);

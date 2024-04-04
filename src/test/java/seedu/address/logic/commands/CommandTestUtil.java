@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_EVENT_NAME = "Birthday";
-    public static final String VALID_EVENT_DATE = "20-02-2022";
-    public static final String VALID_EVENT_DATETIME = "20-02-2022, 12:12 - 15:15";
+    public static final String VALID_EVENT_DATE = "20-02-9999";
+    public static final String VALID_EVENT_DATETIME = "20-02-9999, 12:12 - 15:15";
     public static final String VALID_PREFERRED_NAME_AMY = "Amy";
     public static final String VALID_PREFERRED_NAME_BOB = "Bob";
     public static final String VALID_FOOD_AMY = "Dim sum";
@@ -92,12 +92,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPreferredName(VALID_PREFERRED_NAME_AMY).withFoodPreference(VALID_FOOD_AMY)
-                .withFamilyCondition(VALID_FAMILY_CONDITION_AMY).withHobby(VALID_HOBBY_AMY)
+                .withPreferredName(VALID_PREFERRED_NAME_AMY).withFoodPreferences(VALID_FOOD_AMY)
+                .withFamilyConditions(VALID_FAMILY_CONDITION_AMY).withHobbies(VALID_HOBBY_AMY)
                 .withTags(VALID_TAG_DIABETES).build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreference(VALID_FOOD_BOB)
-                .withFamilyCondition(VALID_FAMILY_CONDITION_BOB).withHobby(VALID_HOBBY_BOB)
+                .withPreferredName(VALID_PREFERRED_NAME_BOB).withFoodPreferences(VALID_FOOD_BOB)
+                .withFamilyConditions(VALID_FAMILY_CONDITION_BOB).withHobbies(VALID_HOBBY_BOB)
                 .withTags(VALID_TAG_DEPRESSION, VALID_TAG_DIABETES).build();
     }
 
