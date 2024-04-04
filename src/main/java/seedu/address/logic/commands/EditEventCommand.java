@@ -48,6 +48,8 @@ public class EditEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully updated "
             + "for Patient %4$s with ID %5$s";
     public static final String MESSAGE_DUPLICATE = "Event %1$s on %2$s already exists for Patient %3$s with ID %4$s";
+    public static final String MESSAGE_PAST_EVENT_WARNING = "Warning: This Event occurred before the current "
+            + "date / datetime";
 
     private static final Logger logger = LogsCenter.getLogger(EditEventCommand.class);
 
@@ -94,6 +96,12 @@ public class EditEventCommand extends Command {
         Patient updatedPatient = createEditedPatient(patientToEditEvent, editPatientDescriptor);
         updatePatientList(model, patientToEditEvent, updatedPatient);
         logger.log(Level.INFO, "Updated the information on the patient list successfully.");
+
+        if (this.eventToUpdate.isPastEvent()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, eventToUpdate.name,
+                    eventIndex.getOneBased(), eventToUpdate.date, updatedPatient.getName(), patientIndex.getOneBased())
+                    + "\n" + MESSAGE_PAST_EVENT_WARNING);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToUpdate.name, eventIndex.getOneBased(),
                 eventToUpdate.date, updatedPatient.getName(), patientIndex.getOneBased()));
