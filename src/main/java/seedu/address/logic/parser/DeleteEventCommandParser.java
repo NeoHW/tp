@@ -24,27 +24,27 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public DeleteEventCommand parse(String args) throws ParseException {
-        logger.info("Received arguments: " + args + " for DeleteEventCommand; Attempting to parse..");
-
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT) || argMultimap.getPreamble().isEmpty()) {
-            logger.log(Level.WARNING, "Invalid command format is used!");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteEventCommand.MESSAGE_USAGE));
         }
-
-        logger.log(Level.INFO, "Command format is correct!");
 
         Index patientIndex;
         Index eventIndex;
         try {
             patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            eventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EVENT).get());
+            logger.log(Level.INFO, "patient index: " + patientIndex);
+            if (argMultimap.getValue(PREFIX_EVENT).isPresent()) {
+                eventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EVENT).get());
+                logger.log(Level.INFO, "Event index: " + eventIndex);
+            } else {
+                return new DeleteEventCommand(patientIndex, null);
+            }
             return new DeleteEventCommand(patientIndex, eventIndex);
         } catch (ParseException pe) {
-            logger.log(Level.WARNING, "Parse failed for patient index or event index!");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
         }
