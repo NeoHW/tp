@@ -103,7 +103,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> foodPreferences} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> foodPreferences} into a {@code Set<FoodPreference>}.
      */
     public static Set<FoodPreference> parseFoodPreferences(Collection<String> foodPreferences) throws ParseException {
         requireNonNull(foodPreferences);
@@ -133,7 +133,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> familyConditions} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> familyConditions} into a {@code Set<FamilyCondition>}.
      */
     public static Set<FamilyCondition> parseFamilyConditions(Collection<String> familyConditions)
             throws ParseException {

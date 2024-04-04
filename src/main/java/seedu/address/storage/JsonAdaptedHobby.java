@@ -38,9 +38,9 @@ class JsonAdaptedHobby {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Hobby} object.
+     * Converts this Jackson-friendly adapted hobby object into the model's {@code Hobby} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted hobby.
      */
     public Hobby toModelType() throws IllegalValueException {
         if (hobbyName == null) {

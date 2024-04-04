@@ -236,13 +236,14 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     * Cons: Patients may have the same name.
 
 #### Aspect of Handling Multiple Inputs for Same Field 
-* **Alternative 1**: Adds `,` to the specific field
+* **Alternative 1 (current choice)**: Allow duplicate prefixes for certain fields
+  * Pros: Easier to view as listings will be shown without commas, provide clearer view to user.
+  * Cons: User may find it confusing if same prefix not being entered repeatedly.
+* **Alternative 2**: Adds `,` to the specific field
   * Pros: Ensures that there are no duplicate prefixes in the input command.
   * Cons: Display may be messy if inputs are long with more than 1 comma. 
     <br></br>
-* **Alternative 2 (current choice)**: Allow duplicate prefixes for certain fields 
-  * Pros: Easier to view as listings will be shown without commas, provide clearer view to user.
-  * Cons: User may find it confused if same prefix not being entered continuously.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 3.2 Adding Tags to a Patient

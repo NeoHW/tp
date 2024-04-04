@@ -38,9 +38,9 @@ class JsonAdaptedFamilyCondition {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code FamilyCondition} object.
+     * Converts this Jackson-friendly adapted family condition object into the model's {@code FamilyCondition} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted family condition.
      */
     public FamilyCondition toModelType() throws IllegalValueException {
         if (familyConditionName == null) {

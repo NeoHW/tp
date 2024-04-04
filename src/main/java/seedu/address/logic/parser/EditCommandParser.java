@@ -117,7 +117,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Parses {@code Collection<String> hobbies} into a {@code Set<Hobby>}
      * if {@code hobbies} is non-empty.
      * If {@code hobbies} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Hobby>} containing zero familyCondition.
+     * {@code Set<Hobby>} containing zero hobby.
      */
     private Optional<Set<Hobby>> parseHobbyForEdit(Collection<String> hobbies) throws ParseException {
         assert hobbies != null;
