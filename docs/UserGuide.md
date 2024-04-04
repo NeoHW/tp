@@ -13,6 +13,9 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -41,6 +44,9 @@ command to run the application.<br>
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -82,6 +88,9 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Adding a patient: `add`
 
@@ -112,6 +121,9 @@ Examples:
 ![result for 'adding patient John Doe'](images/addPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Listing all patients : `list`
 
@@ -120,6 +132,9 @@ Shows a list of all patients in the address book.
 Format: `list`
 
 ![result for 'listing all patients'](images/listResult.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -150,6 +165,9 @@ Examples:
 ![result for 'edit patient'](images/editPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Locating patients by name: `find`
 
@@ -172,6 +190,9 @@ Examples:
 ![result for 'find patients whose name is alex ali'](images/findPatientAlexAliResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a patient : `delete`
 
@@ -188,6 +209,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 
 ![result for 'delete 2'](images/deletePatientResult.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -220,6 +244,9 @@ Examples:
 ![result for 'add tags'](images/addTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Deleting Tags from a Patient : `deletet`
 
@@ -245,6 +272,9 @@ Examples:
 ![result for 'delete tags'](images/deleteTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Locating patients by tag: `findt`
 
@@ -265,6 +295,9 @@ Examples:
 * `findt depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
 
 ![result for 'find tags'](images/findTagsResult.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -290,6 +323,9 @@ Examples:
 ![result for 'add event'](images/addEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Deleting an Event from a Patient : `deletee`
 
@@ -310,6 +346,9 @@ Examples:
 * `deletee 1 e/1`
 
 ![result for 'delete event'](images/deleteEventResult.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -340,6 +379,9 @@ Examples:
 ![result for 'edit event'](images/editEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Sorting the patient list : `sort`
 
@@ -367,6 +409,9 @@ Examples:
 ![result for 'sort'](images/sortResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Clearing all entries : `clear`
 
@@ -375,6 +420,9 @@ Clears all entries from the address book.
 Format: `clear`
 
 ![result for 'clear'](images/clearResult.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -415,6 +463,9 @@ Furthermore, certain edits can cause PatientSync to behave in unexpected ways (e
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
