@@ -93,7 +93,7 @@ public class PatientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         if (patient.getEvents().size() >= 1) {
-            events.getChildren().add(new Label("Upcoming:\n"));
+            events.getChildren().add(new Label("Events:\n"));
 
             ArrayList<Event> allEvents = new ArrayList<>(patient.getEvents());
             Collections.sort(allEvents);
