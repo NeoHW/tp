@@ -270,9 +270,8 @@ Format: `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_
 * The Name must be alphanumerical
 * The format of the Date must be: DD-MM-YYYY
 * If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm, where the End Time must be after or equal to the Start Time
-* The Date must not fall before the current date; If the Time exists, it can occur anytime within the day even if its on the current date
+* The Date / Datetime of the Event can occur in the past as well, there is no restriction
 * There is currently no support for Events spanning multiple days 
-* There is currently no support for the automatic removal of past Events
 
 Examples:
 * `adde 1 n/Birthday d/20-01-2022`
@@ -317,7 +316,7 @@ Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR
 * Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
 * The format of `DATE_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY.
 * The format of `DATETIME_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY, HH:mm - HH:mm.
-* The Date must not fall before the current date; If the Time exists, it can occur anytime within the day even if its on the current date
+* The Date / Datetime of the Event can occur in the past as well, there is no restriction
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
   Patients/Events).
