@@ -43,7 +43,7 @@ public class DeleteEventCommand extends Command {
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully deleted "
             + "for Patient %4$s with ID %5$s";
-
+    private static final Logger logger = LogsCenter.getLogger(DeleteEventCommand.class);
     private final Index targetPatientIndex;
     private final Index targetEventIndex;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -63,10 +63,13 @@ public class DeleteEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.log(Level.INFO, "Attempting to execute DeleteEventCommand");
+
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (targetPatientIndex.getZeroBased() >= lastShownList.size()) {
+            logger.log(Level.WARNING, "Invalid Patient index received! Patient Index: " + targetPatientIndex);
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
@@ -74,6 +77,7 @@ public class DeleteEventCommand extends Command {
         Set<Event> eventSet = patientToDeleteEvent.getEvents();
 
         if (targetEventIndex.getZeroBased() >= eventSet.size()) {
+            logger.log(Level.WARNING, "Invalid Event index received! Event Index: " + targetEventIndex);
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
@@ -85,9 +89,7 @@ public class DeleteEventCommand extends Command {
         currEventList.remove(targetEventIndex.getZeroBased());
         Set<Event> newEventSet = new HashSet<>(currEventList);
 
-        Logger logger = LogsCenter.getLogger(DeleteEventCommandParser.class);
-        logger.log(Level.INFO, "old set: " + currEventSet);
-        logger.log(Level.INFO, "new set: " + newEventSet);
+        logger.log(Level.INFO, "Target Event deleted from event set. New Event set: " + newEventSet);
 
         editPatientDescriptor.setName(patientToDeleteEvent.getName());
         editPatientDescriptor.setTags(patientToDeleteEvent.getTags());
@@ -103,6 +105,8 @@ public class DeleteEventCommand extends Command {
         Patient editedPatient = createEditedPatient(patientToDeleteEvent, editPatientDescriptor);
         model.setPatient(patientToDeleteEvent, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
+        logger.log(Level.INFO, "Event delete successfully and patient has been updated.");
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.name,
                 targetEventIndex.getOneBased(), eventToDelete.date, patientToDeleteEvent.getName(),
                 targetPatientIndex.getOneBased()));
