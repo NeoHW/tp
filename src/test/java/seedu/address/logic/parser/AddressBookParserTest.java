@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.patient.comparators.NameComparator.NAME_COMPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
@@ -32,6 +33,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTagsCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.EditPatientDescriptor;
 import seedu.address.model.patient.Event;
@@ -144,6 +146,13 @@ public class AddressBookParserTest {
         assertEquals(new DeleteEventCommand(INDEX_FIRST_PATIENT, INDEX_FIRST_EVENT), command);
     }
 
+    @Test
+    public void parseCommand_sort() throws Exception {
+        String args = "n";
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " " + args);
+        assertEquals(new SortCommand(NAME_COMPARATOR), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
