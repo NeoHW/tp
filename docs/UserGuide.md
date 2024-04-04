@@ -159,7 +159,7 @@ Examples:
 * `find Alex` returns `alex` and `Alex becker`
 * `find alex becker` returns `alex`, `Alex Becker` and `Becker Li`
 
-![result for 'find patients whose name is alex becker'](images/findPatientAlexBeckerResult.png)
+![result for 'find patients whose name is alex ali'](images/findPatientAlexAliResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 
-![result for 'delete 2'](images/deleteResult.png)
+![result for 'delete 2'](images/deletePatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
