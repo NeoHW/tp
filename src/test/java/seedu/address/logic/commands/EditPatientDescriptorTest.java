@@ -55,15 +55,15 @@ public class EditPatientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different food preference -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFoodPreference(VALID_FOOD_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFoodPreferences(VALID_FOOD_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different family condition -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFamilyCondition(VALID_FAMILY_CONDITION_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withFamilyConditions(VALID_FAMILY_CONDITION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different hobby -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withHobby(VALID_HOBBY_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withHobbies(VALID_HOBBY_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
@@ -85,10 +85,10 @@ public class EditPatientDescriptorTest {
         String expected = EditPatientDescriptor.class.getCanonicalName() + "{patientHospitalId="
                 + editPatientDescriptor.getPatientHospitalId().orElse(null) + ", name="
                 + editPatientDescriptor.getName().orElse(null) + ", preferredName="
-                + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreference="
-                + editPatientDescriptor.getFoodPreference().orElse(null) + ", familyCondition="
-                + editPatientDescriptor.getFamilyCondition().orElse(null) + ", hobby="
-                + editPatientDescriptor.getHobby().orElse(null) + ", tags="
+                + editPatientDescriptor.getPreferredName().orElse(null) + ", foodPreferences="
+                + editPatientDescriptor.getFoodPreferences().orElse(null) + ", familyConditions="
+                + editPatientDescriptor.getFamilyConditions().orElse(null) + ", hobbies="
+                + editPatientDescriptor.getHobbies().orElse(null) + ", tags="
                 + editPatientDescriptor.getTags().orElse(null) + ", events="
                 + editPatientDescriptor.getEvents().orElse(null) + "}";
         assertEquals(expected, editPatientDescriptor.toString());

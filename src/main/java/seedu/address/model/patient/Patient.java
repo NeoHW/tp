@@ -22,9 +22,9 @@ public class Patient {
     private final PreferredName preferredName;
 
     // Data fields
-    private final FoodPreference foodPreference;
-    private final FamilyCondition familyCondition;
-    private final Hobby hobby;
+    private final Set<FoodPreference> foodPreferences = new HashSet<>();
+    private final Set<FamilyCondition> familyConditions = new HashSet<>();
+    private final Set<Hobby> hobbies = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Event> events = new HashSet<>();
 
@@ -32,41 +32,41 @@ public class Patient {
      * Every field must be present and not null.
      */
     public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
-                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<FoodPreference> foodPreferences, Set<FamilyCondition> familyConditions, Set<Hobby> hobbies,
                    Set<Tag> tags) {
-        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreferences, familyConditions, hobbies, tags);
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.foodPreference = foodPreference;
-        this.familyCondition = familyCondition;
-        this.hobby = hobby;
+        this.foodPreferences.addAll(foodPreferences);
+        this.familyConditions.addAll(familyConditions);
+        this.hobbies.addAll(hobbies);
         this.tags.addAll(tags);
     }
 
     /**
      * Constructs a Patient with {@param patientHospitalId},{@param name}, {@param preferredName},
-     * {@param foodPreference}, {@param familyCondition}, {@param hobby},{@param tags}, {@param events}
+     * {@param foodPreferences}, {@param familyConditions}, {@param hobbies},{@param tags}, {@param events}
      *
      * @param patientHospitalId patient's hospital ID
      * @param name patient's full name
      * @param preferredName patient's preferred name
-     * @param foodPreference patient's preferred food
-     * @param familyCondition patient's family condition
-     * @param hobby patient's hobby
+     * @param foodPreferences patient's preferred food
+     * @param familyConditions patient's family condition
+     * @param hobbies patient's hobby
      * @param tags tag for patient
      * @param events
      */
     public Patient(PatientHospitalId patientHospitalId, Name name, PreferredName preferredName,
-                   FoodPreference foodPreference, FamilyCondition familyCondition, Hobby hobby,
+                   Set<FoodPreference> foodPreferences, Set<FamilyCondition> familyConditions, Set<Hobby> hobbies,
                    Set<Tag> tags, Set<Event> events) {
-        requireAllNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags);
+        requireAllNonNull(patientHospitalId, name, preferredName, foodPreferences, familyConditions, hobbies, tags);
         this.patientHospitalId = patientHospitalId;
         this.name = name;
         this.preferredName = preferredName;
-        this.foodPreference = foodPreference;
-        this.familyCondition = familyCondition;
-        this.hobby = hobby;
+        this.foodPreferences.addAll(foodPreferences);
+        this.familyConditions.addAll(familyConditions);
+        this.hobbies.addAll(hobbies);
         this.tags.addAll(tags);
         this.events.addAll(events);
     }
@@ -83,16 +83,28 @@ public class Patient {
         return preferredName;
     }
 
-    public FamilyCondition getFamilyCondition() {
-        return familyCondition;
+    /**
+     * Returns an immutable family condition set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<FamilyCondition> getFamilyConditions() {
+        return Collections.unmodifiableSet(familyConditions);
     }
 
-    public FoodPreference getFoodPreference() {
-        return foodPreference;
+    /**
+     * Returns an immutable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<FoodPreference> getFoodPreferences() {
+        return Collections.unmodifiableSet(foodPreferences);
     }
 
-    public Hobby getHobby() {
-        return hobby;
+    /**
+     * Returns an immutable hobby set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Hobby> getHobbies() {
+        return Collections.unmodifiableSet(hobbies);
     }
 
     /**
@@ -143,9 +155,9 @@ public class Patient {
         return patientHospitalId.equals(otherPatient.patientHospitalId)
                 && name.equals(otherPatient.name)
                 && preferredName.equals(otherPatient.preferredName)
-                && foodPreference.equals(otherPatient.foodPreference)
-                && familyCondition.equals(otherPatient.familyCondition)
-                && hobby.equals(otherPatient.hobby)
+                && foodPreferences.equals(otherPatient.foodPreferences)
+                && familyConditions.equals(otherPatient.familyConditions)
+                && hobbies.equals(otherPatient.hobbies)
                 && tags.equals(otherPatient.tags)
                 && events.equals(otherPatient.events);
     }
@@ -153,7 +165,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby, tags,
+        return Objects.hash(patientHospitalId, name, preferredName, foodPreferences, familyConditions, hobbies, tags,
             events);
     }
 
@@ -163,9 +175,9 @@ public class Patient {
             .add("patientHospitalId", patientHospitalId)
             .add("name", name)
             .add("preferredName", preferredName)
-            .add("foodPreference", foodPreference)
-            .add("familyCondition", familyCondition)
-            .add("hobby", hobby)
+            .add("foodPreferences", foodPreferences)
+            .add("familyConditions", familyConditions)
+            .add("hobbies", hobbies)
             .add("tags", tags)
             .add("events", this.events)
             .toString();

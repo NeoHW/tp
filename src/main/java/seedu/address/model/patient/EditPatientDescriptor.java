@@ -18,9 +18,9 @@ public class EditPatientDescriptor {
     private PatientHospitalId patientHospitalId;
     private Name name;
     private PreferredName preferredName;
-    private FoodPreference foodPreference;
-    private FamilyCondition familyCondition;
-    private Hobby hobby;
+    private Set<FoodPreference> foodPreferences;
+    private Set<FamilyCondition> familyConditions;
+    private Set<Hobby> hobbies;
     private Set<Tag> tags;
     private Set<Event> events;
 
@@ -35,9 +35,9 @@ public class EditPatientDescriptor {
         setPatientHospitalId(toCopy.patientHospitalId);
         setName(toCopy.name);
         setPreferredName(toCopy.preferredName);
-        setFoodPreference(toCopy.foodPreference);
-        setFamilyCondition(toCopy.familyCondition);
-        setHobby(toCopy.hobby);
+        setFoodPreferences(toCopy.foodPreferences);
+        setFamilyConditions(toCopy.familyConditions);
+        setHobbies(toCopy.hobbies);
         setTags(toCopy.tags);
         setEvents(toCopy.events);
     }
@@ -46,8 +46,8 @@ public class EditPatientDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreference, familyCondition,
-            hobby, tags, events);
+        return CollectionUtil.isAnyNonNull(patientHospitalId, name, preferredName, foodPreferences, familyConditions,
+            hobbies, tags, events);
     }
 
     public void setPatientHospitalId(PatientHospitalId id) {
@@ -74,28 +74,59 @@ public class EditPatientDescriptor {
         return Optional.ofNullable(preferredName);
     }
 
-    public void setFoodPreference(FoodPreference foodPreference) {
-        this.foodPreference = foodPreference;
+    /**
+     * Sets {@code foodPreferences} to this object's {@code foodPreferences}.
+     * A defensive copy of {@code foodPreferences} is used internally.
+     */
+    public void setFoodPreferences(Set<FoodPreference> foodPreferences) {
+        this.foodPreferences = (foodPreferences != null) ? new HashSet<>(foodPreferences) : null;
     }
 
-    public Optional<FoodPreference> getFoodPreference() {
-        return Optional.ofNullable(foodPreference);
+    /**
+     * Returns an unmodifiable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code foodPreferences} is null.
+     */
+    public Optional<Set<FoodPreference>> getFoodPreferences() {
+        return (foodPreferences != null) ? Optional.of(Collections.unmodifiableSet(foodPreferences)) : Optional.empty();
     }
 
-    public void setFamilyCondition(FamilyCondition familyCondition) {
-        this.familyCondition = familyCondition;
+    /**
+     * Sets {@code familyConditions} to this object's {@code familyConditions}.
+     * A defensive copy of {@code familyConditions} is used internally.
+     */
+    public void setFamilyConditions(Set<FamilyCondition> familyConditions) {
+        this.familyConditions = (familyConditions != null) ? new HashSet<>(familyConditions) : null;
     }
 
-    public Optional<FamilyCondition> getFamilyCondition() {
-        return Optional.ofNullable(familyCondition);
+    /**
+     * Returns an unmodifiable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code familyConditions} is null.
+     */
+    public Optional<Set<FamilyCondition>> getFamilyConditions() {
+        return (familyConditions != null)
+            ? Optional.of(Collections.unmodifiableSet(familyConditions))
+            : Optional.empty();
     }
 
-    public void setHobby(Hobby hobby) {
-        this.hobby = hobby;
+    /**
+     * Sets {@code hobbies} to this object's {@code hobbies}.
+     * A defensive copy of {@code hobbies} is used internally.
+     */
+    public void setHobbies(Set<Hobby> hobbies) {
+        this.hobbies = (hobbies != null) ? new HashSet<>(hobbies) : null;
     }
 
-    public Optional<Hobby> getHobby() {
-        return Optional.ofNullable(hobby);
+    /**
+     * Returns an unmodifiable food preference set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code hobbies} is null.
+     */
+    public Optional<Set<Hobby>> getHobbies() {
+        return (hobbies != null)
+            ? Optional.of(Collections.unmodifiableSet(hobbies))
+            : Optional.empty();
     }
 
     /**
@@ -139,9 +170,9 @@ public class EditPatientDescriptor {
         return Objects.equals(patientHospitalId, otherEditPatientDescriptor.patientHospitalId)
             && Objects.equals(name, otherEditPatientDescriptor.name)
             && Objects.equals(preferredName, otherEditPatientDescriptor.preferredName)
-            && Objects.equals(foodPreference, otherEditPatientDescriptor.foodPreference)
-            && Objects.equals(familyCondition, otherEditPatientDescriptor.familyCondition)
-            && Objects.equals(hobby, otherEditPatientDescriptor.hobby)
+            && Objects.equals(foodPreferences, otherEditPatientDescriptor.foodPreferences)
+            && Objects.equals(familyConditions, otherEditPatientDescriptor.familyConditions)
+            && Objects.equals(hobbies, otherEditPatientDescriptor.hobbies)
             && Objects.equals(tags, otherEditPatientDescriptor.tags)
             && Objects.equals(events, otherEditPatientDescriptor.events);
     }
@@ -152,9 +183,9 @@ public class EditPatientDescriptor {
             .add("patientHospitalId", patientHospitalId)
             .add("name", name)
             .add("preferredName", preferredName)
-            .add("foodPreference", foodPreference)
-            .add("familyCondition", familyCondition)
-            .add("hobby", hobby)
+            .add("foodPreferences", foodPreferences)
+            .add("familyConditions", familyConditions)
+            .add("hobbies", hobbies)
             .add("tags", tags)
             .add("events", events)
             .toString();

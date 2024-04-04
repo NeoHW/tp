@@ -103,6 +103,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> foodPreferences} into a {@code Set<FoodPreference>}.
+     */
+    public static Set<FoodPreference> parseFoodPreferences(Collection<String> foodPreferences) throws ParseException {
+        requireNonNull(foodPreferences);
+        final Set<FoodPreference> foodPreferenceSet = new HashSet<>();
+        for (String foodPreferenceName : foodPreferences) {
+            foodPreferenceSet.add(parseFoodPreference(foodPreferenceName));
+        }
+        if (foodPreferenceSet.isEmpty()) {
+            throw new ParseException(FoodPreference.MESSAGE_CONSTRAINTS);
+        }
+        return foodPreferenceSet;
+    }
+
+    /**
      * Parses a {@code String condition} into an {@code FamilyCondition}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -118,6 +133,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> familyConditions} into a {@code Set<FamilyCondition>}.
+     */
+    public static Set<FamilyCondition> parseFamilyConditions(Collection<String> familyConditions)
+            throws ParseException {
+        requireNonNull(familyConditions);
+        final Set<FamilyCondition> familyConditionSet = new HashSet<>();
+        for (String familyConditionName : familyConditions) {
+            familyConditionSet.add(parseFamilyCondition(familyConditionName));
+        }
+        if (familyConditionSet.isEmpty()) {
+            throw new ParseException(FamilyCondition.MESSAGE_CONSTRAINTS);
+        }
+        return familyConditionSet;
+    }
+
+    /**
      * Parses a {@code String hobby} into an {@code Hobby}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -130,6 +161,21 @@ public class ParserUtil {
             throw new ParseException(Hobby.MESSAGE_CONSTRAINTS);
         }
         return new Hobby(trimmedEmail);
+    }
+
+    /**
+     * Parses {@code Collection<String> hobbies} into a {@code Set<Hobbies>}.
+     */
+    public static Set<Hobby> parseHobbies(Collection<String> hobbies) throws ParseException {
+        requireNonNull(hobbies);
+        final Set<Hobby> hobbySet = new HashSet<>();
+        for (String hobbyName : hobbies) {
+            hobbySet.add(parseHobby(hobbyName));
+        }
+        if (hobbySet.isEmpty()) {
+            throw new ParseException(Hobby.MESSAGE_CONSTRAINTS);
+        }
+        return hobbySet;
     }
 
     /**

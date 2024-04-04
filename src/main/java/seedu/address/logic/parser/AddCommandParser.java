@@ -43,20 +43,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME, PREFIX_FOOD_PREFERENCE,
-            PREFIX_FAMILY_CONDITION, PREFIX_HOBBY);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PID, PREFIX_NAME, PREFIX_PREFERRED_NAME);
+
         PatientHospitalId patientHospitalId = ParserUtil.parsePatientHospitalId(argMultimap.getValue(PREFIX_PID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         PreferredName preferredName = ParserUtil.parsePreferredName(argMultimap.getValue(PREFIX_PREFERRED_NAME).get());
-        FoodPreference foodPreference = ParserUtil.parseFoodPreference(argMultimap
-            .getValue(PREFIX_FOOD_PREFERENCE).get());
-        FamilyCondition familyCondition = ParserUtil.parseFamilyCondition(argMultimap
-            .getValue(PREFIX_FAMILY_CONDITION).get());
-        Hobby hobby = ParserUtil.parseHobby(argMultimap.getValue(PREFIX_HOBBY).get());
+        Set<FoodPreference> foodPreferenceList = ParserUtil.parseFoodPreferences(argMultimap
+            .getAllValues(PREFIX_FOOD_PREFERENCE));
+        Set<FamilyCondition> familyConditionList = ParserUtil.parseFamilyConditions(argMultimap
+            .getAllValues(PREFIX_FAMILY_CONDITION));
+        Set<Hobby> hobbyList = ParserUtil.parseHobbies(argMultimap.getAllValues(PREFIX_HOBBY));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Patient patient = new Patient(patientHospitalId, name, preferredName, foodPreference, familyCondition, hobby,
-            tagList);
+        Patient patient = new Patient(patientHospitalId, name, preferredName, foodPreferenceList, familyConditionList,
+            hobbyList, tagList);
 
         return new AddCommand(patient);
     }

@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,6 +32,22 @@ public class FoodPreferenceTest {
         // valid food preference
         assertTrue(FoodPreference.isValidFoodPreference("chicken rice")); // with spaces
         assertTrue(FoodPreference.isValidFoodPreference("pasta")); // without spaces
+    }
+
+    @Test
+    public void compareTo() {
+        // Test when foodPreference are equal
+        FoodPreference foodPreference1 = new FoodPreference("Nasi Lemak");
+        FoodPreference foodPreference2 = new FoodPreference("Nasi Lemak");
+        assertEquals(0, foodPreference1.compareTo(foodPreference2));
+
+        // Test when foodPreference1 is less than foodPreference2
+        FoodPreference foodPreference3 = new FoodPreference("Fried Rice");
+        assertTrue(foodPreference1.compareTo(foodPreference3) > 0);
+
+        // Test when foodPreference1 is greater than foodPreference2
+        FoodPreference foodPreference4 = new FoodPreference("Dim sum");
+        assertTrue(foodPreference4.compareTo(foodPreference1) < 0);
     }
 
     @Test

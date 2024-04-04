@@ -7,8 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Patient's family condition in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidFamilyCondition(String)}
  */
-public class FamilyCondition {
-
+public class FamilyCondition implements Comparable<FamilyCondition> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Family condition can take any values, and it should not be blank";
@@ -36,6 +35,12 @@ public class FamilyCondition {
     @Override
     public String toString() {
         return familyCondition;
+    }
+
+    @Override
+    public int compareTo(FamilyCondition other) {
+        // Compare the family condition strings
+        return this.familyCondition.compareTo(other.familyCondition);
     }
 
     @Override

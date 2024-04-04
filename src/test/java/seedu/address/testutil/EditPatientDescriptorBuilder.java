@@ -39,9 +39,9 @@ public class EditPatientDescriptorBuilder {
         descriptor.setPatientHospitalId(patient.getPatientHospitalId());
         descriptor.setName(patient.getName());
         descriptor.setPreferredName(patient.getPreferredName());
-        descriptor.setFoodPreference(patient.getFoodPreference());
-        descriptor.setFamilyCondition(patient.getFamilyCondition());
-        descriptor.setHobby(patient.getHobby());
+        descriptor.setFoodPreferences(patient.getFoodPreferences());
+        descriptor.setFamilyConditions(patient.getFamilyConditions());
+        descriptor.setHobbies(patient.getHobbies());
         descriptor.setTags(patient.getTags());
     }
 
@@ -70,26 +70,33 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code FoodPreference} of the {@code EditPatientDescriptor} that we are building.
+     * Parses the {@code foodPreferences} into a {@code Set<FoodPreference>}
+     * and set it to the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withFoodPreference(String food) {
-        descriptor.setFoodPreference(new FoodPreference(food));
+    public EditPatientDescriptorBuilder withFoodPreferences(String... foodPreferences) {
+        Set<FoodPreference> foodPreferenceSet = Stream.of(foodPreferences).map(FoodPreference::new)
+            .collect(Collectors.toSet());
+        descriptor.setFoodPreferences(foodPreferenceSet);
         return this;
     }
 
     /**
-     * Sets the {@code FamilyCondition} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code familyConditions} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withFamilyCondition(String familyCondition) {
-        descriptor.setFamilyCondition(new FamilyCondition(familyCondition));
+    public EditPatientDescriptorBuilder withFamilyConditions(String... familyConditions) {
+        Set<FamilyCondition> familyConditionSet = Stream.of(familyConditions).map(FamilyCondition::new)
+            .collect(Collectors.toSet());
+        descriptor.setFamilyConditions(familyConditionSet);
         return this;
     }
 
     /**
-     * Sets the {@code Hobby} of the {@code EditPatientDescriptor} that we are building.
+     * Sets the {@code hobbies} of the {@code EditPatientDescriptor} that we are building.
      */
-    public EditPatientDescriptorBuilder withHobby(String hobby) {
-        descriptor.setHobby(new Hobby(hobby));
+    public EditPatientDescriptorBuilder withHobbies(String... hobbies) {
+        Set<Hobby> hobbySet = Stream.of(hobbies).map(Hobby::new)
+            .collect(Collectors.toSet());
+        descriptor.setHobbies(hobbySet);
         return this;
     }
 

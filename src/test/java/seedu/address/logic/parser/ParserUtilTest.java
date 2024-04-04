@@ -138,7 +138,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseFoodPreference_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseFoodPreference((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFoodPreferences(null));
     }
 
     @Test
@@ -161,7 +161,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseFamilyCondition_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseFamilyCondition((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFamilyConditions(null));
     }
 
     @Test
