@@ -25,6 +25,8 @@ public class EventTest {
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "something"));
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "1-1-2100"));
         assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "01-01-22"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "01-01-1999"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("Family Visit", "01-01-2024"));
     }
 
     @Test
