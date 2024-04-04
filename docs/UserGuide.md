@@ -92,10 +92,15 @@ Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c
 <box type="tip" seamless>
 
 **Tip:** 
-* A patient can have any number of tags (including 0)
-* A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`
-* Parameters can be in any order
-* All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments)
+* The `add` command accepts parameters which consists of:
+    *  `patientHospitalId` integer,
+    * `name`, `preferredName` String with only alphabets character,
+    *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters, 
+    *  `tag` which are alphanumeric.
+* A patient can have any number of tags (including 0).
+* A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
+* Parameters can be in any order.
+* All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments).
 
 </box>
 
@@ -128,7 +133,12 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`
+* * The `edit` command accepts parameters which consists of:
+    *  `patientHospitalId` integer,
+    * `name`, `preferredName` String with only alphabets character,
+    *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters
+    *  `tag` which are alphanumeric.
+* Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION`, `h/HOBBY` and `t/TAG`.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
