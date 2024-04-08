@@ -217,7 +217,7 @@ Examples:
 
 ### Adding Tags to a Patient : `addt`
 
-Adds one or more tags to a patient in the address book.
+This command allows for the incremental addition of one or more tags to a patient's tag list. It offers a user-friendly alternative to the `edit` command, eliminating the need to retype all existing tags along with the new ones to be added.
 
 Format: `addt INDEX [t/TAG]+`
 
@@ -250,7 +250,7 @@ Examples:
 
 ### Deleting Tags from a Patient : `deletet`
 
-Deletes one or more tags from a patient in the address book.
+Removes one or more tags from a patient's tag list, providing an intuitive way to manage tags without the necessity of retyping all existing tags that are to be retained, as mandated by the `edit` command.
 
 Format: `deletet INDEX [t/TAG]+`
 
