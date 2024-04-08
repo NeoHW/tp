@@ -229,7 +229,7 @@ Format: `addt INDEX [t/TAG]+`
 * Tags are **case-insensitive**.
 * The index **must be a positive integer** 1, 2, 3, …​
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
-  E.g. `t/friend t/friend` will be added as a single `friend` tag.
+  E.g. `t/critical t/critical` will be added as a single `critical` tag.
 * If the patient has an existing tag that is provided in the command, it will be logged and shown to the user.
 
 <box type="info" seamless>
@@ -239,7 +239,7 @@ Format: `addt INDEX [t/TAG]+`
 
 Examples:
 * `addt 1 t/critical`
-* `addt 2 t/friend t/stable`
+* `addt 2 t/depression t/diabetes`
 
 ![result for 'add tags'](images/addTagsResult.png)
 
@@ -266,8 +266,8 @@ Format: `deletet INDEX [t/TAG]+`
 * If the patient does not have a tag provided in the command, it will be logged and shown to the user.
 
 Examples:
-* `deletet 1 t/critical`
-* `deletet 2 t/friend t/stable`
+* `deletet 4 t/diabetes t/skin irritation`
+* `deletet 1 t/diabetes`
 
 ![result for 'delete tags'](images/deleteTagsResult.png)
 
