@@ -322,7 +322,6 @@ Examples:
 * `adde 3 n/Birthday d/20-01-2022`
 * `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 
-SELF_NOTE (TO DELETE): Change this Screenshot after the change to Sample Data Util has been merged in 
 ![result for 'add event'](images/addEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
