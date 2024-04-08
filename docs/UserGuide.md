@@ -231,6 +231,7 @@ Format: `addt INDEX [t/TAG]+`
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
   E.g. `t/critical t/critical` will be added as a single `critical` tag.
 * If the patient has an existing tag that is provided in the command, it will be logged and shown to the user.
+* An invalid patient index error message will be shown when the patient index meets the above requirements, but is not found in the patient list.
 
 <box type="info" seamless>
     <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
@@ -264,6 +265,7 @@ Format: `deletet INDEX [t/TAG]+`
 * Tags provided should match with the existing tags of the patient.
 * When deleting tags, if tags are repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
 * If the patient does not have a tag provided in the command, it will be logged and shown to the user.
+* An invalid patient index error message will be shown when the patient index meets the above requirements, but is not found in the patient list.
 
 Examples:
 * `deletet 4 t/diabetes t/skin irritation`
