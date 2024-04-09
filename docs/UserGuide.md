@@ -360,21 +360,27 @@ Examples:
 
 Edits an Event for a Patient in the address book.
 
-Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
+Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
 * Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and
-  `DATE_OR_DATETIME_OF_EVENT`.
+  `DATE_OR_DATETIME_OF_EVENT`
 * `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and `DATE_OR_DATETIME_OF_EVENT` 
-  are compulsory parameters. 
+  are compulsory parameters.
 * Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT`
-* The format of `DATE_OF_EVENT` must be: DD-MM-YYYY.
-* The format of `DATETIME_OF_EVENT` must be: DD-MM-YYYY, HH:mm - HH:mm.
-* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
+* The format of `DATE_OF_EVENT` must be: `DD-MM-YYYY`
+* The format of `DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`; Note that the `End Time` **Must be After or
+  Equals** to the `Start Time`
+* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown.
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
   Patients/Events).
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
   events.
+* The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
+* Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
+* Note that, if multiple prefix and arguments are provided, the last is taken as the 'truth',
+  i.e., if the command provided is `edite 1 e/1 e/2 n/first event n/another event d/20-01-2023 d/23-12-2024`,
+  the Event edited will be the same as if `edite 1 e/2 n/another event d/23-12-2024` was the command.
 
 Examples:
 * `edite 1 e/1 n/Papa Birthday d/20-01-2023`
