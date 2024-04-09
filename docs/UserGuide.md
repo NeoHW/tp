@@ -305,20 +305,22 @@ Examples:
 
 Adds an Event to a patient in the address book.
 
-Format: `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
+Format: `adde PATIENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
 * Adds an Event with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
-* The index **must be a positive integer** 1, 2, 3, ...
-* Neither the Name or the Date / DateTime can be empty (after trimming whitespaces)
-* The Name must be alphanumerical
-* The format of the Date must be: DD-MM-YYYY
-* If there is a Time Period, the format of the DateTime must be: DD-MM-YYYY, HH:mm - HH:mm, where the End Time must be after or equal to the Start Time
-* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
-* There is currently no support for Events spanning multiple days 
+* `PATIENT_INDEX` **must be a positive, non-zero integer**, i.e., `1, 2, 3`
+* Neither `NAME_OF_EVENT` or `DATE_OR_DATETIME_OF_EVENT` can be empty (after trimming whitespaces)
+* `NAME_OF_EVENT` must be alphanumerical
+* The format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY`
+* If there is a Time Period, the format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`, where the End Time must be **after or equal** to the Start Time
+* The `DATE_OR_DATETIME_OF_EVENT` can occur in the past as well; However, a warning message will be shown
+* The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
+* Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device
+* Note that, if multiple prefix and arguments are provided, the last is taken as the 'truth', i.e., if the command provided is `adde 1 n/first event n/another event d/20-01-2023 d/23-12-2024`, the Event added will be the same as if `adde 1 n/another event d/23-12-2024` was the command.
 
 Examples:
-* `adde 1 n/Birthday d/20-01-2022`
-* `adde 2 n/Family Visit d/30-09-2024, 12:00 - 15:00`
+* `adde 3 n/Birthday d/20-01-2022`
+* `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 
 ![result for 'add event'](images/addEventResult.png)
 
@@ -356,15 +358,15 @@ Examples:
 
 Edits an Event for a Patient in the address book.
 
-Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
+Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
-* Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and
-  `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`.
-* `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT_ON_THAT_DATE` and `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` 
+* Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and
+  `DATE_OR_DATETIME_OF_EVENT`.
+* `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and `DATE_OR_DATETIME_OF_EVENT` 
   are compulsory parameters. 
-* Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE`
-* The format of `DATE_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY.
-* The format of `DATETIME_OF_EVENT_ON_THAT_DATE` must be: DD-MM-YYYY, HH:mm - HH:mm.
+* Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT`
+* The format of `DATE_OF_EVENT` must be: DD-MM-YYYY.
+* The format of `DATETIME_OF_EVENT` must be: DD-MM-YYYY, HH:mm - HH:mm.
 * The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
