@@ -217,7 +217,7 @@ Examples:
 
 ### Adding Tags to a Patient : `addt`
 
-Adds one or more tags to a patient in the address book.
+This command allows for the incremental addition of one or more tags to a patient's tag list. It offers a user-friendly alternative to the `edit` command, eliminating the need to retype all existing tags along with the new ones to be added.
 
 Format: `addt INDEX [t/TAG]+`
 
@@ -229,8 +229,9 @@ Format: `addt INDEX [t/TAG]+`
 * Tags are **case-insensitive**.
 * The index **must be a positive integer** 1, 2, 3, …​
 * When adding tags, if a tag is repeated in the command, it will be added as a single tag.
-  E.g. `t/friend t/friend` will be added as a single `friend` tag.
+  E.g. `t/critical t/critical` will be added as a single `critical` tag.
 * If the patient has an existing tag that is provided in the command, it will be logged and shown to the user.
+* An invalid patient index error message will be shown when the patient index meets the above requirements, but is not found in the patient list.
 
 <box type="info" seamless>
     <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
@@ -239,7 +240,7 @@ Format: `addt INDEX [t/TAG]+`
 
 Examples:
 * `addt 1 t/critical`
-* `addt 2 t/friend t/stable`
+* `addt 2 t/depression t/diabetes`
 
 ![result for 'add tags'](images/addTagsResult.png)
 
@@ -250,7 +251,7 @@ Examples:
 
 ### Deleting Tags from a Patient : `deletet`
 
-Deletes one or more tags from a patient in the address book.
+Removes one or more tags from a patient's tag list, providing an intuitive way to manage tags without the necessity of retyping all existing tags that are to be retained, as mandated by the `edit` command.
 
 Format: `deletet INDEX [t/TAG]+`
 
@@ -264,10 +265,11 @@ Format: `deletet INDEX [t/TAG]+`
 * Tags provided should match with the existing tags of the patient.
 * When deleting tags, if tags are repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
 * If the patient does not have a tag provided in the command, it will be logged and shown to the user.
+* An invalid patient index error message will be shown when the patient index meets the above requirements, but is not found in the patient list.
 
 Examples:
-* `deletet 1 t/critical`
-* `deletet 2 t/friend t/stable`
+* `deletet 4 t/diabetes t/skin irritation`
+* `deletet 1 t/diabetes`
 
 ![result for 'delete tags'](images/deleteTagsResult.png)
 
