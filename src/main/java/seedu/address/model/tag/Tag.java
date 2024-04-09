@@ -25,7 +25,7 @@ public class Tag {
     public Tag(String tagName) throws IllegalArgumentException {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        checkArgument(tagName.length() < MAX_TAG_LENGTH, MESSAGE_LENGTH_CONSTRAINTS);
+        checkArgument(isValidTagLength(tagName), MESSAGE_LENGTH_CONSTRAINTS);
         this.tagName = tagName;
     }
 

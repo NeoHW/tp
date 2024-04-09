@@ -695,7 +695,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The `ListCommand` is responsible for listing all patients in the address book.
 
-## Specifications
+####  Specifications
 
 * The ListCommand make use of a `Predicate` that always evaluates to true.
 * Through ListCommand#execute(), the `Predicate` is passed as an argument to Model#updateFilteredPersonList(),
@@ -892,12 +892,21 @@ sorted order.
 
 ## 4 Planned Enhancements
 
-### 4.1 Undo/redo feature
+Team size: 5
 
-Presently, the absence of an undo and redo feature leaves room for users to inadvertently include typos in their command messages, potentially leading to unintended commands being executed. This could result in various issues, from unintentionally deleting vital data alongside the contact to inconveniencing the users themselves. Therefore, **we are planning to introduce an undo and redo feature in the future to enhance the user experience for our users.
+### 4.1 Input Validation and Error Handling
+
+Presently, the handling of potentially invalid inputs and the inability to detect incorrect flags for tags, such as when a user enters `/addtag` instead of the correct `/addt`  or incorrect tag formats (e.g., using `tag/TAG` instead of `t/TAG`) are limited. This can lead to errors and confusion for users, especially for new users.
+
+To mitigate this, we are planning enhancements to include robust input validation, warnings for potential errors, and improved error messages. When an invalid input is detected, the system will provide even clearer feedback to the user, indicating the specific issue and suggesting corrective actions. This would include errors arising from missing index, and clearer distinctions between non-negative indexes and out of bounds indexes.
+
+Additionally, an interactive command assistance feature will be introduced, offering real-time suggestions. These enhancements aim to improve the user experience, enhance system reliability, and bolster command comprehension within the PatientSync application.
+
 
 ### 4.2 Edit tags feature
-Currently, the process of modifying patient tags in the PatientSync application can be cumbersome, requiring users to delete and re-add tags individually. This can lead to potential errors, especially when handling a large number of tags or making multiple changes. To address this, we are planning to introduce the EditTagsCommand feature, providing users with a more flexible and efficient way to manage patient tags. The planned EditTagsCommand feature is designed to enhance user productivity, reduce the likelihood of errors, and improve overall usability within PatientSync.
+Currently, the process of modifying patient tags in the PatientSync application can be cumbersome, requiring users to delete and re-add tags individually. This can lead to potential errors, especially when handling a large number of tags or making multiple changes. 
+
+To address this, we are planning to introduce the EditTagsCommand feature, providing users with a more flexible and efficient way to manage patient tags. The planned EditTagsCommand feature is designed to enhance user productivity, reduce the likelihood of errors, and improve overall usability within PatientSync.
 
 
 --------------------------------------------------------------------------------------------------------------------
