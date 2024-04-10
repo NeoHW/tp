@@ -65,8 +65,8 @@ command to run the application.<br>
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend t/family` etc.
 
-* Items with `+`​ after them can be used multiple times, but requires at least one usage.<br>
-    e.g. `[t/TAG]+​` can be used as `t/friend`, `t/friend t/family` etc.
+* Items with `+` after them can be used multiple times, but requires at least one usage.<br>
+    e.g. `t/TAG+` can be used as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PREFERRED_NAME`, `p/PREFERRED_NAME n/NAME` is also acceptable.
@@ -173,7 +173,7 @@ Examples:
 
 Finds one or more patients whose name exactly match the given keyword(s).
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive e.g. `alex` will match `Alex`
 * The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
@@ -184,10 +184,10 @@ e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
 e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
 Examples:
-* `find Alex` returns `alex` and `Alex becker`
-* `find alex becker` returns `alex`, `Alex Becker` and `Becker Li`
+* `find Alex`
+* `find alex roy`
 
-![result for 'find patients whose name is alex ali'](images/findPatientAlexAliResult.png)
+![result for 'find patient'](images/findPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -219,7 +219,7 @@ Examples:
 
 This command allows for the incremental addition of one or more tags to a patient's tag list. It offers a user-friendly alternative to the `edit` command, eliminating the need to retype all existing tags along with the new ones to be added.
 
-Format: `addt INDEX [t/TAG]+`
+Format: `addt INDEX t/TAG+`
 
 * Adds one or more tags to a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
@@ -253,7 +253,7 @@ Examples:
 
 Removes one or more tags from a patient's tag list, providing an intuitive way to manage tags without the necessity of retyping all existing tags that are to be retained, as mandated by the `edit` command.
 
-Format: `deletet INDEX [t/TAG]+`
+Format: `deletet INDEX t/TAG+`
 
 * Deletes one or more tags from a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
@@ -282,7 +282,7 @@ Examples:
 
 Finds one or more patients whose tag exactly match the given keyword(s).
 
-Format: `findt KEYWORD [MORE_KEYWORDS]`
+Format: `findt KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive e.g. `depression` will match `Depression`
 * The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`
@@ -293,8 +293,8 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
   e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`
 
 Examples:
-* `findt depression` returns `depression` and `depression diabetes`
-* `findt depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
+* `findt diabetes`
+* `findt diabetes wheelchair`
 
 ![result for 'find tags'](images/findTagsResult.png)
 
@@ -360,25 +360,31 @@ Examples:
 
 Edits an Event for a Patient in the address book.
 
-Format `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
+Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
 * Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and
-  `DATE_OR_DATETIME_OF_EVENT`.
+  `DATE_OR_DATETIME_OF_EVENT`
 * `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and `DATE_OR_DATETIME_OF_EVENT` 
-  are compulsory parameters. 
+  are compulsory parameters.
 * Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT`
-* The format of `DATE_OF_EVENT` must be: DD-MM-YYYY.
-* The format of `DATETIME_OF_EVENT` must be: DD-MM-YYYY, HH:mm - HH:mm.
-* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown
+* The format of `DATE_OF_EVENT` must be: `DD-MM-YYYY`
+* The format of `DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`; Note that the `End Time` **Must be After or
+  Equals** to the `Start Time`
+* The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown.
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
   Patients/Events).
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
   events.
+* The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
+* Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
+* Note that, if multiple prefix and arguments are provided, the last is taken as the 'truth',
+  i.e., if the command provided is `edite 1 e/1 e/2 n/first event n/another event d/20-01-2023 d/23-12-2024`,
+  the Event edited will be the same as if `edite 1 e/2 n/another event d/23-12-2024` was the command.
 
 Examples:
-* `edite 1 e/1 n/Papa Birthday d/20-01-2023`
-* `edite 2 e/1 n/Mama Birthday d/21-02-2024`
+* `edite 1 e/1 n/Papa Birthday Celebration d/20-01-2025`
+* `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
 
 ![result for 'edit event'](images/editEventResult.png)
 
@@ -481,13 +487,13 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
-**Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
-**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]`<br> e.g. `findt depression diabetes`
-**Add Event** | `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
+**Add Tags**   | `addt INDEX t/TAG+`<br> e.g. `addt 1 t/critical`
+**Delete Tags**   | `deletet INDEX t/TAG+`<br> e.g. `deletet 1 t/critical`
+**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `findt diabetes wheelchair`
+**Add Event** | `adde INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 **Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
-**Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+**Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
 **Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`
