@@ -282,7 +282,7 @@ Examples:
 
 Finds one or more patients whose tag exactly match the given keyword(s).
 
-Format: `findt KEYWORD [MORE_KEYWORDS]`
+Format: `findt KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive e.g. `depression` will match `Depression`
 * The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`
@@ -293,8 +293,8 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
   e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`
 
 Examples:
-* `findt depression` returns `depression` and `depression diabetes`
-* `findt depression diabetes` returns `depression`, `depression diabetes` and `diabetes wheelchair`
+* `findt diabetes`
+* `findt diabetes wheelchair`
 
 ![result for 'find tags'](images/findTagsResult.png)
 
@@ -490,7 +490,7 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
 **Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
-**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]`<br> e.g. `findt depression diabetes`
+**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `findt diabetes wheelchair`
 **Add Event** | `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
 **Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
 **Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
