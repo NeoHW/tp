@@ -383,8 +383,8 @@ Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF
   the Event edited will be the same as if `edite 1 e/2 n/another event d/23-12-2024` was the command.
 
 Examples:
-* `edite 1 e/1 n/Papa Birthday d/20-01-2023`
-* `edite 2 e/1 n/Mama Birthday d/21-02-2024`
+* `edite 1 e/1 n/Papa Birthday Celebration d/20-01-2025`
+* `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
 
 ![result for 'edit event'](images/editEventResult.png)
 
@@ -491,9 +491,9 @@ Action     | Format, Examples
 **Add Tags**   | `addt INDEX t/TAG+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX t/TAG+`<br> e.g. `deletet 1 t/critical`
 **Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `findt diabetes wheelchair`
-**Add Event** | `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
+**Add Event** | `adde INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 **Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
-**Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `edite 1 e/1 n/Papa Birthday d/20-01-2023`
+**Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
 **Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`
