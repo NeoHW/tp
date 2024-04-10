@@ -65,8 +65,8 @@ command to run the application.<br>
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend t/family` etc.
 
-* Items with `+`​ after them can be used multiple times, but requires at least one usage.<br>
-    e.g. `[t/TAG]+​` can be used as `t/friend`, `t/friend t/family` etc.
+* Items with `+` after them can be used multiple times, but requires at least one usage.<br>
+    e.g. `t/TAG+` can be used as `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PREFERRED_NAME`, `p/PREFERRED_NAME n/NAME` is also acceptable.
@@ -219,7 +219,7 @@ Examples:
 
 This command allows for the incremental addition of one or more tags to a patient's tag list. It offers a user-friendly alternative to the `edit` command, eliminating the need to retype all existing tags along with the new ones to be added.
 
-Format: `addt INDEX [t/TAG]+`
+Format: `addt INDEX t/TAG+`
 
 * Adds one or more tags to a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
@@ -253,7 +253,7 @@ Examples:
 
 Removes one or more tags from a patient's tag list, providing an intuitive way to manage tags without the necessity of retyping all existing tags that are to be retained, as mandated by the `edit` command.
 
-Format: `deletet INDEX [t/TAG]+`
+Format: `deletet INDEX t/TAG+`
 
 * Deletes one or more tags from a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
@@ -488,8 +488,8 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
-**Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
-**Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
+**Add Tags**   | `addt INDEX t/TAG+`<br> e.g. `addt 1 t/critical`
+**Delete Tags**   | `deletet INDEX t/TAG+`<br> e.g. `deletet 1 t/critical`
 **Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `findt diabetes wheelchair`
 **Add Event** | `adde INDEX n/NAME_OF_EVENT_ON_THAT_DATE d/DATE_OR_DATETIME_OF_EVENT_ON_THAT_DATE` <br> e.g. `adde 1 n/Birthday d/20-01-2022`
 **Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
