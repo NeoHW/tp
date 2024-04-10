@@ -173,7 +173,7 @@ Examples:
 
 Finds one or more patients whose name exactly match the given keyword(s).
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive e.g. `alex` will match `Alex`
 * The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
@@ -184,10 +184,10 @@ e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
 e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
 
 Examples:
-* `find Alex` returns `alex` and `Alex becker`
-* `find alex becker` returns `alex`, `Alex Becker` and `Becker Li`
+* `find Alex`
+* `find alex roy`
 
-![result for 'find patients whose name is alex ali'](images/findPatientAlexAliResult.png)
+![result for 'find patient'](images/findPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -487,7 +487,7 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
+**Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
 **Add Tags**   | `addt INDEX [t/TAG]+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX [t/TAG]+`<br> e.g. `deletet 1 t/critical`
 **Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]`<br> e.g. `findt depression diabetes`
