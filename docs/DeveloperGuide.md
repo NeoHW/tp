@@ -182,14 +182,14 @@ The `AddCommand` class is responsible for adding new patient's information in th
 #### Specifications
 
 * AddCommand, as defined by the `AddCommand` class, contain parameters which consists of: 
-  *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient, 
-  * `name`, `preferredName` String which contains alphanumeric characters,
-  *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters,
-  *  `tag` which are alphanumeric.
+  *  `patientHospitalId`: String of non-negative numeric characters which uniquely identifies the patient, 
+  * `name`, `preferredName`: String which contains alphanumeric characters and spaces,
+  *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters,
+  *  `tag`: String which are alphanumeric.
 * `tag` field is optional in the AddCommand and can be added later on using the `AddTagsCommand`.
-* A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
-* If any of the fields such as `patientHospitalId`, `name`, `preferredName` are repeated during the adding of patient, error message will be thrown.
-* If there are any missing fields, error message will be thrown.
+* A patient can have more than one `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
+* If any of the fields such as `patientHospitalId`, `name`, `preferredName` are repeated during the adding of patient, an error message will be thrown.
+* If there are any missing fields, an error message will be thrown.
 
 The activity diagram below outlines the steps involved when a user initiates a Add command.
 <puml src="diagrams/AddActivityDiagram.puml" alt="AddActivityDiagram" />
@@ -235,7 +235,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 #### Aspect of Choice of PatientHospitalId
 * **Alternative 1 (current choice)**: Use patient's ID in the hospital.
   * Pros: Uniquely identifies the patient in the hospital.
-  * Cons: The ID does not follow any rule and might introduce errors when inputting.
+  * Cons: First time user will be confused about the usage of `PatientHospitalId`.
     <br></br>
 * **Alternative 2**: Use patient's NRIC as the ID.  
   * Pros: Easier to type and refer.
@@ -491,10 +491,10 @@ The `EditCommand` class is responsible for editing current patient's information
 #### Specifications
 
 * EditCommand, as defined by the `EditCommand` class, contain parameters which consists of:
-    *  `INDEX` positive integer from 1 onwards, indicating the index of patient in the PatientSync list,
-    *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient,
-    *  `name`, `preferredName` String which contains alphanumeric characters,
-    *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
+    *  `INDEX`: Positive integer, indicating the index of patient in the PatientSync list,
+    *  `patientHospitalId`: String of non-negative numeric characters which uniquely identifies the patient,
+    *  `name`, `preferredName`: String which contains alphanumeric characters and spaces,
+    *  `foodPreference`, `familyCondition`, `hobby`, `tag`: String which are alphanumeric.
 * All fields are optional in the EditCommand except for `INDEX`.
 * Fields such as `foodPreference`, `familyCondition`, `hobby` and `tag` can be repeated for multiple inputs.
 * If the fields for `patientHospitalId`, `name` and `preferredName` are repeated during the editing of patient, error message will be thrown.

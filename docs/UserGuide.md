@@ -35,7 +35,7 @@ command to run the application.<br>
 
    * `list` : Lists all contacts.
 
-   * `add id/ 12345 n/ John Doe p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Doe` to the PatientSync.
+   * `add id/ 12345 n/ John Doe p/ Alex f/ Curry chicken c/ Stable c/ Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Doe` to the PatientSync.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -99,12 +99,12 @@ Adds a patient to the address book.
 Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​`
 
 * The `add` command accepts parameters which consists of:
-    *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient,
-    * `name`, `preferredName` String contains alphanumeric characters,
-    *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters, 
-    *  `tag` which are alphanumeric.
+    *  `patientHospitalId`: String of non-negative numeric characters which uniquely identifies the patient,
+    * `name`, `preferredName`: String contains alphanumeric characters and spaces,
+    *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters, 
+    *  `tag`: String which are alphanumeric.
 * A patient can have any number of tags (including 0).
-* A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
+* A patient can have more than one `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
 * Parameters can be in any order.
 * All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments).
 
@@ -144,13 +144,13 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The `edit` command accepts parameters which consists of:
-    *  `INDEX` positive integer from 1 onwards, indicating the index of patient in the PatientSync list.
-    *  `patientHospitalId` non-negative numeric characters which uniquely identifies patient,
-    * `name`, `preferredName` String which contains alphanumeric characters,
-    *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters
-    *  `tag` which are alphanumeric.
+    *  `INDEX`: Positive integer, indicating the index of patient in the PatientSync list.
+    *  `patientHospitalId`: String of non-negative numeric characters which uniquely identifies patient,
+    * `name`, `preferredName`: String which contains alphanumeric characters and spaces,
+    *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters
+    *  `tag`: String which are alphanumeric.
 * Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION`, `h/HOBBY` and `t/TAG`.
-* When editing `foodPreference`, `familyCondition`, `hobby`, `tag`, the existing input field of the patient will be removed i.e adding of tags is not cumulative.
+* When editing `foodPreference`, `familyCondition`, `hobby`, `tag`, the pre-existing inputs of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
 <box type="info" seamless>
@@ -160,9 +160,9 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 </box>
 
 Examples:
-*  `edit 1 p/Alex f/Fried rice` Edits the preferred name and food preference of the 1st patient to be `Alex` and `Fried rice` respectively.
-*  `edit 2 c/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.
-*  `edit 3 h/Watch drama h/Plays piano` Edits the hobby of 3rd patient to be `Watch drama` and `Plays piano`.
+*  `edit 1 p/Alex f/Fried rice`
+*  `edit 2 c/Children moved away t/`
+*  `edit 3 h/Watch drama h/Plays piano`
 
 ![result for 'edit patient'](images/editPatientResult.png)
 
