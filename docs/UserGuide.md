@@ -81,9 +81,11 @@ command to run the application.<br>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
+
+This screenshot shows the result of executing `help`.
 
 Format: `help`
 
@@ -113,6 +115,8 @@ Examples:
 * `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean f/Chinese food c/ Lives with only daughter c/ quarrels regularly with daughter h/ Watching Drama`
 * `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`
 
+This screenshot shows the result of executing `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`.
+
 ![result for 'adding patient John Doe'](images/addPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -125,6 +129,8 @@ Examples:
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+This screenshot shows the result of executing `list`.
 
 ![result for 'listing all patients'](images/listResult.png)
 
@@ -164,6 +170,8 @@ Examples:
 *  `edit 2 c/Children moved away t/`
 *  `edit 3 h/Watch drama h/Plays piano`
 
+This screenshot shows the result of executing `edit 3 h/Watch drama h/Plays piano`.
+
 ![result for 'edit patient'](images/editPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -189,6 +197,8 @@ Examples:
 * `find Alex`
 * `find alex roy`
 
+This screenshot shows the result of executing `find alex roy`.
+
 ![result for 'find patient'](images/findPatientResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -208,7 +218,9 @@ Format: `delete INDEX`
 
 Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `list` followed by `delete 1` deletes the 1st patient in the results of the address book.
+
+This screenshot shows the result of executing `list` followed by `delete 1`.
 
 ![result for 'delete 2'](images/deletePatientResult.png)
 
@@ -244,6 +256,8 @@ Examples:
 * `addt 1 t/critical`
 * `addt 2 t/depression t/diabetes`
 
+This screenshot shows the result of executing `addt 2 t/depression t/diabetes`.
+
 ![result for 'add tags'](images/addTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -273,6 +287,8 @@ Examples:
 * `deletet 4 t/diabetes t/skin irritation`
 * `deletet 1 t/diabetes`
 
+This screenshot shows the result of executing `deletet 1 t/diabetes`.
+
 ![result for 'delete tags'](images/deleteTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -297,6 +313,8 @@ Format: `findt KEYWORD [MORE_KEYWORDS]…​`
 Examples:
 * `findt diabetes`
 * `findt diabetes wheelchair`
+
+This screenshot shows the result of executing `findt diabetes wheelchair`.
 
 ![result for 'find tags'](images/findTagsResult.png)
 
@@ -326,6 +344,8 @@ Examples:
 * `adde 3 n/Birthday d/20-01-2022`
 * `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 
+This screenshot shows the result of executing `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`.
+
 ![result for 'add event'](images/addEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -348,8 +368,10 @@ Patients/Events)
 * Both `PATIENT_INDEX` and `EVENT_INDEX` are compulsory fields (Neither can be **EMPTY**)
 
 Examples:
-* `deletee 2 e/4`
 * `deletee 1 e/1`
+* `deletee 2 e/1`
+
+This screenshot shows the result of executing `deletee 2 e/1`.
 
 ![result for 'delete event'](images/deleteEventResult.png)
 
@@ -388,6 +410,8 @@ Examples:
 * `edite 1 e/1 n/Papa Birthday Celebration d/20-01-2025`
 * `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
 
+This screenshot shows the result of executing `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`.
+
 ![result for 'edit event'](images/editEventResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -418,7 +442,9 @@ Examples:
 * `sort n`
 * `sort p`
 
-![result for 'sort'](images/sortResult.png)
+This screenshot shows the result of executing `sort p`.
+
+![result for 'sortp'](images/sortpResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -428,6 +454,8 @@ Examples:
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
+
+This screenshot shows the result of executing `clear`.
 
 Format: `clear`
 
