@@ -418,7 +418,9 @@ Examples:
 * `sort n`
 * `sort p`
 
-![result for 'sort'](images/sortResult.png)
+This screenshot shows the result of executing `sort p`.
+
+![result for 'sortp'](images/sortpResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
