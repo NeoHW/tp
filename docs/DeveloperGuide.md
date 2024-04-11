@@ -182,11 +182,14 @@ The `AddCommand` class is responsible for adding new patient's information in th
 #### Specifications
 
 * AddCommand, as defined by the `AddCommand` class, contain parameters which consists of: 
-  *  `patientHospitalId` integer, 
-  * `name`, `preferredName` String with only alphabets character,
-  *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
+  *  `patientHospitalId` numeric characters which uniquely identifies the patient, 
+  * `name`, `preferredName` String which contains alphanumeric characters,
+  *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters,
+  *  `tag` which are alphanumeric.
 * `tag` field is optional in the AddCommand and can be added later on using the `AddTagsCommand`.
-* If any of the fields are repeated during the adding of patient or missing fields, error message will be thrown.
+* A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
+* If any of the fields such as `patientHospitalId`, `name`, `preferredName` are repeated during the adding of patient, error message will be thrown.
+* If there are any missing fields, error message will be thrown.
 
 The activity diagram below outlines the steps involved when a user initiates a Add command.
 <puml src="diagrams/AddActivityDiagram.puml" alt="AddActivityDiagram" />
@@ -228,6 +231,15 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 *  **Alternative 2**: Add patient's information to the list, for duplicated fields, take the first one.
     * Pros: User does not have to retype the command.
     * Cons: Introduce ambiguity, the first repeated field may not be what user wish to enter.
+
+#### Aspect of Choice of PatientHospitalId
+* **Alternative 1 (current choice)**: Use patient's ID in the hospital.
+  * Pros: Uniquely identifies the patient in the hospital.
+  * Cons: The ID does not follow any rule and might introduce errors when inputting.
+    <br></br>
+* **Alternative 2**: Use patient's NRIC as the ID.  
+  * Pros: Easier to type and refer.
+  * Cons: Violates PDPA.
 
 #### Aspect of Handling Existing Patient
 * **Alternative 1 (current choice)**: Returns error message upon user adds a new patient with existing `patientHospitalId`

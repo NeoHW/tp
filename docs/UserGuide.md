@@ -102,8 +102,8 @@ Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c
 
 **Tip:** 
 * The `add` command accepts parameters which consists of:
-    *  `patientHospitalId` integer,
-    * `name`, `preferredName` String with only alphabets character,
+    *  `patientHospitalId` numeric characters which uniquely identifies the patient,
+    * `name`, `preferredName` String contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters, 
     *  `tag` which are alphanumeric.
 * A patient can have any number of tags (including 0).
