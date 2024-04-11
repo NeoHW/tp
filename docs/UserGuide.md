@@ -99,7 +99,7 @@ Adds a patient to the address book.
 Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​`
 
 * The `add` command accepts parameters which consists of:
-    *  `patientHospitalId` numeric characters which uniquely identifies the patient,
+    *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient,
     * `name`, `preferredName` String contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters, 
     *  `tag` which are alphanumeric.
@@ -144,7 +144,7 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The `edit` command accepts parameters which consists of:
-    *  `patientHospitalId` numeric characters which uniquely identifies patient,
+    *  `patientHospitalId` non-negative numeric characters which uniquely identifies patient,
     * `name`, `preferredName` String which contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters
     *  `tag` which are alphanumeric.

@@ -182,7 +182,7 @@ The `AddCommand` class is responsible for adding new patient's information in th
 #### Specifications
 
 * AddCommand, as defined by the `AddCommand` class, contain parameters which consists of: 
-  *  `patientHospitalId` numeric characters which uniquely identifies the patient, 
+  *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient, 
   * `name`, `preferredName` String which contains alphanumeric characters,
   *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters,
   *  `tag` which are alphanumeric.
@@ -492,7 +492,7 @@ The `EditCommand` class is responsible for editing current patient's information
 
 * EditCommand, as defined by the `EditCommand` class, contain parameters which consists of:
     *  `INDEX` integer,
-    *  `patientHospitalId` integer,
+    *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient,
     *  `name`, `preferredName` String with only alphabets character,
     *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
 * All fields are optional in the EditCommand except for `INDEX`.
