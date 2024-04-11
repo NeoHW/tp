@@ -149,12 +149,12 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * * The `edit` command accepts parameters which consists of:
-    *  `patientHospitalId` integer,
-    * `name`, `preferredName` String with only alphabets character,
+    *  `patientHospitalId` numeric characters which uniquely identifies patient,
+    * `name`, `preferredName` String which contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters
     *  `tag` which are alphanumeric.
 * Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION`, `h/HOBBY` and `t/TAG`.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* When editing `foodPreference`, `familyCondition`, `hobby`, `tag`, the existing input field of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
