@@ -98,9 +98,6 @@ Adds a patient to the address book.
 
 Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​`
 
-<box type="tip" seamless>
-
-**Tip:** 
 * The `add` command accepts parameters which consists of:
     *  `patientHospitalId` numeric characters which uniquely identifies the patient,
     * `name`, `preferredName` String contains alphanumeric characters,
@@ -110,8 +107,6 @@ Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c
 * A patient can have more than 1 `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION` and `h/HOBBY`.
 * Parameters can be in any order.
 * All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments).
-
-</box>
 
 Examples:
 * `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable c/Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
@@ -148,7 +143,7 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* * The `edit` command accepts parameters which consists of:
+* The `edit` command accepts parameters which consists of:
     *  `patientHospitalId` numeric characters which uniquely identifies patient,
     * `name`, `preferredName` String which contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters
