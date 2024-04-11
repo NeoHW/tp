@@ -152,6 +152,10 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * When editing `foodPreference`, `familyCondition`, `hobby`, `tag`, the existing input field of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
+<box type="info" seamless>
+    <b>Note:</b> New edited value(s) added which are same as the original value is allowed, and does not change anything.
+</box>
+
 Examples:
 *  `edit 1 p/Alex f/Fried rice` Edits the preferred name and food preference of the 1st patient to be `Alex` and `Fried rice` respectively.
 *  `edit 2 c/Children moved away t/` Edits the family condition of the 2nd patient to be `Children moved away` and clears all existing tags.

@@ -239,7 +239,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     <br></br>
 * **Alternative 2**: Use patient's NRIC as the ID.  
   * Pros: Easier to type and refer.
-  * Cons: Violates PDPA.
+  * Cons: NRIC is confidential and sensitive information, it breaches PDPA since this is a personal use application.
 
 #### Aspect of Handling Existing Patient
 * **Alternative 1 (current choice)**: Returns error message upon user adds a new patient with existing `patientHospitalId`
@@ -498,6 +498,7 @@ The `EditCommand` class is responsible for editing current patient's information
 * All fields are optional in the EditCommand except for `INDEX`.
 * Fields such as `foodPreference`, `familyCondition`, `hobby` and `tag` can be repeated for multiple inputs.
 * If the fields for `patientHospitalId`, `name` and `preferredName` are repeated during the editing of patient, error message will be thrown.
+* If the edited value of field is the same as the original value, nothing will be changed and it is allowed.
 
 The activity diagram below outlines the steps involved when a user initiates a Edit command.
 <puml src="diagrams/EditActivityDiagram.puml" alt="EditActivityDiagram" />
