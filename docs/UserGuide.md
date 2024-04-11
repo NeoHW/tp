@@ -144,6 +144,7 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The `edit` command accepts parameters which consists of:
+    *  `INDEX` positive integer from 1 onwards, indicating the index of patient in the PatientSync list.
     *  `patientHospitalId` non-negative numeric characters which uniquely identifies patient,
     * `name`, `preferredName` String which contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` String and all kinds of characters
@@ -153,7 +154,9 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
 <box type="info" seamless>
-    <b>Note:</b> New edited value(s) added which are same as the original value is allowed, and does not change anything.
+    <b>Note:</b> <br />
+1. Newly edited value(s) which are same as the original value is allowed, and does not change anything.<br />
+2. `INDEX` refers to row number of the patient list  while `PATIENT_HOSPITAL_ID` refers to the unique ID tagged to the patient.
 </box>
 
 Examples:

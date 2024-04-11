@@ -491,9 +491,9 @@ The `EditCommand` class is responsible for editing current patient's information
 #### Specifications
 
 * EditCommand, as defined by the `EditCommand` class, contain parameters which consists of:
-    *  `INDEX` integer,
+    *  `INDEX` positive integer from 1 onwards, indicating the index of patient in the PatientSync list,
     *  `patientHospitalId` non-negative numeric characters which uniquely identifies the patient,
-    *  `name`, `preferredName` String with only alphabets character,
+    *  `name`, `preferredName` String which contains alphanumeric characters,
     *  `foodPreference`, `familyCondition`, `hobby` and `tag` which are alphanumeric.
 * All fields are optional in the EditCommand except for `INDEX`.
 * Fields such as `foodPreference`, `familyCondition`, `hobby` and `tag` can be repeated for multiple inputs.
