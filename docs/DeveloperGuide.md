@@ -931,7 +931,7 @@ To address this, we plan to make our input validation for the `DATE_OR_DATETIME_
 
 ### 4.4 Addition of an Upper and Lower Bound for Event Date or Datetime
 
-Presently, we do not restrict the user from adding events at any date. As such, the user is able to add Events for a Patient in impossible dates, i.e., 4000 years into the Future or Past. Adding such Events is more likely to be a typographical error and thus, we should warn the user (similar to how we warn the user for past events). We choose to warn the user rather than error on the command as it is possible, albeit rare, for a Person to live more than a 100 years.
+Presently, we do not restrict the user from adding events at any date. As such, the user is able to add Events for a Patient on unrealistic dates, i.e., 4000 years into the Future or Past. Adding such Events is more likely to be a typographical error and thus, we should warn the user (similar to how we warn the user for past events). We choose to warn the user rather than error on the command as it is possible, albeit rare, for a Person to live more than a 100 years.
 
 To address this, we intend to introduce an Upper and Lower Bound for the Event Date, of approximately +- 100 years from the present year. Upon identification of `DATE_OR_DATETIME_OF_EVENT` with years outside of this range, PatientSync should then warn the user with a message to the effect of `Warning: This Event occurs more than a 100 years in the future / past`
 

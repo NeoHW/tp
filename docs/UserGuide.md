@@ -56,7 +56,7 @@ command to run the application.<br>
 
 **Notes about the Screenshots:**<br>
 
-* Each Screenshot is taken based on the state of the data after running the command example stated. The original state of the data before running the command is that of the base Sample Data provided.
+* Each Screenshot is taken after running the example command stated. The original state of the data before running the command is that of the base Sample Data provided.
 
 **Notes about the command format:**<br>
 
