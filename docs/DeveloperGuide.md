@@ -924,7 +924,7 @@ To address this, we are planning to introduce the EditTagsCommand feature, provi
 
 ### 4.3 Input Validation for Events
 
-Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time.
+Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation for the validity of the `DATE_OR_DATETIME_OF_EVENT`. It currently uses `LocalDate.parse()` and `LocalTime.parse()` along with the pattern format, but these methods are not strict by default. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time.
 
 This can lead to potential errors if the user has accidentally mistyped the date and/or time when inputting the command, leading to confusion further down the line.
 
