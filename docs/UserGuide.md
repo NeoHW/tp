@@ -54,6 +54,10 @@ command to run the application.<br>
 
 <box type="info" seamless>
 
+**Notes about the Screenshots:**<br>
+
+* Each Screenshot is taken based on the state of the data after running the command example stated. The original state of the data before running the command is that of the base Sample Data provided.
+
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
