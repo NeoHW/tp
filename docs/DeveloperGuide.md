@@ -907,7 +907,7 @@ sorted order.
 
 Team size: 5
 
-### 4.1 Input Validation and Error Handling
+### 4.1 Input Validation and Error Handling for Tags
 
 Presently, the handling of potentially invalid inputs and the inability to detect incorrect flags for tags, such as when a user enters `/addtag` instead of the correct `/addt`  or incorrect tag formats (e.g., using `tag/TAG` instead of `t/TAG`) are limited. This can lead to errors and confusion for users, especially for new users.
 
@@ -920,6 +920,27 @@ Additionally, an interactive command assistance feature will be introduced, offe
 Currently, the process of modifying patient tags in the PatientSync application can be cumbersome, requiring users to delete and re-add tags individually. This can lead to potential errors, especially when handling a large number of tags or making multiple changes. 
 
 To address this, we are planning to introduce the EditTagsCommand feature, providing users with a more flexible and efficient way to manage patient tags. The planned EditTagsCommand feature is designed to enhance user productivity, reduce the likelihood of errors, and improve overall usability within PatientSync.
+
+
+### 4.3 Input Validation for Events
+
+Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation. For example, the user is able to input `30-02-2024, 24:00 - 24:00`. This can lead to potential errors if the user has accidentally mistyped the date and/or time when inputting the command, leading to confusion further down the line.
+
+To address this, we plan to make our input validation for the `DATE_OR_DATETIME_OF_EVENT` field stricter, to ensure the validity of the values, and not just the format. Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, PatientSync should then output a custom error message, i.e.,`Invalid DATE_OR_DATETIME_OF_EVENT!`
+
+
+### 4.4 Addition of an Upper and Lower Bound for Event Date or Datetime
+
+Presently, we do not restrict the user from adding events at any date. As such, the user is able to add Events for a Patient in impossible dates, i.e., 4000 years into the Future or Past. Adding such Events is more likely to be a typographical error and thus, we should warn the user (similar to how we warn the user for past events). We choose to warn the user rather than error on the command as it is possible, albeit rare, for a Person to live more than a 100 years.
+
+To address this, we intend to introduce an Upper and Lower Bound for the Event Date, of approximately +- 100 years from the present year. Upon identification of `DATE_OR_DATETIME_OF_EVENT` with years outside of this range, PatientSync should then warn the user with a message to the effect of `Warning: This Event occurs more than a 100 years in the future / past`
+
+
+### 4.5 Case Sensitivity Duplicate Checks for Events
+
+Presently, duplicate checks for Events are done via checking the Event Name (`NAME_OF_EVENT`), as well as Date / Datetime (`DATE_OR_DATETIME_OF_EVENT`). However, the duplicate check does not account for differences in case sensitivity of the `NAME_OF_EVENT`. For example, given the same `DATE_OR_DATETIME_OF_EVENT`, the Event `Birthday` and `birthday` would still be seen as two separate events. The user would potentially be able to thus create multiple duplicate events, which would clutter the UI and confuse the User.
+
+To address this, we plan to make the Duplicate Check for Events case sensitive, such that we detect these scenarios. PatientSync would then also return a Success Result, albeit with the special Duplicate Message, to the user.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1155,7 +1176,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Performance: Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3. Usability: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Accessibility: Should operate without the need for internet access to fulfill its core purpose.
-5. Ease of Use: Should be designed to be usable by a patient new to patient management without extensive training.
+5. Ease of Use: Should be designed to be usable by a nurse new to patient management without extensive training.
 6. Error Handling: Should provide clear, comprehensive error messages in plain language, guiding users on how to recover from errors due to incorrect inputs.
 7. User Documentation: Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
 8. Developer Documentation: Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions.
