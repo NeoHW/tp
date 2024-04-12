@@ -924,9 +924,16 @@ To address this, we are planning to introduce the EditTagsCommand feature, provi
 
 ### 4.3 Input Validation for Events
 
-Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation. For example, the user is able to input `30-02-2024, 24:00 - 24:00`. This can lead to potential errors if the user has accidentally mistyped the date and/or time when inputting the command, leading to confusion further down the line.
+Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time.
 
-To address this, we plan to make our input validation for the `DATE_OR_DATETIME_OF_EVENT` field stricter, to ensure the validity of the values, and not just the format. Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, PatientSync should then output a custom error message, i.e.,`Invalid DATE_OR_DATETIME_OF_EVENT!`
+This can lead to potential errors if the user has accidentally mistyped the date and/or time when inputting the command, leading to confusion further down the line.
+
+To address this, we plan to make our input validation for the `DATE_OR_DATETIME_OF_EVENT` field stricter, to ensure the validity of the values, and not just the format. Specifically, we intend to perform the following validations:
+
+1. Ensure that the Date provided is valid
+2. Ensure that the Time, if provided, ranges from `00:00` to `23:59`, inclusive
+
+Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, PatientSync should then output a custom error message, i.e.,`Invalid DATE_OR_DATETIME_OF_EVENT!`
 
 
 ### 4.4 Addition of an Upper and Lower Bound for Event Date or Datetime
