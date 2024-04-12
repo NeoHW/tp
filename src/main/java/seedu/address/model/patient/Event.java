@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class Event implements Comparable<Event> {
     public static final String NAME_MESSAGE_CONSTAINTS = "The Name of the Event should be alphanumerical and non-empty";
     public static final String DATETIME_MESSAGE_CONSTRAINTS = "Dates should be in the format: DD-MM-YYYY, "
-            + "HH:mm - HH:mm, where the End Time is after the Start Time, \n"
+            + "HH:mm - HH:mm, where the End Time is after or equal to the Start Time, \n"
             + "OR if there is no time period, in the format: DD-MM-YYYY \n"
             + "Dates and Times should also be valid, i.e., 12-12-2023, 00:00 - 24:00 is not valid due to '24:00'";
     public static final String NAME_PATTERN = "^.*[^a-zA-Z0-9 ].*$";
