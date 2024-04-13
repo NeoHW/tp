@@ -957,17 +957,18 @@ To address this, we plan to make the Duplicate Check for Events case sensitive, 
 ### 4.6 Input Validation for Patient's Name
 
 Presently, the name of patient, referred to as `NAME`, do not have sufficient input validation for the validity of the `NAME`.
-It currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` where it is a String that consists of alphanumeric characters and spaces, to validate the input for patient's name.
+PatientSync currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` to check that the user input for `NAME`, which is a String that consists of only alphanumeric characters and spaces, to validate the input for patient's name.
 For example, the user is currently able to input `John Doe`. However, input such as `Abraham s/o Dahmil` or `Kenneth-David` is not a valid Name.
 
 This can lead to potential troubles where user is not able to input patient's full name when necessary, but need to ignore the special characters during the Name insertion. 
 
 To address this, we plan to make our input validation for the `NAME` field stricter, to ensure the validity of the NAME and cater all kinds of names.
 
-Specifically, we intend to perform the following validations:
+Specifically, we intend to perform the following validations with special characters:
 
 1. Ensure that the `NAME` field accepts special character `/` with specific string such as `s/o`, `d/o` and `w/o`
 2. Ensure that the `NAME` field accepts special character `-` 
+3. Ensure that the `NAME` field accepts special character `'`
 
 Upon identification of such invalid `NAME` field values, PatientSync should then output a custom error message, i.e.,`Invalid NAME format!`
 
@@ -975,7 +976,7 @@ Upon identification of such invalid `NAME` field values, PatientSync should then
 ### 4.7 Implementation on PatientHospitalId
 
 Presently, the patient's hospital ID referred to as `PATIENT_HOSPITAL_ID`, is implemented as String.
-It currently uses regex expression `^[0-9]+$` where it is a String that consists only numeric characters to validate the input for patient's hospital ID. 
+PatientSync currently uses regex expression `^[0-9]+$` to check that the user input for `PATIENT_HOSPITAL_ID`, which is a String that consists only numeric characters to validate the input for patient's hospital ID.
 For example, the user is currently able to input patient's hospital ID `22452`. However, input such as `000000` or overflow input `1234567898765456783434343` are allowed. 
 
 This can lead to potential errors such as unlimited size of the input and input with all zeros. 
