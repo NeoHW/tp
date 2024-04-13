@@ -1230,18 +1230,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Add a patient while all patients are being shown
 
-   1. Prerequisites: List all patients using the `list` command. No patients in the list.
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`<br>
       Expected: New patient is added to the list. Status message shows details of the new patient.
 
-   1. Other incorrect add commands to try: `add`, `add n/`
+      1. Other incorrect add commands to try: `add`, `add n/`<br>
+         Expected: Error message displayed.
 
 ### 7.3 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
@@ -1249,14 +1250,119 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No patient is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
+      Expected: Error message displayed.
 
 ### 7.4 Listing all patients
 
 1. Listing all patients
 
-   1. Prerequisites: Add a few patients using the `add` command.
+   1. Prerequisites: Patient List should not be empty.
 
    1. Test case: `list`<br>
       Expected: All patients are shown in the list.
+
+### 7.5 Editing a patient
+
+1. Editing a patient while all patients are being shown
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty.
+
+   1. Test case: `edit 1 p/Alex f/Fried rice`<br>
+      Expected: The preferred name of the first patient is changed to Alex.
+
+   1. Other incorrect edit commands to try: `edit`, `edit 1`, `edit 0`, `edit 1 n/`<br>
+      Expected: Error message displayed.
+
+### 7.6 Finding a patient by name
+
+1. Finding a patient by name
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty.
+
+   1. Test case: `find Alex`<br>
+      Expected: All patients with the name Alex are shown in the list.
+
+### 7.7 Adding tags to a patient
+
+1. Adding tags to a patient
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty.
+
+   1. Test case: `addt 1 t/depression`<br>
+      Expected: The tag depression is added to the first patient.
+
+   1. Other incorrect add tag commands to try: `addt 0`, `addt 1 t/`<br>
+      Expected: Error message displayed.
+
+### 7.8 Deleting tags from a patient
+
+1. Deleting tags from a patient
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty. The patient that is chosen should have tags.
+
+   1. Test case: `deletet 1 t/diabetes`<br>
+      Expected: The tag depression is deleted from the first patient.
+
+   1. Other incorrect delete tag commands to try: `deletet 0`, `deletet 1 t/`<br>
+      Expected: Error message displayed.
+
+### 7.9 Finding patients by tag
+
+1. Finding patients by tag
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty. Chosen Tag should exist in at least one patient.
+
+   1. Test case: `findt depression`<br>
+      Expected: All patients with the tag depression are shown in the list.
+   
+    1. Other incorrect find tag command to try: `findt`<br>
+      Expected: Error message displayed.
+
+### 7.10 Adding an event to a patient
+
+1. Adding an event to a patient
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty.
+
+   1. Test case: `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`<br>
+        Expected: The event Family Visit is added to the first patient.
+
+   1. Other incorrect add event commands to try: `adde 0`, `adde 1 n/`<br>
+      Expected: Error message displayed.
+
+### 7.11 Deleting an event from a patient
+
+1. Deleting an event from a patient
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty. The patient that is chosen should have events.
+
+   1. Test case: `deletee 1 e/1`<br>
+      Expected: The first event of the first patient is deleted.
+
+   1. Other incorrect delete event commands to try: `deletee 0`, `deletee 1 e/`<br>
+      Expected: Error message displayed.
+
+### 7.12 Editing an event for a patient
+
+1. Editing an event for a patient
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty. The patient that is chosen should have events.
+
+   1. Test case: `edite 1 e/1 n/Papa Birthday Celebration d/20-01-2025`<br>
+      Expected: The first event of the first patient is edited to Papa Birthday Celebration.
+
+   1. Other incorrect edit event commands to try: `edite 0`, `edite 1 e/`<br>
+      Expected: Error message displayed.
+
+### 7.13 Sorting the patient list
+
+1. Sorting the patient list
+
+   1. Prerequisites: List all patients using the `list` command. Patient List should not be empty.
+
+   1. Test case: `sort p`<br>
+      Expected: The patient list is sorted by patient's preferred name.
+
+   1. Other incorrect sort command to try: `sort x`<br>
+      Expected: Error message displayed.
