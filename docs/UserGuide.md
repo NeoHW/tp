@@ -187,7 +187,7 @@ This screenshot shows the result of executing `edit 3 h/Watch drama h/Plays pian
 
 Finds one or more patients whose name exactly match the given keyword(s).
 
-Format: `find KEYWORD [MORE_KEYWORDS]…​`
+Format: `find KEYWORD [MORE_KEYWORD]…​`
 
 * The search is case-insensitive e.g. `alex` will match `Alex`
 * The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
@@ -221,7 +221,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `find Bernice` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 * `list` followed by `delete 1` deletes the 1st patient in the results of the address book.
 
 This screenshot shows the result of executing `list` followed by `delete 1`.
@@ -304,7 +304,7 @@ This screenshot shows the result of executing `deletet 1 t/diabetes`.
 
 Finds one or more patients whose tag exactly match the given keyword(s).
 
-Format: `findt KEYWORD [MORE_KEYWORDS]…​`
+Format: `findt KEYWORD [MORE_KEYWORD]…​`
 
 * The search is case-insensitive e.g. `depression` will match `Depression`
 * The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`
@@ -406,7 +406,7 @@ Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF
   events.
 * The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
 * Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
-* Note that, if multiple prefix and arguments are provided, the last is taken as the 'truth',
+* Note that, if multiple prefix and arguments are provided, the last is taken as the intended input,
   i.e., if the command provided is `edite 1 e/1 e/2 n/first event n/another event d/20-01-2023 d/23-12-2024`,
   the Event edited will be the same as if `edite 1 e/2 n/another event d/23-12-2024` was the command.
 
@@ -519,12 +519,12 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Delete** | `delete INDEX`<br> e.g. `delete 1`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
+**Find**   | `find KEYWORD [MORE_KEYWORD]…​`<br> e.g. `find alex roy`
 **Add Tags**   | `addt INDEX t/TAG+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX t/TAG+`<br> e.g. `deletet 1 t/critical`
-**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `findt diabetes wheelchair`
+**Find Tags**   | `findt KEYWORD [MORE_KEYWORD]…​`<br> e.g. `findt diabetes wheelchair`
 **Add Event** | `adde INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 **Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
 **Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
