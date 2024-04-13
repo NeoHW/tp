@@ -625,12 +625,16 @@ The `EditEventCommand` class is responsible for editing a specific Event for a p
 
 #### Specifications
 
-* EditEventCommand takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `EVENT_NAME` and `DATE`.
-  All parameters are compulsory. Optionally, you may include `TIME` in the `DATE` parameter.
+* EditEventCommand takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` 
+  and `DATE_OR_DATETIME_OF_EVENT`. All parameters are compulsory. You may exclude `TIME` in the
+  `DATE_OR_DATETIME_OF_EVENT` parameter.
 * EditEventCommand will edit the selected `EVENT_INDEX` with a new event.
 * Editing of an event can only happen for a single patient, and a single event at any given time.
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
   events.
+
+The activity diagram below outlines the steps involved when a user initiates an Edit Event command.
+<puml src="diagrams/EditEventActivityDiagram.puml" alt="EditEventActivityDiagram" />
 
 #### Example Usage Scenario
 
