@@ -974,20 +974,29 @@ Upon identification of such invalid `NAME` field values, PatientSync should then
 
 ### 4.7 Implementation on PatientHospitalId
 
-Presently, the patient's hospital ID referred to as `PATIENT_HOSPITAL_ID`, is implemented with String 
-It currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` to validate the input for patient's name.
-For example, the user is currently able to input `John Doe`. However, input such as `Abraham s/o Dahmil` or `Kenneth-David` is not a valid Name.
+Presently, the patient's hospital ID referred to as `PATIENT_HOSPITAL_ID`, is implemented as String.
+It currently uses regex expression `^[0-9]+$` to validate the input for patient's hospital ID. 
+For example, the user is currently able to input patient's hospital ID `22452`. However, input such as `000000` or overflow input `1234567898765456783434343` are allowed. 
 
-This can lead to potential troubles where user is not able to input patient's full name when necessary, but need to ignore the special characters during the Name insertion.
+This can lead to potential errors such as unlimited size of the input and input with all zeros. 
 
-To address this, we plan to make our input validation for the `NAME` field stricter, to ensure the validity of the NAME and cater all kinds of names.
+To address this, we plan to make our input validation for the `PATIENT_HOSPITAL_ID` field stricter by changing it to Integer, ensuring the validity of the patient's hospital ID. 
 
 Specifically, we intend to perform the following validations:
 
-1. Ensure that the `NAME` field accepts special character `/` with specific string such as `s/o`, `d/o` and `w/o`
-2. Ensure that the `NAME` field accepts special character `-`
+1. Ensure that the `PATIENT_HOSPITAL_ID` field does not contain only zeros.
+2. Ensure that the `PATIENT_HOSPITAL_ID` field have specific bound and length, such as having ID as numeric value ranging from 3 to 10 digits in length.
 
-Upon identification of such invalid `NAME` field values, PatientSync should then output a custom error message, i.e.,`Invalid NAME format!`
+Upon identification of such invalid `PATIENT_HOSPITAL_ID` field values, PatientSync should then output a custom error message, i.e.,`Invalid PATIENT_HOSPITAL_ID!`
+
+
+### 4.8 Displaying PatientHospitalId in UI 
+
+Presently, we do not display `PATIENT_HOSPITAL_ID` field in the PatientSync UI. This is because the team finds in irrelevant as it is only for the usage of duplicate checks on patient. 
+However, user might find it confusing as `PATIENT_HOSPITAL_ID` is required upon adding new patient and allowed for editing, but not be able to see what is being inputted or edited.
+
+To address this, we intend to introduce a new field in the PatientSync UI display, named `Patient Hospital ID`, to allow user to view patient's hospital ID.
+Hence, this would be easier for user to check if there is any duplicated patient added/ edited to the PatientSync list. 
 
 --------------------------------------------------------------------------------------------------------------------
 
