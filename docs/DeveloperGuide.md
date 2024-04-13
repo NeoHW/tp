@@ -950,6 +950,41 @@ Presently, duplicate checks for Events are done via checking the Event Name (`NA
 To address this, we plan to make the Duplicate Check for Events case sensitive, such that we detect these scenarios. PatientSync would then also return a Success Result, albeit with the special Duplicate Message, to the user.
 
 
+### 4.6 Input Validation for Patient's Name
+
+Presently, the name of patient, referred to as `NAME`, do not have sufficient input validation for the validity of the `NAME`.
+It currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` to validate the input for patient's name.
+For example, the user is currently able to input `John Doe`. However, input such as `Abraham s/o Dahmil` or `Kenneth-David` is not a valid Name.
+
+This can lead to potential troubles where user is not able to input patient's full name when necessary, but need to ignore the special characters during the Name insertion. 
+
+To address this, we plan to make our input validation for the `NAME` field stricter, to ensure the validity of the NAME and cater all kinds of names.
+
+Specifically, we intend to perform the following validations:
+
+1. Ensure that the `NAME` field accepts special character `/` with specific string such as `s/o`, `d/o` and `w/o`
+2. Ensure that the `NAME` field accepts special character `-` 
+
+Upon identification of such invalid `NAME` field values, PatientSync should then output a custom error message, i.e.,`Invalid NAME format!`
+
+
+### 4.7 Implementation on PatientHospitalId
+
+Presently, the patient's hospital ID referred to as `PATIENT_HOSPITAL_ID`, is implemented with String 
+It currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` to validate the input for patient's name.
+For example, the user is currently able to input `John Doe`. However, input such as `Abraham s/o Dahmil` or `Kenneth-David` is not a valid Name.
+
+This can lead to potential troubles where user is not able to input patient's full name when necessary, but need to ignore the special characters during the Name insertion.
+
+To address this, we plan to make our input validation for the `NAME` field stricter, to ensure the validity of the NAME and cater all kinds of names.
+
+Specifically, we intend to perform the following validations:
+
+1. Ensure that the `NAME` field accepts special character `/` with specific string such as `s/o`, `d/o` and `w/o`
+2. Ensure that the `NAME` field accepts special character `-`
+
+Upon identification of such invalid `NAME` field values, PatientSync should then output a custom error message, i.e.,`Invalid NAME format!`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5 Documentation, logging, testing, configuration, dev-ops
