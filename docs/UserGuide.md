@@ -402,7 +402,7 @@ Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF
   events.
 * The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
 * Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
-* Note that, if multiple prefix and arguments are provided, the last is taken as the 'truth',
+* Note that, if multiple prefix and arguments are provided, the last is taken as the intended input,
   i.e., if the command provided is `edite 1 e/1 e/2 n/first event n/another event d/20-01-2023 d/23-12-2024`,
   the Event edited will be the same as if `edite 1 e/2 n/another event d/23-12-2024` was the command.
 
