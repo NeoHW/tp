@@ -957,7 +957,7 @@ To address this, we plan to make the Duplicate Check for Events case sensitive, 
 ### 4.6 Input Validation for Patient's Name
 
 Presently, the name of patient, referred to as `NAME`, do not have sufficient input validation for the validity of the `NAME`.
-It currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` to validate the input for patient's name.
+It currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` where it is a String that consists of alphanumeric characters and spaces, to validate the input for patient's name.
 For example, the user is currently able to input `John Doe`. However, input such as `Abraham s/o Dahmil` or `Kenneth-David` is not a valid Name.
 
 This can lead to potential troubles where user is not able to input patient's full name when necessary, but need to ignore the special characters during the Name insertion. 
@@ -975,7 +975,7 @@ Upon identification of such invalid `NAME` field values, PatientSync should then
 ### 4.7 Implementation on PatientHospitalId
 
 Presently, the patient's hospital ID referred to as `PATIENT_HOSPITAL_ID`, is implemented as String.
-It currently uses regex expression `^[0-9]+$` to validate the input for patient's hospital ID. 
+It currently uses regex expression `^[0-9]+$` where it is a String that consists only numeric characters to validate the input for patient's hospital ID. 
 For example, the user is currently able to input patient's hospital ID `22452`. However, input such as `000000` or overflow input `1234567898765456783434343` are allowed. 
 
 This can lead to potential errors such as unlimited size of the input and input with all zeros. 
@@ -992,7 +992,7 @@ Upon identification of such invalid `PATIENT_HOSPITAL_ID` field values, PatientS
 
 ### 4.8 Displaying PatientHospitalId in UI 
 
-Presently, we do not display `PATIENT_HOSPITAL_ID` field in the PatientSync UI. This is because the team finds in irrelevant as it is only for the usage of duplicate checks on patient. 
+Presently, we do not display `PATIENT_HOSPITAL_ID` field in the PatientSync UI. This is because the team do not want to clutter the UI with too much information as the `PATIENT_HOSPITAL_ID` is mainly used to check for duplicate patients.
 However, user might find it confusing as `PATIENT_HOSPITAL_ID` is required upon adding new patient and allowed for editing, but not be able to see what is being inputted or edited.
 
 To address this, we intend to introduce a new field in the PatientSync UI display, named `Patient Hospital ID`, to allow user to view patient's hospital ID.
