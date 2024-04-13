@@ -997,7 +997,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | Nurse   | edit patient's information         | have the most updated information of my patients at all times                                                                            |
 | `**`     | Nurse   | edit event for my patients         | edit my patients' appointments if they are changed                                                                                       |
 | `**`     | Nurse   | delete tags from my patients       | delete the tag if it no longer applies                                                                                                   |
-| `**`     | Nurse   |** edit tags from my patients         | edit mistyped tags                                                                                                                       |
+| `**`     | Nurse   | edit tags from my patients         | edit mistyped tags                                                                                                                       |
 | `**`     | Nurse   | sort the patients by patient name  | be flexible in how I want to view my patient list                                                                                        |
 
 
