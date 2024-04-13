@@ -1210,7 +1210,7 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-### 7.1 Launch and shutdown
+### 7.1 Launch and window preferences
 
 1. Initial launch
 
