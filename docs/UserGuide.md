@@ -183,7 +183,7 @@ This screenshot shows the result of executing `edit 3 h/Watch drama h/Plays pian
 
 Finds one or more patients whose name exactly match the given keyword(s).
 
-Format: `find KEYWORD [MORE_KEYWORDS]…​`
+Format: `find KEYWORD [MORE_KEYWORD]…​`
 
 * The search is case-insensitive e.g. `alex` will match `Alex`
 * The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
@@ -300,7 +300,7 @@ This screenshot shows the result of executing `deletet 1 t/diabetes`.
 
 Finds one or more patients whose tag exactly match the given keyword(s).
 
-Format: `findt KEYWORD [MORE_KEYWORDS]…​`
+Format: `findt KEYWORD [MORE_KEYWORD]…​`
 
 * The search is case-insensitive e.g. `depression` will match `Depression`
 * The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`
@@ -517,10 +517,10 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 1`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
+**Find**   | `find KEYWORD [MORE_KEYWORD]…​`<br> e.g. `find alex roy`
 **Add Tags**   | `addt INDEX t/TAG+`<br> e.g. `addt 1 t/critical`
 **Delete Tags**   | `deletet INDEX t/TAG+`<br> e.g. `deletet 1 t/critical`
-**Find Tags**   | `findt KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `findt diabetes wheelchair`
+**Find Tags**   | `findt KEYWORD [MORE_KEYWORD]…​`<br> e.g. `findt diabetes wheelchair`
 **Add Event** | `adde INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `adde 1 n/Family Visit d/30-09-2024, 12:00 - 15:00`
 **Delete Event** | `deletee PATIENT_INDEX e/EVENT_INDEX` <br> e.g. `deletee 1 e/1`
 **Edit Event** | `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT` <br> e.g. `edite 2 e/1 n/Mama Birthday Celebration d/21-02-2025`
