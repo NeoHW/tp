@@ -217,7 +217,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `find Bernice` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 * `list` followed by `delete 1` deletes the 1st patient in the results of the address book.
 
 This screenshot shows the result of executing `list` followed by `delete 1`.
@@ -515,7 +515,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Delete** | `delete INDEX`<br> e.g. `delete 1`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]…​`<br> e.g. `find alex roy`
 **Add Tags**   | `addt INDEX t/TAG+`<br> e.g. `addt 1 t/critical`
