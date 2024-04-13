@@ -1210,9 +1210,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Put the JAR file in an empty folder in which the app is allowed to create files (i.e., do not use a write-protected folder).
+   1. Open a command window. Run the java -version command to ensure you are using Java 11. Do this again even if you did this before, as your OS might have auto-updated the default Java version to a newer version.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Launch the jar file using the `java -jar` command rather than double-clicking (reason: to ensure the jar file is using the same java version that you verified above). Use double-clicking as a last resort.
 
 1. Saving window preferences
 
@@ -1221,22 +1222,37 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### 7.2 Adding a patient
 
-### 7.2 Deleting a patient
+1. Add a patient while all patients are being shown
+
+   1. Prerequisites: List all patients using the `list` command. No patients in the list.
+
+   1. Test case: `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`<br>
+      Expected: New patient is added to the list. Status message shows details of the new patient.
+
+   1. Other incorrect add commands to try: `add`, `add n/`
+
+### 7.3 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### 7.4 Listing all patients
 
+1. Listing all patients
+
+   1. Prerequisites: Add a few patients using the `add` command.
+
+   1. Test case: `list`<br>
+      Expected: All patients are shown in the list.
