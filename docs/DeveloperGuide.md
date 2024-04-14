@@ -111,7 +111,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+**Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
 
 How the `Logic` component works:
@@ -626,8 +626,10 @@ The `EditEventCommand` class is responsible for editing a specific Event for a p
 #### Specifications
 
 * EditEventCommand takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` 
-  and `DATE_OR_DATETIME_OF_EVENT`. All parameters are compulsory. You may exclude `TIME` in the
+  and `DATE_OR_DATETIME_OF_EVENT`. All parameters are compulsory. You may **exclude** `TIME` in the
   `DATE_OR_DATETIME_OF_EVENT` parameter.
+* With `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025, 12:00 - 15:00`
+* Without `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025`
 * EditEventCommand will edit the selected `EVENT_INDEX` with a new event.
 * Editing of an event can only happen for a single patient, and a single event at any given time.
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
@@ -684,8 +686,8 @@ The `DeleteCommand` is responsible for deleting a patient in the address book.
 
 * Delete command is used when the user wants to remove a patient from the address book.
 
-The following UML sequence diagram illustrates how the Delete operation works.
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Delete Sequence Diagram" />
+The activity diagram below outlines the steps involved when a user initiates a Delete command.
+<puml src="diagrams/DeleteActivityDiagram.puml" alt="Delete Activity Diagram" />
 
 #### Example Usage Scenario
 
@@ -698,6 +700,9 @@ Step 2: The user see all the patients in the address book.
 Step 3: The user decide to remove the first patient in the address book.
 
 Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
+
+The following UML sequence diagram illustrates how the Delete operations works.
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Delete Sequence Diagram" />
 
 <box type="info" seamless>
 
@@ -745,6 +750,9 @@ using keyword(s).
 * `FindCommand` takes in one or more keywords to find patients in the patient list.
 * `FindCommand` will update the patient list with patients whose name matches the keyword(s).
 
+The activity diagram below outlines the steps involved when a user initiates a Find command.
+<puml src="diagrams/FindActivityDiagram.puml" alt="Find Activity Diagram" />
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -791,6 +799,9 @@ using keyword(s).
 * `FindTagsCommand` takes in one or more keywords to find patients using tag in the patient list.
 * `FindTagsCommand` will update the patient list with patients whose tag(s) matches the keyword(s).
 
+The activity diagram below outlines the steps involved when a user initiates a Find Tags command.
+<puml src="diagrams/FindTagsActivityDiagram.puml" alt="Find Tags Activity Diagram" />
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -814,11 +825,11 @@ The following UML sequence diagram illustrates how the FindTags operations works
 
 **Aspect: Choice of Command Structure**
 
-* **Alternative 1 (current choice)**: Use `findt KEYWORD [MORE_KEYWORDS]`
+* **Alternative 1 (current choice)**: Use `findt KEYWORD [MORE_KEYWORD]…​ `
   * Pros: Does not need to use tag prefix, and it is similar to `find` command.
   * Cons: Command structure is different from `addt` and `deletet`.
     <br><br>
-* **Alternative 2**: Use `findt t/KEYWORD t/[MORE_KEYWORDS]`
+* **Alternative 2**: Use `findt t/KEYWORD [t/MORE_KEYWORD]…​`
   * Pros: Command structure is similar to `addt` and `deletet`.
   * Cons: User need to key in multiple tag prefix if they want to search using more keywords.
 
