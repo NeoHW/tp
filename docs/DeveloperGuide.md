@@ -1085,11 +1085,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
            
       Use case ends.
   
-* 1b. Nurse's input contains invalid parameters value. 
+* 1b. Nurse's input contains invalid parameters value.
 
     * 1b1. PatientSync shows an error message. 
     
       Use case ends.
+
+* 1b. Nurse's input contains duplicate patient hospital Id.
+
+  * 1b1. PatientSync shows an error message.
+
+    Use case ends.
 
 **Use case: UC02 - Delete a patient**
 
@@ -1119,14 +1125,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends.
 
-**Use case: UC03 - Edit a patient**
+**Use case: UC03 - Edit a patient's information**
 
 **MSS**
 
 1. Nurse requests to list patients.
 1. PatientSync shows a list of patients.
-1. Nurse requests to edit a specific patient in the list.
-1. PatientSync edit the patient and displays success message.
+1. Nurse requests to edit a specific patient's information in the list.
+1. PatientSync edits the patient information and displays success message.
 
    Use case ends.
 
@@ -1185,7 +1191,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The nurse input is invalid command format. 
+* 3a. Nurse input is invalid command format. 
 
     * 3a1. PatientSync shows an error message. 
   
@@ -1266,7 +1272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Nurse requests to list patients.
 1. PatientSync shows a list of patients.
 1. Nurse requests to add a tag to a specific patient in the list.
-1. PatientSync add a tag to the patient and displays success message.
+1. PatientSync adds a tag to the patient and displays success message.
 
     Use case ends.
 
