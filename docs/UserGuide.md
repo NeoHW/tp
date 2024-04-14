@@ -115,8 +115,8 @@ Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c
 * All command keywords, that is `‘add’`, `‘id/’`, `‘n/’`, `‘p/’`, `‘f/’`, `‘c/’` and `‘h/’` are case-sensitive (to standardise keyword arguments).
 
 Examples:
-* `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable c/Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
-* `add id/ 12347 n/ Mary Jane p/ Mary f/ Korean f/Chinese food c/ Lives with only daughter c/ quarrels regularly with daughter h/ Watching Drama`
+* `add id/ 67345 n/ Lim Boh Keong p/ Keong f/ Laska c/ No children h/ Golf t/ HighCholestrol`
+* `add id/ 22315 n/ Betty Janny p/ Betty f/ Udon f/ Chasu Ramen c/ Lives with son c/ Has financial problem h/ Fishing`
 * `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`
 
 This screenshot shows the result of executing `add id/ 54321 n/ John Doe p/ John f/ Curry chicken c/ Stable h/ Singing karaoke t/ amnesia`.
@@ -532,3 +532,4 @@ Action     | Format, Examples
 **Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`
+**Exit**   | `exit`
