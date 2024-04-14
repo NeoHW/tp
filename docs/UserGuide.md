@@ -434,7 +434,7 @@ Format: `sort [ATTRIBUTE]`
 * Supported `ATTRIBUTE`s include `n` for patient name and `p` for patient's preferred name.
 * There can only be one or zero `ATTRIBUTE`.
 * If no `ATTRIBUTE` is specified, default sorting order would be by patient's name.
-* `ATTRIBUTES` are **case-insensitive**.
+* `ATTRIBUTE`s are **case-insensitive**.
 * The command will not be recognised if invalid `ATTRIBUTE`(s) are entered. e.g. `sort l` or `sort 123` are invalid
 sort commands.
 * If there are multiple patients with the same specified `ATTRIBUTE`, the sort will preserve the original order 
