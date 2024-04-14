@@ -1091,9 +1091,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends.
 
-* 1b. Nurse's input contains duplicate patient hospital Id.
+* 1c. Nurse's input contains duplicate patient hospital Id.
 
-  * 1b1. PatientSync shows an error message.
+  * 1c1. PatientSync shows an error message.
 
     Use case ends.
 
@@ -1126,6 +1126,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3c. The specified patient does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
 **Use case: UC03 - Edit a patient's information**
 
 **MSS**
@@ -1155,9 +1161,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-* 3c. Nurse's input contains invalid parameters value.
+* 3c. The patient specified does not exist in the patient list.
 
   * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. Nurse's input contains invalid parameters value.
+
+  * 3d1. PatientSync shows an error message.
 
     Use case resumes at step 2.
 
@@ -1205,9 +1217,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC06 - Delete an event for a patient**
+* 3c. The patient specified does not exist in the patient list.
 
-**Preconditions: Event exists for the target patient**
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC06 - Delete an event for a patient**
 
 **MSS**
 
@@ -1230,22 +1246,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. Nurse's input contains invalid patient index or event index.
+* 3b. Nurse's input contains invalid patient index or invalid event index.
 
     * 3b1. PatientSync shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UC07 - Edit an event for a patient**
+* 3c. The patient specified does not exist in the patient list.
 
-**Preconditions: Event exists for the target patient**
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. The patient selected does not contain specified event.
+
+  * 3d1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC07 - Edit an event for a patient**
 
 **MSS**
 
 1.  Nurse requests to list patients.
 1.  PatientSync shows a list of patients.
 1.  Nurse requests to edit an event for a specific patient in the list.
-1.  PatientSync edits an event the patient and displays success message.
+1.  PatientSync edits an event for the patient and displays success message.
 
     Use case ends.
 
@@ -1267,14 +1293,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC08 - Add tag to a patient**
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. Nurse's input contains invalid event name.
+
+  * 3d1. PatientSync shows an error message.
+    
+    Use case resumes at step 2.
+
+* 3e. Nurse's input contains invalid date or datetime format.
+  
+  * 3e1. PatientSync shows an error message.
+    
+    Use case resumes at step 2.
+
+* 3f. Nurse's input contains duplicate event.
+
+  * 3f1. PatientSync shows an error message.
+    
+    Use case resumes at step 2.
+
+**Use case: UC08 - Add tag(s) to a patient**
 
 **MSS**
 
 1. Nurse requests to list patients.
 1. PatientSync shows a list of patients.
-1. Nurse requests to add a tag to a specific patient in the list.
-1. PatientSync adds a tag to the patient and displays success message.
+1. Nurse requests to add one or more tags to a specific patient in the list.
+1. PatientSync adds the specified tag(s) to the patient and displays success message.
 
     Use case ends.
 
@@ -1296,16 +1346,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC09 - Delete tag from a patient**
+* 3c. The patient specified does not exist in the patient list.
 
-**Preconditions: Tag exists for the target patient**
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC09 - Delete tag(s) from a patient**
 
 **MSS**
 
 1. Nurse requests to list patients.
 1. PatientSync shows a list of patients.
-1. Nurse requests to delete a tag from a specific patient in the list.
-1. PatientSync deletes a tag from the patient and displays success message.
+1. Nurse requests to delete one or more tags from a specific patient in the list.
+1. PatientSync deletes the specified tag(s) from the patient and displays success message.
 
     Use case ends.
 
@@ -1327,20 +1381,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-* 3c. Nurse's input contains invalid tags.
+* 3c. The patient specified does not exist in the patient list.
 
   * 3c1. PatientSync shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: UC10 - Find patients by a tag**
+* 3d. Nurse's input contains invalid tags.
+
+  * 3d1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3e. The patient selected does not contain specified tag.
+
+  * 3e1. PatientSync shows an error message.
+  
+    Use case resumes at step 2.
+
+**Use case: UC10 - Find patients by tag(s)**
 
 **MSS**
 
 1. Nurse requests to list patients.
 1. PatientSync shows a list of patients.
-1. Nurse requests to find patients with a specific tag in the list.
-1. PatientSync finds patients with the specified tag and displays success message.
+1. Nurse requests to find patients with a specific tag(s) in the list.
+1. PatientSync finds patients with the specified tag(s) and displays success message.
 
     Use case ends.
 
@@ -1356,14 +1422,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC11 - Find patients by keyword**
+**Use case: UC11 - Find patients by name**
 
 **MSS**
 
 1. Nurse requests to list patients.
 1. PatientSync shows a list of patients.
-1. Nurse requests to find patients with specific keywords in the list.
-1. PatientSync finds patients with the specified keywords and displays success message.
+1. Nurse requests to find patients with the specific name(s) in the list.
+1. PatientSync finds patients with the specified name(s) and displays success message.
 
    Use case ends.
 
