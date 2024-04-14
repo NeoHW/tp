@@ -223,7 +223,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Design Considerations
 
-#### Aspect of Handling Duplicated Fields 
+**Aspect: Handle Duplicated Fields**
 * **Alternative 1 (current choice)**: Returns error message, prompt user to enter the correct format.
     * Pros: Ensure the consistency of entries of the input command.
     * Cons: User has to retype the `AddCommand` once again instead of the specific field.
@@ -232,7 +232,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     * Pros: User does not have to retype the command.
     * Cons: Introduce ambiguity, the first repeated field may not be what user wish to enter.
 
-#### Aspect of Choice of PatientHospitalId
+**Aspect: Choice of PatientHospitalId field**
 * **Alternative 1 (current choice)**: Use patient's ID in the hospital.
   * Pros: Uniquely identifies the patient in the hospital.
   * Cons: First time user will be confused about the usage of `PatientHospitalId`.
@@ -241,7 +241,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
   * Pros: Easier to type and refer.
   * Cons: NRIC is confidential and sensitive information, it breaches PDPA since this is a personal use application.
 
-#### Aspect of Handling Existing Patient
+**Aspect: Handle Existing Patient**
 * **Alternative 1 (current choice)**: Returns error message upon user adds a new patient with existing `patientHospitalId`
     * Pros: Ensures that no same patient will be added to PatientSync.
     * Cons: User has to enter patient's hospital ID in care to ensure no duplications.
@@ -250,7 +250,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     * Pros: Easier to view as patient's `name` will be easier to be remembered.
     * Cons: Patients may have the same name.
 
-#### Aspect of Handling Multiple Inputs for Same Field 
+**Aspect: Handle Multiple Inputs for the Same Field**
 * **Alternative 1 (current choice)**: Allow duplicate prefixes for certain fields
   * Pros: Easier to view as listings will be shown without commas, provide clearer view to user.
   * Cons: User may find it confusing if same prefix not being entered repeatedly.
@@ -530,7 +530,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Design Considerations
 
-#### Aspect of Using Identifier
+**Aspect: Usage of Identifier**
 * **Alternative 1 (current choice)**: Uses `INDEX` index of the Patient in the PatientSync.
     * Pros: Ease of use, as user can refer to the index in the PatientSync directly.
     * Cons: Referring and scrolling the PatientSync may take time to find the patient's index.
@@ -539,7 +539,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     * Pros: Able to uniquely identified each patient.
     * Cons: Higher chance in typing the wrong `patientHospitalId`.
 
-#### Aspect of Bulk Editing for Certain Field
+**Aspect: Bulk Edit for Certain Field**
 * **Alternative 1 (current choice)**: Bulk edit a certain field.
   * Pros: User able to edit the field easily.
   * Cons: Input(s) that might be needed/ kept will be replaced by the newly edited ones.
