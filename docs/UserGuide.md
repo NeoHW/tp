@@ -532,3 +532,4 @@ Action     | Format, Examples
 **Sort** | `sort [ATTRIBUTE]` <br> e.g. `sort p`
 **List**   | `list`
 **Help**   | `help`
+**Exit**   | `exit`
