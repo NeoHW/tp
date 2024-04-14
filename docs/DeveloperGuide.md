@@ -1079,7 +1079,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The information key in is wrong.
     * 2a1. PatientSync shows an error message.
 
       Use case ends.
