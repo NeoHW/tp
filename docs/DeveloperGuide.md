@@ -1226,6 +1226,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Sort all existing patients**
+
+**MSS**
+
+1. Nurse requests to sort patients by specified attribute.
+1. PatientSync sorts all existing patients.
+1. PatientSync displays the sorted patient list. 
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The nurse input for sort attribute is invalid.
+
+  * 1a1. PatientSync shows an error message.
+
+    Use case ends.
+
+* 1b. The nurse input invalid command format.
+
+  * 1b1. PatientSync shows an error message.
+
+    Use case ends.
+
 ### 6.4 Non-Functional Requirements
 
 1. Compatibility: Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
