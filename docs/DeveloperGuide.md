@@ -1138,10 +1138,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to delete an event for a specific patient in the list
-4.  PatientSync deletes an event the patient
+1.  Nurse requests to list patients.
+1.  PatientSync shows a list of patients.
+1.  Nurse requests to delete an event for a specific patient in the list.
+1.  PatientSync deletes an event the patient.
 
     Use case ends.
 
@@ -1151,11 +1151,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The nurse input for patient index or event index is invalid.
 
     * 3a1. PatientSync shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: UC06 - Add tag to a patient**
 
