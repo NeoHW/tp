@@ -1120,7 +1120,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 2.
 
-* 3b. Nurse's input contains invalid patient id.
+* 3b. Nurse's input contains invalid patient Id.
 
     * 3b1. PatientSync shows an error message.
 
@@ -1149,7 +1149,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-* 3b. Nurse's input contains invalid patient id.
+* 3b. Nurse's input contains invalid patient Id.
 
   * 3b1. PatientSync shows an error message.
 
