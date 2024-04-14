@@ -5,7 +5,7 @@ start
 if () then ([else])
     :PatientSync throws an error;
 else ([Valid command format])
-    :PatientSync searches to see whether any keyword(s) matches any name for all the existing patients;
+    :PatientSync searches to see whether any keyword(s) matches any name from all the existing patients;
     :PatientSync updates the displayed patient list with those patients whose name matches any of the keywords;
 endif
 :PatientSync displays output message on GUI;
