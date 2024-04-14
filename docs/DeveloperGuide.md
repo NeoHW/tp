@@ -843,7 +843,7 @@ The `SortCommand` class is responsible for sorting the patients by the specified
 
 #### Specifications
 
-* `SortCommand` takes in one or zero attributes to sort the patient list.
+* `SortCommand` takes in **zero** or **one** attribute to sort the patient list.
 * `SortCommand` will update the patient list with the sorted patient list and the display the sorted patient list.
 * If no attribute is specified, the default sorting method is by patient name.
 * SortCommand only can sort by patient's name or patient's preferred name.
@@ -1021,6 +1021,17 @@ Presently, when attempting run commands which requires an index value to be pass
 This may cause confusion, especially in the first scenario, as the user may mistakenly believe that the command they had inputted was erroneous due to the format, rather than the value.
 
 To address this, we plan to adjust the validation checks currently in PatientSync, to ensure that the error message thrown is standardised for all Index Out of Bounds related errors. Specifically, we intent to standardise the error message to be that of `... index provided is invalid`, so that the user is better able to quickly identify and resolve the issue upon such an error occurring. 
+
+
+### 4.10 Implement a specific error message for invalid attributes in sort command
+
+Presently, when an invalid sort attribute is provided by the user input, the error message will be:
+* `Invalid Command Format! ...`
+
+This may cause confusion as the user may mistakenly believe that the command they had inputted was erroneous due to the format, rather than the invalid sort attribute.
+
+To address this, we plan to implement a specific error message for invalid attribute input by the user. Upon identification of invalid sort attribute, PatientSync should then output a custom error message, i.e `Invalid Sort Attribute! Please use sort attribute n or p only!`
+This allows the user to understand that the sort attribute that they input was invalid and not the command format, preventing any confusion.
 
 --------------------------------------------------------------------------------------------------------------------
 
