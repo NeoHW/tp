@@ -430,7 +430,7 @@ Sorts the patient list in the address book by specified attribute.
 
 Format: `sort [ATTRIBUTE]`
 
-* Sorts all the added patients in the patient list by specified `ATTRIBUTE`.
+* Sorts all the existing patients in the patient list by specified `ATTRIBUTE`.
 * Supported `ATTRIBUTE`s include `n` for patient name and `p` for patient's preferred name.
 * There can only be one or zero `ATTRIBUTE`.
 * If no `ATTRIBUTE` is specified, default sorting order would be by patient's name.
