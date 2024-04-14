@@ -1056,7 +1056,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
 
-**Use case: Add a patient**
+**Use case: UC01 - Add a patient**
 
 **MSS**
 
@@ -1073,7 +1073,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-**Use case: Delete a patient**
+**Use case: UC02 - Delete a patient**
 
 **MSS**
 
@@ -1096,7 +1096,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: List all patients**
+**Use case: UC03 - List all patients**
 
 **MSS**
 
@@ -1111,7 +1111,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add event for a patient**
+**Use case: UC04 - Add event for a patient**
 
 **MSS**
 
@@ -1134,7 +1134,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete an event for a patient**
+**Use case: UC05 - Delete an event for a patient**
 
 **MSS**
 
@@ -1157,7 +1157,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add tag to a patient**
+**Use case: UC06 - Add tag to a patient**
 
 **MSS**
 
@@ -1180,7 +1180,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete tag from a patient**
+**Use case: UC07 - Delete tag from a patient**
 
 **MSS**
 
@@ -1203,7 +1203,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find patients by a tag**
+**Use case: UC08 - Find patients by a tag**
 
 **MSS**
 
@@ -1226,7 +1226,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Sort all existing patients**
+**Use case: UC09 - Sort all existing patients**
 
 **MSS**
 
