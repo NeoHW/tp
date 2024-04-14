@@ -1077,33 +1077,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.3 Use cases
 
-(For all use cases below, the **System** is `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
+(For all use cases below, the **System** is `PatientSync` and the **Actor** is the `Nurse`, unless specified otherwise)
 
-**Use case: Add a patient**
+**Use case: UC01 - Add a patient**
 
 **MSS**
 
-1.  Nurse requests to add a patient
-2.  PatientSync adds the patient
+1. Nurse requests to add a patient.
+1. PatientSync adds the patient and display success message.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The information key in is wrong.
-    * 2a1. PatientSync shows an error message.
+* 1a. Nurse's input is invalid command format.
 
+    * 1a1. PatientSync shows an error message.
+           
+      Use case ends.
+  
+* 1b. Nurse's input contains invalid parameters value.
+
+    * 1b1. PatientSync shows an error message. 
+    
       Use case ends.
 
+* 1c. Nurse's input contains duplicate patient hospital Id.
 
-**Use case: Delete a patient**
+  * 1c1. PatientSync shows an error message.
+
+    Use case ends.
+
+**Use case: UC02 - Delete a patient**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to delete a specific patient in the list
-4.  PatientSync deletes the patient
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to delete a specific patient in the list.
+1. PatientSync deletes the patient and displays success message.
 
     Use case ends.
 
@@ -1113,18 +1125,164 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Nurse's input is invalid command format.
+
+    * 3a1. PatientSync shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3b. Nurse's input contains invalid patient Id.
+
+    * 3b1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The specified patient does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC03 - Edit a patient's information**
+
+**MSS**
+
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to edit a specific patient's information in the list.
+1. PatientSync edits the patient information and displays success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. Nurse's input is invalid command format.
+
+  * 3a1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. Nurse's input contains invalid patient Id.
+
+  * 3b1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. Nurse's input contains invalid parameters value.
+
+  * 3d1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC04 - List all patients**
+
+**MSS**
+
+1. Nurse requests to list all existing patients.
+1. PatientSync shows a list of all existing patients and displays success message. 
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC05 - Add event for a patient**
+
+**MSS**
+
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to add an event for a specific patient in the list.
+1. PatientSync adds an event for the patient and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. Nurse input is invalid command format. 
+
+    * 3a1. PatientSync shows an error message. 
+
+      Use case resumes at step 2.
+
+* 3b. The nurse input invalid patient index or invalid date time format for event.
+
+    * 3b1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC06 - Delete an event for a patient**
+
+**MSS**
+
+1.  Nurse requests to list patients.
+1.  PatientSync shows a list of patients.
+1.  Nurse requests to delete an event for a specific patient in the list.
+1.  PatientSync deletes an event the patient and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. Nurse's input is invalid command format.
 
     * 3a1. PatientSync shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: List all patients**
+* 3b. Nurse's input contains invalid patient index or invalid event index.
+
+    * 3b1. PatientSync shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. The patient selected does not contain specified event.
+
+  * 3d1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC07 - Edit an event for a patient**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
+1.  Nurse requests to list patients.
+1.  PatientSync shows a list of patients.
+1.  Nurse requests to edit an event for a specific patient in the list.
+1.  PatientSync edits an event for the patient and displays success message.
 
     Use case ends.
 
@@ -1134,14 +1292,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add event for a patient**
+* 3a. Nurse's input is invalid command format.
+
+  * 3a1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. Nurse's input contains invalid patient index or event index.
+
+  * 3b1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. Nurse's input contains invalid event name.
+
+  * 3d1. PatientSync shows an error message.
+    
+    Use case resumes at step 2.
+
+* 3e. Nurse's input contains invalid date or datetime format.
+  
+  * 3e1. PatientSync shows an error message.
+    
+    Use case resumes at step 2.
+
+* 3f. Nurse's input contains duplicate event.
+
+  * 3f1. PatientSync shows an error message.
+    
+    Use case resumes at step 2.
+
+**Use case: UC08 - Add tag(s) to a patient**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to add an event for a specific patient in the list
-4.  PatientSync adds an event for the patient
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to add one or more tags to a specific patient in the list.
+1. PatientSync adds the specified tag(s) to the patient and displays success message.
 
     Use case ends.
 
@@ -1151,20 +1345,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Nurse's input is invalid command format.
 
     * 3a1. PatientSync shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Delete an event for a patient**
+* 3b. Nurse's input contains invalid patient index.
+
+  * 3b1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC09 - Delete tag(s) from a patient**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to delete an event for a specific patient in the list
-4.  PatientSync deletes an event the patient
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to delete one or more tags from a specific patient in the list.
+1. PatientSync deletes the specified tag(s) from the patient and displays success message.
 
     Use case ends.
 
@@ -1174,20 +1380,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Nurse's input is invalid command format.
 
-    * 3a1. PatientSync shows an error message.
+  * 3a1. PatientSync shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-**Use case: Add tag to a patient**
+* 3b. Nurse's input contains invalid patient index.
+
+  * 3b1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3c. The patient specified does not exist in the patient list.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3d. Nurse's input contains invalid tags.
+
+  * 3d1. PatientSync shows an error message.
+
+    Use case resumes at step 2.
+
+* 3e. The patient selected does not contain specified tag.
+
+  * 3e1. PatientSync shows an error message.
+  
+    Use case resumes at step 2.
+
+**Use case: UC10 - Find patients by tag(s)**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to add a tag to a specific patient in the list
-4.  PatientSync add a tag to the patient
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to find patients with a specific tag(s) in the list.
+1. PatientSync finds patients with the specified tag(s) and displays success message.
 
     Use case ends.
 
@@ -1197,22 +1427,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Nurse's input is invalid command format.
 
     * 3a1. PatientSync shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Delete tag from a patient**
+**Use case: UC11 - Find patients by name**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to delete a tag from a specific patient in the list
-4.  PatientSync deletes a tag from the patient
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to find patients with the specific name(s) in the list.
+1. PatientSync finds patients with the specified name(s) and displays success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -1220,34 +1450,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Nurse's input is invalid command format.
 
-    * 3a1. PatientSync shows an error message.
+  * 3a1. PatientSync shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-**Use case: Find patients by a tag**
+**Use case: UC12 - Sort all existing patients**
 
 **MSS**
 
-1.  Nurse requests to list patients
-2.  PatientSync shows a list of patients
-3.  Nurse requests to find patients with a specific tag in the list
-4.  PatientSync finds patients with the tag
+1. Nurse requests to sort patients by specified attribute.
+1. PatientSync sorts all existing patients.
+1. PatientSync displays the sorted patient list and displays success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The nurse input invalid command format.
 
-  Use case ends.
+  * 1a1. PatientSync shows an error message.
 
-* 3a. The given index is invalid.
+    Use case ends.
 
-    * 3a1. PatientSync shows an error message.
+* 1b. The nurse input for sort attribute is invalid.
 
-      Use case resumes at step 2.
+  * 1b1. PatientSync shows an error message.
+
+    Use case ends.
+
+**Use case: UC13 - Request for help**
+
+**MSS**
+
+1. Nurse requests for help.
+1. PatientSync shows pop up window with link to user guide and displays success message.
+1. Nurse copies link from pop up window and access user guide with external browser.
+
+   Use case ends.
+
+**Use case: UC14 - Clearing all patients**
+
+**MSS**
+
+1. Nurse requests to clear all patients from the list.
+1. PatientSync deletes all patients from the list and displays success message.
+
+   Use case ends.
+
+**Use case: UC15 - Closing PatientSync**
+
+**MSS**
+
+1. Nurse requests to exit PatientSync.
+1. PatientSync closes.
+
+   Use case ends.
+
 
 ### 6.4 Non-Functional Requirements
 
