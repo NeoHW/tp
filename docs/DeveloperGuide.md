@@ -1072,14 +1072,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Nurse requests to add a patient.
-2.  PatientSync adds the patient and display success message.
+1. Nurse requests to add a patient.
+1. PatientSync processes the nurse input.
+1. PatientSync adds the patient and display success message.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. Nurse input invalid command format or invalid parameters value.
+* 2a. Nurse input is invalid command format or invalid parameters value.
     * 2a1. PatientSync shows an error message.
 
       Use case ends.
