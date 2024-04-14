@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 
+// Solution below is adapted from https://www.geeksforgeeks.org/comparator-interface-java/
 /**
  * Comparator for a Patient's preferred name in PatientSync.
  */
