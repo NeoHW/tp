@@ -7,7 +7,7 @@ if () then ([else])
 else ([Valid command format])
     :PatientSync searches to see whether any keyword(s) matches any name from all the existing patients;
     :PatientSync updates the displayed patient list with those patients whose name matches any of the keywords;
+    :PatientSync displays find patient by name success message;
 endif
-:PatientSync displays output message on GUI;
 stop
 @enduml

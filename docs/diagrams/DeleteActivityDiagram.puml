@@ -12,8 +12,8 @@ else ([Valid command format])
         :PatientSync retrieve the patient with the specified patient index;
         :PatientSync deletes the patient from the patient list;
         :PatientSync updates the displayed patient list;
+        :PatientSync displays delete success message;
     endif
 endif
-:PatientSync displays output message on GUI;
 stop
 @enduml

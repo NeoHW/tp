@@ -24,11 +24,11 @@ else ([Valid command format])
                     :PatientSync edits the specified event;
                     :PatientSync updates the set of events for the patient;
                     :PatientSync updates the displayed patient list;
+                    :PatientSync displays edit event success message;
                 endif
             endif
         endif
     endif
 endif
-:PatientSync displays output message on GUI;
 stop
 @enduml
