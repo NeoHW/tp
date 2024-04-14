@@ -944,7 +944,7 @@ Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, Pa
 
 Presently, we do not restrict the user from adding events at any date. As such, the user is able to add Events for a Patient on unrealistic dates, i.e., 4000 years into the Future or Past. Adding such Events is more likely to be a typographical error and thus, we should warn the user (similar to how we warn the user for past events). We choose to warn the user rather than error on the command as it is possible, albeit rare, for a Person to live more than a 100 years.
 
-To address this, we intend to introduce an Upper and Lower Bound for the Event Date, of approximately +- 100 years from the present year. Upon identification of `DATE_OR_DATETIME_OF_EVENT` with years outside of this range, PatientSync should then warn the user with a message to the effect of `Warning: This Event occurs more than a 100 years in the future / past`
+To address this, we plan to introduce an Upper and Lower Bound for the Event Date, of approximately +- 100 years from the present year. Upon identification of `DATE_OR_DATETIME_OF_EVENT` with years outside of this range, PatientSync should then warn the user with a message to the effect of `Warning: This Event occurs more than a 100 years in the future / past`
 
 
 ### 4.5 Case Sensitivity Duplicate Checks for Events
@@ -998,6 +998,18 @@ However, user might find it confusing as `PATIENT_HOSPITAL_ID` is required upon 
 
 To address this, we intend to introduce a new field in the PatientSync UI display, named `Patient Hospital ID`, to allow user to view patient's hospital ID.
 Hence, this would be easier for user to check if there is any duplicated patient added/ edited to the PatientSync list. 
+
+
+### 4.9 Standardise Error Message for Index Out of Bounds Errors
+
+Presently, when attempting run commands which requires an index value to be passed in, 2 possible error message are thrown:
+
+1. `Invalid Command Format! ...`, when the index value provided is smaller than or equal to 0
+1. `... index provided is invalid`, when the index value provided is greater than the total number stored in PatientSync
+
+This may cause confusion, especially in the first scenario, as the user may mistakenly believe that the command they had inputted was erroneous due to the format, rather than the value.
+
+To address this, we plan to adjust the validation checks currently in PatientSync, to ensure that the error message thrown is standardised for all Index Out of Bounds related errors. Specifically, we intent to standardise the error message to be that of `... index provided is invalid`, so that the user is better able to quickly identify and resolve the issue upon such an error occurring. 
 
 --------------------------------------------------------------------------------------------------------------------
 

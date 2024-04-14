@@ -252,7 +252,8 @@ Format: `addt INDEX t/TAG+`
 * An invalid patient index error message will be shown when the patient index meets the above requirements, but is not found in the patient list.
 
 <box type="info" seamless>
-    <b>Note:</b> The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+    <b>Note:</b> 
+1. The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
 </box>
 
 
@@ -341,8 +342,8 @@ Format: `adde PATIENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 * If there is a Time Period, the format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`, where the End Time must be **after or equal** to the Start Time
 * The `DATE_OR_DATETIME_OF_EVENT` can occur in the past as well; However, a warning message will be shown
 * The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
-* Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device
-* Note that, if multiple prefix and arguments are provided, the last is taken as the 'truth', i.e., if the command provided is `adde 1 n/first event n/another event d/20-01-2023 d/23-12-2024`, the Event added will be the same as if `adde 1 n/another event d/23-12-2024` was the command.
+* The `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device
+* If multiple prefix and arguments are provided, the last is taken as the 'truth', i.e., if the command provided is `adde 1 n/first event n/another event d/20-01-2023 d/23-12-2024`, the Event added will be the same as if `adde 1 n/another event d/23-12-2024` was the command.
 
 Examples:
 * `adde 3 n/Birthday d/20-01-2022`
@@ -405,8 +406,8 @@ Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
   events.
 * The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
-* Note that the `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
-* Note that, if multiple prefix and arguments are provided, the last is taken as the intended input,
+* The `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
+* If multiple prefix and arguments are provided, the last is taken as the intended input,
   i.e., if the command provided is `edite 1 e/1 e/2 n/first event n/another event d/20-01-2023 d/23-12-2024`,
   the Event edited will be the same as if `edite 1 e/2 n/another event d/23-12-2024` was the command.
 
