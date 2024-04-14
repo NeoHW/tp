@@ -1111,19 +1111,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-      Use case ends.
+
+  Use case ends.
 
 * 3a. Nurse's input is invalid command format.
 
     * 3a1. PatientSync shows an error message.
     
-      Use case ends.
+      Use case resumes at step 2.
 
 * 3b. Nurse's input contains invalid patient id.
 
     * 3b1. PatientSync shows an error message.
-    
-      Use case ends.
+
+      Use case resumes at step 2.
 
 **Use case: UC03 - Edit a patient's information**
 
@@ -1139,25 +1140,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
+
   Use case ends.
 
 * 3a. Nurse's input is invalid command format.
 
   * 3a1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 * 3b. Nurse's input contains invalid patient id.
 
   * 3b1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 * 3c. Nurse's input contains invalid parameters value.
 
   * 3c1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 **Use case: UC04 - List all patients**
 
@@ -1194,14 +1196,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. Nurse input is invalid command format. 
 
     * 3a1. PatientSync shows an error message. 
-  
-      Use case ends.
+
+      Use case resumes at step 2.
 
 * 3b. The nurse input invalid patient index or invalid date time format for event.
 
     * 3b1. PatientSync shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 **Use case: UC06 - Delete an event for a patient**
 
@@ -1226,13 +1228,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. PatientSync shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 3b. Nurse's input contains invalid patient index or event index.
 
     * 3b1. PatientSync shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 **Use case: UC07 - Edit an event for a patient**
 
@@ -1257,13 +1259,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 * 3b. Nurse's input contains invalid patient index or event index.
 
   * 3b1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 **Use case: UC08 - Add tag to a patient**
 
@@ -1286,13 +1288,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. PatientSync shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 3b. Nurse's input contains invalid patient index.
 
   * 3b1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 **Use case: UC09 - Delete tag from a patient**
 
@@ -1317,19 +1319,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 * 3b. Nurse's input contains invalid patient index.
 
   * 3b1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 * 3c. Nurse's input contains invalid tags.
 
   * 3c1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 **Use case: UC10 - Find patients by a tag**
 
@@ -1352,7 +1354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. PatientSync shows an error message.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 **Use case: UC11 - Find patients by keyword**
 
@@ -1375,7 +1377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. PatientSync shows an error message.
 
-    Use case ends.
+    Use case resumes at step 2.
 
 **Use case: UC12 - Sort all existing patients**
 
