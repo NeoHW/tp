@@ -954,6 +954,51 @@ Presently, duplicate checks for Events are done via checking the Event Name (`NA
 To address this, we plan to make the Duplicate Check for Events case sensitive, such that we detect these scenarios. PatientSync would then also return a Success Result, albeit with the special Duplicate Message, to the user.
 
 
+### 4.6 Input Validation for Patient's Name
+
+Presently, the name of patient, referred to as `NAME`, do not have sufficient input validation for the validity of the `NAME`.
+PatientSync currently uses regex expression `[\\p{Alnum}][\\p{Alnum} ]*` to check that the user input for `NAME`, which is a String that consists of only alphanumeric characters and spaces, to validate the input for patient's name.
+For example, the user is currently able to input `John Doe`. However, input such as `Abraham s/o Dahmil` or `Kenneth-David` is not a valid Name.
+
+This can lead to potential troubles where user is not able to input patient's full name when necessary, but need to ignore the special characters during the Name insertion. 
+
+To address this, we plan to make our input validation for the `NAME` field stricter, to ensure the validity of the NAME and cater all kinds of names.
+
+Specifically, we intend to perform the following validations with special characters:
+
+1. Ensure that the `NAME` field accepts special character `/` with specific string such as `s/o`, `d/o` and `w/o`
+2. Ensure that the `NAME` field accepts special character `-` 
+3. Ensure that the `NAME` field accepts special character `'`
+
+Upon identification of such invalid `NAME` field values, PatientSync should then output a custom error message, i.e.,`Invalid NAME format!`
+
+
+### 4.7 Implementation on PatientHospitalId
+
+Presently, the patient's hospital ID referred to as `PATIENT_HOSPITAL_ID`, is implemented as String.
+PatientSync currently uses regex expression `^[0-9]+$` to check that the user input for `PATIENT_HOSPITAL_ID`, which is a String that consists only numeric characters to validate the input for patient's hospital ID.
+For example, the user is currently able to input patient's hospital ID `22452`. However, input such as `000000` or overflow input `1234567898765456783434343` are allowed. 
+
+This can lead to potential errors such as unlimited size of the input and input with all zeros. 
+
+To address this, we plan to make our input validation for the `PATIENT_HOSPITAL_ID` field stricter by changing it to Integer, ensuring the validity of the patient's hospital ID. 
+
+Specifically, we intend to perform the following validations:
+
+1. Ensure that the `PATIENT_HOSPITAL_ID` field does not contain only zeros.
+2. Ensure that the `PATIENT_HOSPITAL_ID` field have specific bound and length, such as having ID as numeric value ranging from 3 to 10 digits in length.
+
+Upon identification of such invalid `PATIENT_HOSPITAL_ID` field values, PatientSync should then output a custom error message, i.e.,`Invalid PATIENT_HOSPITAL_ID!`
+
+
+### 4.8 Displaying PatientHospitalId in UI 
+
+Presently, we do not display `PATIENT_HOSPITAL_ID` field in the PatientSync UI. This is because the team do not want to clutter the UI with too much information as the `PATIENT_HOSPITAL_ID` is mainly used to check for duplicate patients.
+However, user might find it confusing as `PATIENT_HOSPITAL_ID` is required upon adding new patient and allowed for editing, but not be able to see what is being inputted or edited.
+
+To address this, we intend to introduce a new field in the PatientSync UI display, named `Patient Hospital ID`, to allow user to view patient's hospital ID.
+Hence, this would be easier for user to check if there is any duplicated patient added/ edited to the PatientSync list. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5 Documentation, logging, testing, configuration, dev-ops
