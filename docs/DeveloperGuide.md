@@ -1066,7 +1066,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.3 Use cases
 
-(For all use cases below, the **System** is `PatientSync` and the **Actor** is the `nurse`, unless specified otherwise)
+(For all use cases below, the **System** is `PatientSync` and the **Actor** is the `Nurse`, unless specified otherwise)
 
 **Use case: UC01 - Add a patient**
 
@@ -1119,7 +1119,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends.
 
-**Use case: UC03 - List all patients**
+**Use case: UC03 - Edit a patient**
+
+**MSS**
+
+1. Nurse requests to list patients.
+1. PatientSync shows a list of patients.
+1. Nurse requests to edit a specific patient in the list.
+1. PatientSync edit the patient and displays success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. Nurse's input is invalid command format.
+
+  * 3a1. PatientSync shows an error message.
+
+    Use case ends.
+
+* 3b. Nurse's input contains invalid patient id.
+
+  * 3b1. PatientSync shows an error message.
+
+    Use case ends.
+
+* 3c. Nurse's input contains invalid parameters value.
+
+  * 3c1. PatientSync shows an error message.
+
+    Use case ends.
+
+**Use case: UC04 - List all patients**
 
 **MSS**
 
@@ -1134,7 +1168,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC04 - Add event for a patient**
+**Use case: UC05 - Add event for a patient**
 
 **MSS**
 
@@ -1163,7 +1197,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC05 - Delete an event for a patient**
+**Use case: UC06 - Delete an event for a patient**
+
 **Preconditions: Event exists for the target patient**
 
 **MSS**
@@ -1193,7 +1228,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC06 - Edit an event for a patient**
+**Use case: UC07 - Edit an event for a patient**
+
 **Preconditions: Event exists for the target patient**
 
 **MSS**
@@ -1223,7 +1259,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC07 - Add tag to a patient**
+**Use case: UC08 - Add tag to a patient**
 
 **MSS**
 
@@ -1252,8 +1288,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC08 - Delete tag from a patient**
+**Use case: UC09 - Delete tag from a patient**
+
 **Preconditions: Tag exists for the target patient**
+
 **MSS**
 
 1. Nurse requests to list patients.
@@ -1287,7 +1325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - Find patients by a tag**
+**Use case: UC10 - Find patients by a tag**
 
 **MSS**
 
@@ -1310,7 +1348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC10 - Find patients by keyword**
+**Use case: UC11 - Find patients by keyword**
 
 **MSS**
 
@@ -1333,7 +1371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC11 - Sort all existing patients**
+**Use case: UC12 - Sort all existing patients**
 
 **MSS**
 
@@ -1357,7 +1395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC12 - Request for help**
+**Use case: UC13 - Request for help**
 
 **MSS**
 
@@ -1367,7 +1405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC13 - Clearing all patients**
+**Use case: UC14 - Clearing all patients**
 
 **MSS**
 
@@ -1376,7 +1414,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC14 - Closing PatientSync**
+**Use case: UC15 - Closing PatientSync**
 
 **MSS**
 
