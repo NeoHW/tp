@@ -23,7 +23,7 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 
 1. Download the latest `PatientSync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for PatientSync.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PatientSync.jar`
 command to run the application.<br>
@@ -33,13 +33,13 @@ command to run the application.<br>
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all patients in PatientSync.
 
-   * `add id/ 12345 n/ John Doe p/ Alex f/ Curry chicken c/ Stable c/ Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Doe` to the PatientSync.
+   * `add id/ 12360 n/ John Chan p/ John f/ Curry chicken c/ Stable c/ Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes` : Adds a patient named `John Chan` to the PatientSync.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd patient shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Clears all patients in PatientSync.
 
    * `exit` : Exits the app.
 
@@ -100,7 +100,7 @@ Format: `help`
 
 ### Adding a patient: `add`
 
-Adds a patient to the address book.
+Adds a patient to PatientSync.
 
 Format: `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​`
 
@@ -130,7 +130,7 @@ This screenshot shows the result of executing `add id/ 54321 n/ John Doe p/ John
 
 ### Listing all patients : `list`
 
-Shows a list of all patients in the address book.
+Shows a list of all patients in PatientSync.
 
 Format: `list`
 
@@ -145,7 +145,7 @@ This screenshot shows the result of executing `list`.
 
 ### Editing a patient : `edit`
 
-Edits an existing patient in the address book.
+Edits an existing patient in PatientSync.
 
 Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​
 [h/HOBBY]…​ [t/TAG]…​`
@@ -212,7 +212,7 @@ This screenshot shows the result of executing `find alex roy`.
 
 ### Deleting a patient : `delete`
 
-Deletes the specified patient from the address book.
+Deletes the specified patient from PatientSync.
 
 Format: `delete INDEX`
 
@@ -221,8 +221,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find Bernice` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-* `list` followed by `delete 1` deletes the 1st patient in the results of the address book.
+* `find Bernice` followed by `delete 1` deletes the 1st patient based on the results of the `find` command.
+* `list` followed by `delete 1` deletes the 1st patient based on the results of the `list` command.
 
 This screenshot shows the result of executing `list` followed by `delete 1`.
 
@@ -330,7 +330,7 @@ This screenshot shows the result of executing `findt diabetes wheelchair`.
 
 ### Adding an Event to a Patient : `adde`
 
-Adds an Event to a patient in the address book.
+Adds an event to a patient in PatientSync.
 
 Format: `adde PATIENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
@@ -360,7 +360,7 @@ This screenshot shows the result of executing `adde 1 n/Family Visit d/30-09-202
 
 ### Deleting an Event from a Patient : `deletee`
 
-Deletes an Event from a patient in the address book.
+Deletes an event from a patient in PatientSync.
 
 Format `deletee PATIENT_INDEX e/EVENT_INDEX`
 
@@ -387,7 +387,7 @@ This screenshot shows the result of executing `deletee 2 e/1`.
 
 ### Editing an Event for a Patient: `edite`
 
-Edits an Event for a Patient in the address book.
+Edits an event for a patient in PatientSync.
 
 Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
@@ -426,7 +426,7 @@ This screenshot shows the result of executing `edite 2 e/1 n/Mama Birthday Celeb
 
 ### Sorting the patient list : `sort`
 
-Sorts the patient list in the address book by specified attribute.
+Sorts the patient list in PatientSync by specified attribute.
 
 Format: `sort [ATTRIBUTE]`
 
@@ -456,9 +456,9 @@ This screenshot shows the result of executing `sort p`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Clearing all entries : `clear`
+### Clearing all patients : `clear`
 
-Clears all entries from the address book.
+Clears all patients from PatientSync.
 
 This screenshot shows the result of executing `clear`.
 
@@ -518,7 +518,7 @@ Furthermore, certain edits can cause PatientSync to behave in unexpected ways (e
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​` <br> e.g. `add id/ 12345 n/ Alex Yeoh Jia Jun p/ Alex f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
+**Add**    | `add id/PATIENT_HOSPITAL_ID n/NAME p/PREFERRED_NAME f/FOOD_PREFERENCE+ c/FAMILY_CONDITION+ h/HOBBY+ [t/TAG]…​` <br> e.g. `add id/ 12370 n/ Peter Pan p/ Peter f/ Curry chicken c/ Stable, Has 2 sons visit him regularly h/ Singing karaoke t/ Diabetes`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 1`
 **Edit**   | `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD_PREFERENCE]…​ [c/FAMILY_CONDITION]…​ [h/HOBBY]…​ [t/TAG]…​`<br> e.g.`edit 2 p/James t/HighCholesterol`
