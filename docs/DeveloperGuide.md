@@ -973,6 +973,70 @@ sorted order.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+### 3.13 Clearing all data in PatientSync
+
+#### Introduction
+
+The `ClearCommand` class is responsible for clearing all data in PatientSync
+
+#### Specifications
+
+* `ClearCommand` requires no attributes or parameters.
+* `ClearCommand` will delete all data and display an empty patient list.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes `clear` to clear all data in PatientSync.
+* Upon successful execution, an empty patient list will be displayed.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.14 Exiting PatientSync
+
+#### Introduction
+
+The `ExitCommand` class is responsible for exiting and closing PatientSync
+
+#### Specifications
+
+* `ExitCommand` requires no attributes or parameters.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes `exit` to exit PatientSync.
+* Upon successful execution, PatientSync will close automatically and the process stopped.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.15 Viewing the User Guide 
+
+#### Introduction
+
+The `HelpCommand` class is responsible for opening a separate window to a link to the User Guide of PatientSync. 
+
+#### Specifications
+
+* `HelpCommand` requires no attributes or parameters.
+
+#### Example Usage Scenario
+
+Given below is an example usage scenario.
+
+Step 1: The user accesses the PatientSync application.
+
+Step 2: The user executes `help` to view PatientSync's User Guide.
+* Upon successful execution, a separate window will be opened, with a link to PatientSync's User Guide that the user can click on to copy. 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 4 Planned Enhancements
 
 Team size: 5
@@ -1138,22 +1202,24 @@ PatientSync is meticulously crafted for nurses who prioritize the well-being of 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                       | So that I can…​                                                                                                                          |
-|----------|---------|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| `***`    | Nurse   | easily view the user guide         | learn more about the product and how to use whenever I need to                                                                           |
-| `***`    | Nurse   | add patient's information          | add new patients and easily remember their preferences to make a personalized connection                                                 |
-| `***`    | Nurse   | delete patient's information       | remove patients who have been discharged                                                                                                 |
-| `***`    | Nurse   | list all patient's information     | easily find the details of my patients                                                                                                   |
-| `***`    | Nurse   | add event for my patients          | keep track of my patients' appointments and see my overall schedule                                                                      |
-| `***`    | Nurse   | delete event for my patients       | delete my patients' appointments if they are canceled                                                                                    |
-| `***`    | Nurse   | add tags to my patients            | group the patients into categories                                                                                                       |
-| `***`    | Nurse   | find patient with a specific tag   | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
+| Priority | As a …​ | I want to …​                      | So that I can…​                                                                                                                          |
+|----------|---------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `***`    | Nurse   | easily view the user guide        | learn more about the product and how to use whenever I need to                                                                           |
+| `***`    | Nurse   | add patient's information         | add new patients and easily remember their preferences to make a personalized connection                                                 |
+| `***`    | Nurse   | delete patient's information      | remove patients who have been discharged                                                                                                 |
+| `***`    | Nurse   | list all patient's information    | easily find the details of my patients                                                                                                   |
+| `***`    | Nurse   | add event for my patients         | keep track of my patients' appointments and see my overall schedule                                                                      |
+| `***`    | Nurse   | delete event for my patients      | delete my patients' appointments if they are canceled                                                                                    |
+| `***`    | Nurse   | add tags to my patients           | group the patients into categories                                                                                                       |
+| `***`    | Nurse   | find patient with a specific tag  | quickly locate individuals with similar conditions, treatments, or requirements without having to scroll through the entire patient list |
 | `***`    | Nurse   | save all previously added patients | ensure details of the patient would not be lost                                                                                          |
-| `**`     | Nurse   | edit patient's information         | have the most updated information of my patients at all times                                                                            |
-| `**`     | Nurse   | edit event for my patients         | edit my patients' appointments if they are changed                                                                                       |
-| `**`     | Nurse   | delete tags from my patients       | delete the tag if it no longer applies                                                                                                   |
-| `**`     | Nurse   | edit tags from my patients         | edit mistyped tags                                                                                                                       |
-| `**`     | Nurse   | sort the patients by patient name  | be flexible in how I want to view my patient list                                                                                        |
+| `**`     | Nurse   | edit patient's information        | have the most updated information of my patients at all times                                                                            |
+| `**`     | Nurse   | edit event for my patients        | edit my patients' appointments if they are changed                                                                                       |
+| `**`     | Nurse   | delete tags from my patients      | delete the tag if it no longer applies                                                                                                   |
+| `**`     | Nurse   | edit tags from my patients        | edit mistyped tags                                                                                                                       |
+| `**`     | Nurse   | sort the patients by patient name | be flexible in how I want to view my patient list                                                                                        |
+| `**`     | Nurse   | clear all data                    | start from a clean PatientSync                                                                                                           |
+| `**`     | Nurse   | close PatientSync using commands  | fully interact with PatientSync from start to end using only commands                                                                    |
 
 
 
