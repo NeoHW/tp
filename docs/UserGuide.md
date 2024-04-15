@@ -23,7 +23,7 @@ PatientSync is a **desktop app made for nurses to manage patient, optimized for 
 
 1. Download the latest `PatientSync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your PatientSync.
+1. Copy the file to the folder you want to use as the _home folder_ for PatientSync.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PatientSync.jar`
 command to run the application.<br>
@@ -221,8 +221,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `find Bernice` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-* `list` followed by `delete 1` deletes the 1st patient in the results of the `list` command.
+* `find Bernice` followed by `delete 1` deletes the 1st patient based on the results of the `find` command.
+* `list` followed by `delete 1` deletes the 1st patient based on the results of the `list` command.
 
 This screenshot shows the result of executing `list` followed by `delete 1`.
 
