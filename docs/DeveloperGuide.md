@@ -939,7 +939,7 @@ To address this, we plan to introduce the EditTagsCommand feature, providing use
 
 ### 4.3 Input Validation for Events
 
-Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation for the validity of the `DATE_OR_DATETIME_OF_EVENT`. It currently uses `LocalDate.parse()` and `LocalTime.parse()` along with the pattern format, but these methods are not strict by default. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time.
+Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation for the validity of the `DATE_OR_DATETIME_OF_EVENT`. It currently uses `LocalDate.parse()` and `LocalTime.parse()` along with the pattern format, but these methods are not strict by default. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time. 
 
 This can lead to potential errors if the user has accidentally mistyped the date and/or time when inputting the command, leading to confusion further down the line.
 
@@ -949,6 +949,8 @@ To address this, we plan to make our input validation for the `DATE_OR_DATETIME_
 2. Ensure that the Time, if provided, ranges from `00:00` to `23:59`, inclusive
 
 Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, PatientSync should then output a custom error message, i.e.,`Invalid DATE_OR_DATETIME_OF_EVENT!`
+
+Note that `24:00` is accepted as it refers to the midnight corresponding to the instant at the end of the calendar day. This also results in a specific error evaluating whether the end time of the Event is before or equal to the start time of the Event as `24:00` evaluates to `00:00` when using `LocalTime.parse()`. Thus, an example Event with `DATE_OR_DATETIME_OF_EVENT` of `30-02-2024, 24:00 - 12:00` is accepted as valid. This error will also be resolved if `24:00` is not accepted in PatientSync.
 
 
 ### 4.4 Addition of an Upper and Lower Bound for Event Date or Datetime
