@@ -168,8 +168,6 @@ The `Model` component,
 
 ### 2.5 Storage component
 
-<div style="page-break-after: always;"></div>
-
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="800" />
@@ -1153,8 +1151,6 @@ Specifically, we intend to perform the following validations:
 
 Upon identification of such invalid `PATIENT_HOSPITAL_ID` field values, PatientSync should then output a custom error message, i.e.,`Invalid PATIENT_HOSPITAL_ID!`
 
-<div style="page-break-after: always;"></div>
-
 ### 4.8 Displaying PatientHospitalId in UI 
 
 Presently, we do not display `PATIENT_HOSPITAL_ID` field in the PatientSync UI. This is because the team do not want to clutter the UI with too much information as the `PATIENT_HOSPITAL_ID` is mainly used to check for duplicate patients.
@@ -1217,6 +1213,7 @@ This allows the user to understand that the sort attribute that they input was i
 **Value proposition**:\
 PatientSync is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
@@ -1740,6 +1737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7 Appendix: Instructions for manual testing
 
