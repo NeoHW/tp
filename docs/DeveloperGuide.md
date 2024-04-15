@@ -630,7 +630,7 @@ The `EditEventCommand` class is responsible for editing a specific Event for a p
   `DATE_OR_DATETIME_OF_EVENT` parameter.
 * With `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025, 12:00 - 15:00`
 * Without `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025`
-* EditEventCommand will edit the selected `EVENT_INDEX` with a new event.
+* EditEventCommand will edit the selected `EVENT_INDEX` with a new event for the selected `PATIENT_INDEX`
 * Editing of an event can only happen for a single patient, and a single event at any given time.
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
   events.
@@ -711,6 +711,16 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
+**Aspect: Choice of Index**
+* **Alternative 1 (current choice)**: Use index shown in the PatientSync.
+  * Pros: More user-friendly, as user can refer to the index in PatientSync directly.
+  * Cons: The index of the patients in PatientSync might change due to some commands 
+  such as `find`, `findt`, `sort` and `list` commands.
+    <br></br>
+* **Alternative 2**: Use `PATIENT_HOSPITAL_ID` of a Patient.
+  * Pros: Able to uniquely identified each patient.
+  * Cons: User might not remember the `PATIENT_HOSPITAL_ID` as it is not shown on the GUI.
+
 ### 3.9 Listing all Patients
 
 #### Introduction
@@ -738,7 +748,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.10 Locating patients by name
+### 3.10 Finding patients by name
 
 #### Introduction
 
@@ -787,7 +797,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.11 Locating patients by tag
+### 3.11 Finding patients by tag
 
 #### Introduction
 
@@ -808,10 +818,10 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes `findt diabetes` to search for patients whose tag is depression.
+Step 2: The user executes `findt diabetes` to search for patients whose tag is diabetes.
 * Upon successful execution, those patients whose tag is `diabetes` will be listed in the patient list.
 
-The following UML sequence diagram illustrates how the FindTags operations works.
+The following UML sequence diagram illustrates how the Find Tags operations works.
 <puml src="diagrams/FindTagsSequenceDiagram.puml" alt="Find Tags Sequence Diagram" />
 
 <box type="info" seamless>
@@ -831,7 +841,7 @@ The following UML sequence diagram illustrates how the FindTags operations works
     <br><br>
 * **Alternative 2**: Use `findt t/KEYWORD [t/MORE_KEYWORD]…​`
   * Pros: Command structure is similar to `addt` and `deletet`.
-  * Cons: User need to key in multiple tag prefix if they want to search using more keywords.
+  * Cons: User need to key in multiple tag prefixes if they want to search with more keywords.
 
 --------------------------------------------------------------------------------------------------------------------
 
