@@ -164,7 +164,8 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
 <box type="info" seamless>
-    <b>Note:</b> <br />
+
+**Note:**
 1. Newly edited value(s) which are same as the original value is allowed, and does not change anything.<br />
 2. `INDEX` refers to row number of the patient list  while `PATIENT_HOSPITAL_ID` refers to the unique ID tagged to the patient.
 </box>

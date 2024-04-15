@@ -21,7 +21,7 @@ PatientSync addresses a crucial gap in the current hospital systems by providing
 In many hospitals, the existing systems typically offer basic administrative information such as patient names and contact details. However, they often lack the capacity to delve into the intimate details of patient care.
 
 This app can help with personalised and effective care by:
-* viewing and managing upcoming checkup and appointment dates for each patient.
+* Viewing and managing upcoming checkup and appointment dates for each patient.
 * Utilising tags to categorize patients into groups based on conditions, treatment plans, or other criteria.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -230,7 +230,7 @@ data types and no duplicates of fields.
 
 Step 4: The newly added Patient will be added to the end of list, shown in the UI. 
 
-The following UML sequence diagram illustrates how the `AddCommand` operation works.
+The following UML sequence diagram illustrates how the Add operation works.
 <puml src="diagrams/AddSequenceDiagram.puml" alt="Add Sequence Diagram" />
 
 <box type="info" seamless>
@@ -275,7 +275,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
   * Cons: User may find it confusing if same prefix not being entered repeatedly.
 * **Alternative 2**: Adds `,` to the specific field
   * Pros: Ensures that there are no duplicate prefixes in the input command.
-  * Cons: Display may be messy if inputs are long with more than 1 comma. 
+  * Cons: Display may be messy if inputs are long with more than one comma. 
     <br></br>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -557,7 +557,7 @@ data types and no duplicates of fields.
 
 Step 4: The Patient with specified index will be updated in the list, shown in the UI.
 
-The following UML sequence diagram illustrates how the `EditCommand` operation works.
+The following UML sequence diagram illustrates how the Edit operation works.
 <puml src="diagrams/EditSequenceDiagram.puml" alt="Edit Sequence Diagram" />
 
 <box type="info" seamless>
@@ -786,7 +786,7 @@ causing the UI to only show all patients.
 * The UML sequence diagram below shows the interaction between the Logic and Model components after calling `list`
 command.
 * For each Patient's Events, the Events will be displayed in ascending order by date, then start time if date is equal, 
-then end time if both date and start time is equal
+then end time if both date and start time is equal.
 
 <puml src="diagrams/ListSequenceDiagram.puml" alt="List Sequence Diagram" />
 
