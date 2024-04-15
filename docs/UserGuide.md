@@ -256,7 +256,7 @@ Format: `addt INDEX t/TAG+`
 
 <box type="info" seamless>
     <b>Note:</b> 
-1. The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
+The addition of tags is cumulative. New tags will be added to the existing set of tags for the patient, preserving the previously assigned tags.
 </box>
 
 
