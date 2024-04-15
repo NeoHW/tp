@@ -133,7 +133,7 @@ How the parsing works:
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="800" />
 
 
 The `Model` component,
@@ -147,7 +147,7 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<puml src="diagrams/BetterModelClassDiagram.puml" width="800" />
 
 </box>
 
@@ -156,7 +156,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="800" />
 
 The `Storage` component,
 * can save both PatientSync data and user preference data in JSON format, and read them back into corresponding objects.
