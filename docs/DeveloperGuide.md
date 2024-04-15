@@ -382,7 +382,7 @@ Below is an example scenario of how the tag deletion process works within the Pa
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `deletet 1 t/fall risk` command to delete the `fall risk` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
+Step 2: The user executes the `deletet 1 t/christian` command to delete the `christian` tag from patient 1 in the displayed patient list. The `DeleteTagsCommandParser` validates the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, an `DeleteTagsCommand` instance is created.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags to be deleted is passed, each of which will be removed if found associated with the patient.
