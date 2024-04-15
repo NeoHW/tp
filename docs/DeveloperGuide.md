@@ -625,12 +625,12 @@ The `EditEventCommand` class is responsible for editing a specific Event for a p
 
 #### Specifications
 
-* EditEventCommand takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` 
+* `EditEventCommand` takes in four parameters: `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` 
   and `DATE_OR_DATETIME_OF_EVENT`. All parameters are compulsory. You may **exclude** `TIME` in the
   `DATE_OR_DATETIME_OF_EVENT` parameter.
-* With `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025, 12:00 - 15:00`
-* Without `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025`
-* EditEventCommand will edit the selected `EVENT_INDEX` with a new event for the selected `PATIENT_INDEX`
+* With `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025, 12:00 - 15:00`.
+* Without `TIME`, an example of the `DATE_OR_DATETIME_OF_EVENT` is `20-12-2025`.
+* EditEventCommand will edit the selected `EVENT_INDEX` with a new event for the selected `PATIENT_INDEX`.
 * Editing of an event can only happen for a single patient, and a single event at any given time.
 * Editing an event to an existing event will not change the patient list as there should not have any duplicate
   events.
