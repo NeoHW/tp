@@ -266,7 +266,6 @@ This screenshot shows the result of executing `addt 2 t/depression t/diabetes`.
 ![result for 'add tags'](images/addTagsResult.png)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
