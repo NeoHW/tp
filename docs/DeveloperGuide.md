@@ -644,11 +644,11 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `adde 1 n/Birthday d/20-01-2022` command to add the Event, Birthday,
+Step 2: The user executes the `adde 1 n/Birthday d/20-12-2024` command to add the Event, Birthday,
 which falls on the 20th January.
 * Upon successful validation, it creates an `AddEventCommand` instance.
 
-Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-01-2023` to edit the Event.
+Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-12-2025` to edit the Event.
 * Upon successful validation,  an `EditEventCommand` instance is created.
 
 The following UML sequence diagram illustrates how the Edit Event operations works.
@@ -808,8 +808,8 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes `findt depression` to search for patients whose tag is depression.
-* Upon successful execution, those patients whose tag is `depression` will be listed in the patient list.
+Step 2: The user executes `findt diabetes` to search for patients whose tag is depression.
+* Upon successful execution, those patients whose tag is `diabetes` will be listed in the patient list.
 
 The following UML sequence diagram illustrates how the FindTags operations works.
 <puml src="diagrams/FindTagsSequenceDiagram.puml" alt="Find Tags Sequence Diagram" />
