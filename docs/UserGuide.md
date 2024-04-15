@@ -183,7 +183,7 @@ This screenshot shows the result of executing `edit 3 h/Watch drama h/Plays pian
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Locating patients by name: `find`
+### Finding patients by name: `find`
 
 Finds one or more patients whose name exactly match the given keyword(s).
 
@@ -301,7 +301,7 @@ This screenshot shows the result of executing `deletet 1 t/diabetes`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Locating patients by tag: `findt`
+### Finding patients by tag: `findt`
 
 Finds one or more patients whose tag exactly match the given keyword(s).
 
