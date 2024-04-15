@@ -899,8 +899,6 @@ The `SortCommand` class is responsible for sorting the patients by the specified
 * `SortCommand` will update the patient list with the sorted patient list and the display the sorted patient list.
 * If no attribute is specified, the default sorting method is by patient name.
 * SortCommand only can sort by patient's name or patient's preferred name.
-* Sort attribute `n` is used to sort patients by patients' name.
-* Sort attribute `p` is used to sort patients by patients' preferred name.
 * If multiple patients have the same name, the original order (with respect to the affected patients only) will be
 preserved for the affected patients.
 
