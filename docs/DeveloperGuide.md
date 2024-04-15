@@ -304,7 +304,7 @@ Given below is an example usage scenario and how the tag addition process behave
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user executes the `addt 1 t/christian t/fall risk` command to add the tags `christian` and `fall risk` to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
+Step 2: The user executes the `addt 1 t/christian` command to add the tag `christian` to patient 1 in the displayed patient list. The `AddTagsCommandParser` will be called to validate the input, ensuring that the index is valid and at least one tag is provided. Upon successful validation, it creates an `AddTagsCommand` instance.
 
 <box type="info" seamless>
 <b>Note</b>: Since multiple inputs are allowed, a set of tags are passed around, each of which is to be added if the above requirements are met.
@@ -341,8 +341,7 @@ The following sequence diagram shows how the Add Tags operation works:
     * Pros: Simplifies data handling, avoids tag duplication.
     * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
 
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+<br></br>
 
 **Aspect: Logic handling for pre-existing tags**
 
@@ -411,9 +410,6 @@ The following sequence diagram shows how the Delete Tags operation works:
     * Pros: Simplifies command execution, faster performance for small tag sets.
     * Cons: Requires multiple commands for each tag deletion, less flexible in bulk operations.
 
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
 **Aspect: Handling Missing Tags**
 
 * **Alternative 1 (current choice)**: Log output for non-existent tags to inform user, proceed with deleting the valid tags.
@@ -423,6 +419,8 @@ The following sequence diagram shows how the Delete Tags operation works:
 * **Alternative 2**: Return an error message for non-existent tags, ask users to correct the command.
     * Pros: Ensures user awareness of non-existent tags, avoids accidental deletions, prompts users to provide valid tag inputs.
     * Cons: Requires users to fix the command before proceeding, potential interruption to workflow, may increase user frustration if multiple tags are missing.
+
+<br></br>
 
 **Aspect: Feedback for Deletion Operation**
 
@@ -658,7 +656,6 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     * Cons: User need to input the whole event name which might be tedious if `EVENT_NAME` is very long.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### 3.7 Editing an Event for a Patient
 
