@@ -174,6 +174,8 @@ Examples:
 *  `edit 2 c/Children moved away t/`
 *  `edit 3 h/Watch drama h/Plays piano`
 
+<div style="page-break-after: always;"></div>
+
 This screenshot shows the result of executing `edit 3 h/Watch drama h/Plays piano`.
 
 ![result for 'edit patient'](images/editPatientResult.png)
