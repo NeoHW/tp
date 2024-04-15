@@ -56,12 +56,12 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the app's work is done by the following four components:
 
-* [**`UI`**](#22-ui-component): The UI of the App.
-* [**`Logic`**](#23-logic-component): The command executor.
-* [**`Model`**](#24-model-component): Holds the data of the App in memory.
-* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#2-2-ui-component): The UI of the App.
+* [**`Logic`**](#2-3-logic-component): The command executor.
+* [**`Model`**](#2-4-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#2-5-storage-component): Reads data from, and writes data to, the hard disk.
 
-[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#2-6-common-classes) represents a collection of classes used by multiple other components.
 
 **2.1.2. How the architecture components interact with each other**
 
@@ -133,7 +133,7 @@ How the parsing works:
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="800" />
 
 
 The `Model` component,
@@ -147,7 +147,7 @@ The `Model` component,
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+<puml src="diagrams/BetterModelClassDiagram.puml" width="800" />
 
 </box>
 
@@ -156,7 +156,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="800" />
 
 The `Storage` component,
 * can save both PatientSync data and user preference data in JSON format, and read them back into corresponding objects.
