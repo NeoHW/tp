@@ -461,9 +461,9 @@ This screenshot shows the result of executing `sort p`.
 
 Clears all patients from PatientSync.
 
-This screenshot shows the result of executing `clear`.
-
 Format: `clear`
+
+This screenshot shows the result of executing `clear`.
 
 ![result for 'clear'](images/clearResult.png)
 
