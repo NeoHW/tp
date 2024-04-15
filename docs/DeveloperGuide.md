@@ -36,7 +36,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 PatientSync is a brownfield Java Project based on the AB3 project template created by the SE-EDU initiative.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 
 ## 2 Design
 
@@ -63,6 +63,8 @@ The bulk of the app's work is done by the following four components:
 
 [**`Commons`**](#2-6-common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 **2.1.2. How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -80,6 +82,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -96,6 +100,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Patient` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Logic component
 
@@ -130,6 +136,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.4 Model component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -154,6 +162,8 @@ The `Model` component,
 
 ### 2.5 Storage component
 
+<div style="page-break-after: always;"></div>
+
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103-F09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="800" />
@@ -168,6 +178,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3 Implementation
 
@@ -193,6 +204,8 @@ The `AddCommand` class is responsible for adding new patient's information in Pa
 
 The activity diagram below outlines the steps involved when a user initiates a Add command.
 <puml src="diagrams/AddActivityDiagram.puml" alt="AddActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -260,6 +273,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     <br></br>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Adding Tags to a Patient
 
@@ -276,6 +290,7 @@ The `AddTagsCommand` class is responsible for adding one or more tags to a patie
 The activity diagram below outlines the steps involved when a user initiates an Add Tags command.
 <puml src="diagrams/AddTagsActivityDiagram.puml" alt="AddTagsActivityDiagram" />
 
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -331,6 +346,7 @@ The following sequence diagram shows how the Add Tags operation works:
     * Cons: In the case of the addition of multiple existing or duplicate tags, users have to find and remove the duplicated tags from the given command, which would be cumbersome especially when there are many tags listed in the command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Deleting Tags From a Patient
 
@@ -349,6 +365,8 @@ The `DeleteTagsCommand` class enables the removal of one or more tags from a pat
 
 The activity diagram below outlines the steps involved when a user initiates a Delete Tags command.
 <puml src="diagrams/DeleteTagsActivityDiagram.puml" alt="DeleteTagsActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -405,6 +423,7 @@ The following sequence diagram shows how the Delete Tags operation works:
     * Cons: Users might not have a clear understanding of individual deletions, less granular feedback.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Adding an Event to a Patient
 
@@ -422,6 +441,8 @@ The `AddEventCommand` class is responsible for adding an Event to a patient in P
 
 The activity diagram below outlines the steps involved when a user initiates a Add Event command.
 <puml src="diagrams/AddEventActivityDiagram.puml" alt="AddEventActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -481,6 +502,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Editing a Patient
 
@@ -502,6 +524,8 @@ The `EditCommand` class is responsible for editing current patient's information
 
 The activity diagram below outlines the steps involved when a user initiates a Edit command.
 <puml src="diagrams/EditActivityDiagram.puml" alt="EditActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -549,6 +573,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
   * Cons: More time consuming to input command line as it will be longer. 
   
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.6 Deleting an Event from a Patient
 
@@ -567,6 +592,8 @@ the `Index` class.
 The activity diagram below outlines the steps involved when a user initiates a Delete Event command.
 <puml src="diagrams/DeleteEventActivityDiagram.puml" alt="DeleteEventActivityDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -578,7 +605,7 @@ which falls on the 20th January.
 
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
-Step 3: The use executes `deletee 1 e/1` to delete the Event as the event is over.
+Step 3: The user executes `deletee 1 e/1` to delete the Event as the event is over.
 
 * Upon successful validation,  an `DeleteEventCommand` instance is created.
 
@@ -606,16 +633,17 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 **Aspect: Syntax to choose event to delete**
 
-* **Alternative 1 (current choice)**: Delete event by `[EVENT_INDEX]`. Syntax: prefix `e/` followed by `[EVENT_INDEX]` 
+* **Alternative 1 (current choice)**: Delete event by `EVENT_INDEX`. Syntax: prefix `e/` followed by `EVENT_INDEX` 
     * Pros: User do not need to type whole event name, also similar to delete patient where patient index is used to
   identify patient of interest.
-    * Cons: User need to know the `[EVENT_INDEX]` of the patient.
+    * Cons: User need to know the `EVENT_INDEX` of the patient.
       <br></br>
-* **Alternative 2**: Delete event by `[EVENT_NAME]`. Syntax: prefix `e/` followed by `[EVENT_NAME]`
+* **Alternative 2**: Delete event by `EVENT_NAME`. Syntax: prefix `e/` followed by `EVENT_NAME`
     * Pros: User can delete event quickly if name is short.
-    * Cons: User need to input the whole event name which might be tedious if `[EVENT_NAME]` is very long.
+    * Cons: User need to input the whole event name which might be tedious if `EVENT_NAME` is very long.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.7 Editing an Event for a Patient
 
@@ -638,6 +666,8 @@ The `EditEventCommand` class is responsible for editing a specific Event for a p
 The activity diagram below outlines the steps involved when a user initiates an Edit Event command.
 <puml src="diagrams/EditEventActivityDiagram.puml" alt="EditEventActivityDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -645,7 +675,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/Birthday d/20-12-2024` command to add the Event, Birthday,
-which falls on the 20th January.
+which falls on the 20th December.
 * Upon successful validation, it creates an `AddEventCommand` instance.
 
 Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-12-2025` to edit the Event.
@@ -675,6 +705,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
     * Cons: Inconsistent with `adde` and `deletee` commands.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.8 Deleting a Patient
 
@@ -688,6 +719,8 @@ The `DeleteCommand` is responsible for deleting a patient in PatientSync.
 
 The activity diagram below outlines the steps involved when a user initiates a Delete command.
 <puml src="diagrams/DeleteActivityDiagram.puml" alt="Delete Activity Diagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -715,11 +748,14 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 * **Alternative 1 (current choice)**: Use index shown in the PatientSync.
   * Pros: More user-friendly, as user can refer to the index in PatientSync directly.
   * Cons: The index of the patients in PatientSync might change due to some commands 
-  such as `find`, `findt`, `sort` and `list` commands.
+  such as `find`, `findt`, `sort` and `list`.
     <br></br>
 * **Alternative 2**: Use `PATIENT_HOSPITAL_ID` of a Patient.
-  * Pros: Able to uniquely identified each patient.
+  * Pros: Able to uniquely identify each patient.
   * Cons: User might not remember the `PATIENT_HOSPITAL_ID` as it is not shown on the GUI.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.9 Listing all Patients
 
@@ -747,6 +783,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.10 Finding patients by name
 
@@ -782,6 +819,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
 
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -796,6 +834,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
   * Cons: Hard for user to remember the specific `PATIENT_HOSPITAL_ID`.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.11 Finding patients by tag
 
@@ -831,6 +870,8 @@ The following UML sequence diagram illustrates how the Find Tags operations work
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 **Aspect: Choice of Command Structure**
@@ -844,6 +885,7 @@ The following UML sequence diagram illustrates how the Find Tags operations work
   * Cons: User need to key in multiple tag prefixes if they want to search with more keywords.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.12 Sorting patients by specified attributes
 
@@ -862,6 +904,8 @@ preserved for the affected patients.
 
 The activity diagram below outlines the steps involved when a user initiates a Delete Event command.
 <puml src="diagrams/SortActivityDiagram.puml" alt="SortActivityDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Example Usage Scenario
 
@@ -927,10 +971,13 @@ sorted order.
   * Cons: Slow and inefficient.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4 Planned Enhancements
 
 Team size: 5
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.1 Input Validation and Error Handling for Tags
 
@@ -940,12 +987,14 @@ To mitigate this, we are planning enhancements to include robust input validatio
 
 Additionally, an interactive command assistance feature will be introduced, offering real-time suggestions. These enhancements aim to improve the user experience, enhance system reliability, and bolster command comprehension within the PatientSync application.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.2 Edit tags feature
 Currently, the process of modifying patient tags in the PatientSync application can be cumbersome, requiring users to delete and re-add tags individually. This can lead to potential errors, especially when handling a large number of tags or making multiple changes. 
 
 To address this, we plan to introduce the EditTagsCommand feature, providing users with a more flexible and efficient way to manage patient tags. The planned EditTagsCommand feature is designed to enhance user productivity, reduce the likelihood of errors, and improve overall usability within PatientSync.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.3 Input Validation for Events
 
@@ -962,6 +1011,8 @@ Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, Pa
 
 Note that `24:00` is accepted as it refers to the midnight corresponding to the instant at the end of the calendar day. This also results in a specific error evaluating whether the end time of the Event is before or equal to the start time of the Event as `24:00` evaluates to `00:00` when using `LocalTime.parse()`. Thus, an example Event with `DATE_OR_DATETIME_OF_EVENT` of `30-02-2024, 24:00 - 12:00` is accepted as valid. This error will also be resolved if `24:00` is not accepted in PatientSync.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Addition of an Upper and Lower Bound for Event Date or Datetime
 
@@ -969,6 +1020,7 @@ Presently, we do not restrict the user from adding events at any date. As such, 
 
 To address this, we plan to introduce an Upper and Lower Bound for the Event Date, of approximately +- 100 years from the present year. Upon identification of `DATE_OR_DATETIME_OF_EVENT` with years outside of this range, PatientSync should then warn the user with a message to the effect of `Warning: This Event occurs more than a 100 years in the future / past`
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.5 Case Sensitivity Duplicate Checks for Events
 
@@ -976,6 +1028,7 @@ Presently, duplicate checks for Events are done via checking the Event Name (`NA
 
 To address this, we plan to make the Duplicate Check for Events case sensitive, such that we detect these scenarios. PatientSync would then also return a Success Result, albeit with the special Duplicate Message, to the user.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.6 Input Validation for Patient's Name
 
@@ -995,6 +1048,7 @@ Specifically, we intend to perform the following validations with special charac
 
 Upon identification of such invalid `NAME` field values, PatientSync should then output a custom error message, i.e.,`Invalid NAME format!`
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.7 Implementation on PatientHospitalId
 
@@ -1013,6 +1067,8 @@ Specifically, we intend to perform the following validations:
 
 Upon identification of such invalid `PATIENT_HOSPITAL_ID` field values, PatientSync should then output a custom error message, i.e.,`Invalid PATIENT_HOSPITAL_ID!`
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 4.8 Displaying PatientHospitalId in UI 
 
@@ -1022,6 +1078,7 @@ However, user might find it confusing as `PATIENT_HOSPITAL_ID` is required upon 
 To address this, we intend to introduce a new field in the PatientSync UI display, named `Patient Hospital ID`, to allow user to view patient's hospital ID.
 Hence, this would be easier for user to check if there is any duplicated patient added/ edited to the PatientSync list. 
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.9 Standardise Error Message for Index Out of Bounds Errors
 
@@ -1034,6 +1091,7 @@ This may cause confusion, especially in the first scenario, as the user may mist
 
 To address this, we plan to adjust the validation checks currently in PatientSync, to ensure that the error message thrown is standardised for all Index Out of Bounds related errors. Specifically, we intent to standardise the error message to be that of `... index provided is invalid`, so that the user is better able to quickly identify and resolve the issue upon such an error occurring. 
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### 4.10 Implement a specific error message for invalid attributes in sort command
 
@@ -1046,6 +1104,7 @@ To address this, we plan to implement a specific error message for invalid attri
 This allows the user to understand that the sort attribute that they input was invalid and not the command format, preventing any confusion.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5 Documentation, logging, testing, configuration, dev-ops
 
@@ -1073,6 +1132,7 @@ This allows the user to understand that the sort attribute that they input was i
 **Value proposition**:\
 PatientSync is meticulously crafted for nurses who prioritize the well-being of their patients above all else. It allows nurses to input intimate details about their patients, such as food preferences and family conditions. This personalized approach enables nurses to deliver tailored care that meets the unique needs of each individual.
 
+<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
@@ -1097,10 +1157,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
+<div style="page-break-after: always;"></div>
 
 ### 6.3 Use cases
 
 (For all use cases below, the **System** is `PatientSync` and the **Actor** is the `Nurse`, unless specified otherwise)
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC01 - Add a patient**
 
@@ -1130,6 +1193,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1c1. PatientSync shows an error message.
 
     Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC02 - Delete a patient**
 
@@ -1165,6 +1230,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3c1. PatientSync shows an error message.
 
     Use case resumes at step 2.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC03 - Edit a patient's information**
 
@@ -1206,6 +1274,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3d1. PatientSync shows an error message.
 
     Use case resumes at step 2.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC04 - List all patients**
 
@@ -1257,6 +1328,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 **Use case: UC06 - Delete an event for a patient**
 
 **MSS**
@@ -1297,6 +1371,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3d1. PatientSync shows an error message.
 
     Use case resumes at step 2.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC07 - Edit an event for a patient**
 
@@ -1351,6 +1428,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 - Add tag(s) to a patient**
 
 **MSS**
@@ -1385,6 +1465,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3c1. PatientSync shows an error message.
 
     Use case resumes at step 2.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC09 - Delete tag(s) from a patient**
 
@@ -1433,6 +1516,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case resumes at step 2.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 **Use case: UC10 - Find patients by tag(s)**
 
 **MSS**
@@ -1456,6 +1542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+--------------------------------------------------------------------------------------------------------------------
+
 **Use case: UC11 - Find patients by name**
 
 **MSS**
@@ -1478,6 +1566,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. PatientSync shows an error message.
 
     Use case resumes at step 2.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Sort all existing patients**
 
@@ -1503,6 +1594,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
 **Use case: UC13 - Request for help**
 
 **MSS**
@@ -1513,6 +1606,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
 **Use case: UC14 - Clearing all patients**
 
 **MSS**
@@ -1521,6 +1616,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. PatientSync deletes all patients from the list and displays success message.
 
    Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC15 - Closing PatientSync**
 
@@ -1531,6 +1628,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Non-Functional Requirements
 
@@ -1561,6 +1660,8 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 7.1 Launch and window preferences
 
 1. Initial launch
@@ -1577,6 +1678,11 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 7.2 Adding a patient
 
 1. Add a patient while all patients are being shown
@@ -1588,6 +1694,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect add commands to try: `add`, `add id/ 54321 h/ Singing karaoke`<br>
       Expected: Error message displayed.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7.3 Deleting a patient
 
@@ -1601,12 +1709,16 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: Error message displayed.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 7.4 Listing all patients
 
 1. Listing all patients
 
    1. Test case: `list`<br>
       Expected: All existing patients are shown in the list.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7.5 Editing a patient
 
@@ -1620,6 +1732,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect edit commands to try: `edit`, `edit 1 n/`<br>
       Expected: Error message displayed.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 7.6 Finding a patient by name
 
 1. Finding a patient by name
@@ -1631,6 +1745,8 @@ testers are expected to do more *exploratory* testing.
    
    1. Other incorrect find commands to try: `find`<br>
       Expected: Error message displayed.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7.7 Adding tags to a patient
 
@@ -1644,6 +1760,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add tag commands to try: `addt 0`, `addt 1 t/`<br>
       Expected: Error message displayed.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 7.8 Deleting tags from a patient
 
 1. Deleting tags from a patient
@@ -1656,17 +1775,21 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete tag commands to try: `deletet 0`, `deletet 1 t/`<br>
       Expected: Error message displayed.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 7.9 Finding patients by tag
 
 1. Finding patients by tag
 
    1. Prerequisites: List all patients using the `list` command. Patient List should not be empty. Chosen Tag should exist in at least one patient.
 
-   1. Test case: `findt depression`<br>
-      Expected: All patients with the tag depression are shown in the list.
+   1. Test case: `findt diabetes`<br>
+      Expected: All patients with the tag diabetes are shown in the list.
    
     1. Other incorrect find tag command to try: `findt`<br>
       Expected: Error message displayed.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7.10 Adding an event to a patient
 
@@ -1680,6 +1803,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add event commands to try: `adde 0`, `adde 1 n/Discharge d/20-02-2024, 11:00`<br>
       Expected: Error message displayed.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 7.11 Deleting an event from a patient
 
 1. Deleting an event from a patient
@@ -1692,6 +1817,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete event commands to try: `deletee 0`, `deletee 1 e/`<br>
       Expected: Error message displayed.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 7.12 Editing an event for a patient
 
 1. Editing an event for a patient
@@ -1703,6 +1831,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect edit event commands to try: `edite 0`, `edite 1 e/`<br>
       Expected: Error message displayed.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 7.13 Sorting the patient list
 
