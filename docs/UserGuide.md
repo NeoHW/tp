@@ -284,7 +284,7 @@ Format: `deletet INDEX t/TAG+`
 * Tags cannot be empty or blank.
 * Tags must be less than 50 characters long.
 * Tags are **case-insensitive** when matching tags.
-* The index **must be a positive integer** 1, 2, 3, …​.
+* The index **must be a positive integer** 1, 2, 3, …​
 * Tags provided should match with the existing tags of the patient.
 * When deleting tags, if tags are repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
 * If the patient does not have a tag provided in the command, it will be logged and shown to the user.
