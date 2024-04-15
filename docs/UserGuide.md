@@ -183,7 +183,7 @@ This screenshot shows the result of executing `edit 3 h/Watch drama h/Plays pian
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Locating patients by name: `find`
+### Finding patients by name: `find`
 
 Finds one or more patients whose name exactly match the given keyword(s).
 
@@ -301,7 +301,7 @@ This screenshot shows the result of executing `deletet 1 t/diabetes`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Locating patients by tag: `findt`
+### Finding patients by tag: `findt`
 
 Finds one or more patients whose tag exactly match the given keyword(s).
 
@@ -392,13 +392,13 @@ Edits an event for a patient in PatientSync.
 Format: `edite PATIENT_INDEX e/EVENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
 * Edits an Event for a Patient using `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and
-  `DATE_OR_DATETIME_OF_EVENT`
+  `DATE_OR_DATETIME_OF_EVENT`.
 * `PATIENT_INDEX`, `EVENT_INDEX`, `NAME_OF_EVENT` and `DATE_OR_DATETIME_OF_EVENT` 
   are compulsory parameters.
-* Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT`
-* The format of `DATE_OF_EVENT` must be: `DD-MM-YYYY`
+* Note that, it is okay to exclude `TIME` for `DATE_OR_DATETIME_OF_EVENT`.
+* The format of `DATE_OF_EVENT` must be: `DD-MM-YYYY`.
 * The format of `DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`; Note that the `End Time` **Must be After or
-  Equals** to the `Start Time`
+  Equals** to the `Start Time`.
 * The Date / Datetime of the Event can occur in the past as well; However, a warning message will be shown.
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
