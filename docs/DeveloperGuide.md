@@ -10,6 +10,7 @@
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Introduction
 
@@ -120,6 +121,9 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 **Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
@@ -159,6 +163,8 @@ The `Model` component,
 
 </box>
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Storage component
 
@@ -172,6 +178,8 @@ The `Storage` component,
 * can save both PatientSync data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### 2.6 Common classes
 
@@ -335,6 +343,9 @@ The following sequence diagram shows how the Add Tags operation works:
     * Pros: Simplifies data handling, avoids tag duplication.
     * Cons: Risk of losing previously assigned tags, less flexibility in tag management.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 **Aspect: Logic handling for pre-existing tags**
 
 * **Alternative 1 (current choice)**: Do not add tags already present for the patient.
@@ -402,12 +413,15 @@ The following sequence diagram shows how the Delete Tags operation works:
     * Pros: Simplifies command execution, faster performance for small tag sets.
     * Cons: Requires multiple commands for each tag deletion, less flexible in bulk operations.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 **Aspect: Handling Missing Tags**
 
 * **Alternative 1 (current choice)**: Log output for non-existent tags to inform user, proceed with deleting the valid tags.
     * Pros: Simplifies user interaction, allows bulk deletion without worrying about non-existent tags, users are informed about the tags that are not present, Users do not need to correct the command.
     * Cons: Adds complexity to the command execution, requiring additional logic to differentiate between existing and non-existing tags.
-
+      <br></br>
 * **Alternative 2**: Return an error message for non-existent tags, ask users to correct the command.
     * Pros: Ensures user awareness of non-existent tags, avoids accidental deletions, prompts users to provide valid tag inputs.
     * Cons: Requires users to fix the command before proceeding, potential interruption to workflow, may increase user frustration if multiple tags are missing.
@@ -489,6 +503,9 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 * **Alternative 2**: Overwrite existing events with new ones.
     * Pros: Simplifies data handling, avoids events duplication.
     * Cons: Risk of losing previously assigned events, less flexibility in event management.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Aspect: Error Handling for Duplicate Events**
 
@@ -800,6 +817,9 @@ using keyword(s).
 The activity diagram below outlines the steps involved when a user initiates a Find command.
 <puml src="diagrams/FindActivityDiagram.puml" alt="Find Activity Diagram" />
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -818,8 +838,6 @@ The following UML sequence diagram illustrates how the Find operations works.
 due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
-
-<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -851,6 +869,9 @@ using keyword(s).
 The activity diagram below outlines the steps involved when a user initiates a Find Tags command.
 <puml src="diagrams/FindTagsActivityDiagram.puml" alt="Find Tags Activity Diagram" />
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 #### Example Usage Scenario
 
 Given below is an example usage scenario and how the group creation mechanism behaves at each step.
@@ -869,8 +890,6 @@ The following UML sequence diagram illustrates how the Find Tags operations work
 (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
-
-<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -938,6 +957,9 @@ The following UML sequence diagram illustrates how the Sort operations works.
   * Pros: Command structure is similar to other commands that uses prefix.
   * Cons: Command structure is weird and counter-intuitive.
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 **Aspect: ATTRIBUTE specification**
 
 * **Alternative 1 (current choice)**: Can be empty.
@@ -977,7 +999,7 @@ sorted order.
 
 #### Introduction
 
-The `ClearCommand` class is responsible for clearing all data in PatientSync
+The `ClearCommand` class is responsible for clearing all data in PatientSync.
 
 #### Specifications
 
@@ -999,7 +1021,7 @@ Step 2: The user executes `clear` to clear all data in PatientSync.
 
 #### Introduction
 
-The `ExitCommand` class is responsible for exiting and closing PatientSync
+The `ExitCommand` class is responsible for exiting and closing PatientSync.
 
 #### Specifications
 
@@ -1131,7 +1153,6 @@ Specifically, we intend to perform the following validations:
 
 Upon identification of such invalid `PATIENT_HOSPITAL_ID` field values, PatientSync should then output a custom error message, i.e.,`Invalid PATIENT_HOSPITAL_ID!`
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ### 4.8 Displaying PatientHospitalId in UI 
@@ -1261,6 +1282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 **Use case: UC02 - Delete a patient**
 
@@ -1358,6 +1380,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The list is empty.
 
   Use case ends.
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC05 - Add event for a patient**
 
@@ -1708,6 +1732,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. User Documentation: Should offer comprehensive, well-organized user documentation that guides users on how to effectively use PatientSync.
 8. Developer Documentation: Should provide detailed developer documentation for those looking to enhance, customize, or develop extensions.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
@@ -1744,10 +1770,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ### 7.2 Adding a patient
 
@@ -1762,6 +1785,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message displayed.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 7.3 Deleting a patient
 
