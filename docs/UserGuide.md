@@ -157,7 +157,7 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
     *  `INDEX`: Positive integer, indicating the index of patient in the PatientSync list.
     *  `patientHospitalId`: String of non-negative numeric characters which uniquely identifies patient,
     * `name`, `preferredName`: String which contains alphanumeric characters and spaces,
-    *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters
+    *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters,
     *  `tag`: String which are alphanumeric.
 * Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION`, `h/HOBBY` and `t/TAG`.
 * When editing `foodPreference`, `familyCondition`, `hobby`, `tag`, the pre-existing inputs of the patient will be removed i.e adding of tags is not cumulative.
