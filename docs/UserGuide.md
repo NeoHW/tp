@@ -157,14 +157,15 @@ Format: `edit INDEX [id/PATIENT_HOSPITAL_ID] [n/NAME] [p/PREFERRED_NAME] [f/FOOD
     *  `INDEX`: Positive integer, indicating the index of patient in the PatientSync list.
     *  `patientHospitalId`: String of non-negative numeric characters which uniquely identifies patient,
     * `name`, `preferredName`: String which contains alphanumeric characters and spaces,
-    *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters
+    *  `foodPreference`, `familyCondition`, `hobby`: String and all kinds of characters,
     *  `tag`: String which are alphanumeric.
 * Editing a patient can have repeated fields for `f/FOOD_PREFERENCE`, `c/FAMILY_CONDITION`, `h/HOBBY` and `t/TAG`.
 * When editing `foodPreference`, `familyCondition`, `hobby`, `tag`, the pre-existing inputs of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
 <box type="info" seamless>
-    <b>Note:</b> <br />
+
+**Note:**
 1. Newly edited value(s) which are same as the original value is allowed, and does not change anything.<br />
 2. `INDEX` refers to row number of the patient list  while `PATIENT_HOSPITAL_ID` refers to the unique ID tagged to the patient.
 </box>
@@ -191,13 +192,13 @@ Finds one or more patients whose name exactly match the given keyword(s).
 
 Format: `find KEYWORD [MORE_KEYWORD]…​`
 
-* The search is case-insensitive e.g. `alex` will match `Alex`
-* The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`
+* The search is case-insensitive e.g. `alex` will match `Alex`.
+* The order of the patient name does not matter. e.g. `Becker Alex` will match `Alex Becker`.
 * Only the Patient Name is searched.
 * Only full word(s) will be matched.
-e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`
+e.g. `Alex` will not match `Alexandra`, `Alex` will match `Alex Becker`.
 * Patients matching at least one keyword will be returned. 
-e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`
+e.g. `Alex Becker` will return `Alex Keller` and `Becker Anderson`.
 
 Examples:
 * `find Alex`
@@ -280,9 +281,9 @@ Format: `deletet INDEX t/TAG+`
 * Deletes one or more tags from a patient identified by the index number used in the last patient listing.
 * At least one tag must be provided.
 * Tags can only contain alphanumeric characters or spaces.
-* Tags cannot be empty or blank
+* Tags cannot be empty or blank.
 * Tags must be less than 50 characters long.
-* Tags are **case-insensitive** when matching tags
+* Tags are **case-insensitive** when matching tags.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Tags provided should match with the existing tags of the patient.
 * When deleting tags, if tags are repeated in the command, it will be treated as a single tag to delete. E.g. `t/friend t/friend` will be considered as a single `friend` tag for deletion.
@@ -308,13 +309,13 @@ Finds one or more patients whose tag exactly match the given keyword(s).
 
 Format: `findt KEYWORD [MORE_KEYWORD]…​`
 
-* The search is case-insensitive e.g. `depression` will match `Depression`
-* The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`
+* The search is case-insensitive e.g. `depression` will match `Depression`.
+* The order of the patient tag does not matter. e.g. `depression diabetes` will match `diabetes depression`.
 * Only the tag is searched.
 * Only full word(s) will be matched.
-  e.g. `depress` will not match `depression`, `depress` will match `depress diabetes`
+  e.g. `depress` will not match `depression`, `depress` will match `depress diabetes`.
 * Patients matching at least one keyword will be returned.
-  e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`
+  e.g. `depression diabetes` will return `depression wheelchair` and `diabetes tumour`.
 
 Examples:
 * `findt diabetes`
@@ -336,14 +337,14 @@ Adds an event to a patient in PatientSync.
 Format: `adde PATIENT_INDEX n/NAME_OF_EVENT d/DATE_OR_DATETIME_OF_EVENT`
 
 * Adds an Event with a Name, as well as the Date and optionally, the Time Period for which the Event is happening on that date to a patient identified by the index number used in the last patient listing.
-* `PATIENT_INDEX` **must be a positive, non-zero integer**, i.e., `1, 2, 3`
-* Neither `NAME_OF_EVENT` or `DATE_OR_DATETIME_OF_EVENT` can be empty (after trimming whitespaces)
-* `NAME_OF_EVENT` must be alphanumerical
-* The format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY`
-* If there is a Time Period, the format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`, where the End Time must be **after or equal** to the Start Time
-* The `DATE_OR_DATETIME_OF_EVENT` can occur in the past as well; However, a warning message will be shown
+* `PATIENT_INDEX` **must be a positive, non-zero integer**, i.e., `1, 2, 3`.
+* Neither `NAME_OF_EVENT` or `DATE_OR_DATETIME_OF_EVENT` can be empty (after trimming whitespaces).
+* `NAME_OF_EVENT` must be alphanumerical.
+* The format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY`.
+* If there is a Time Period, the format of `DATE_OR_DATETIME_OF_EVENT` must be: `DD-MM-YYYY, HH:mm - HH:mm`, where the End Time must be **after or equal** to the Start Time.
+* The `DATE_OR_DATETIME_OF_EVENT` can occur in the past as well; However, a warning message will be shown.
 * The `DATE_OR_DATETIME_OF_EVENT` can overlap with that of another Event of the same Patient.
-* The `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device
+* The `DATE_OR_DATETIME_OF_EVENT` is based on the Local Date / Local DateTime of the User's Device.
 * If multiple prefix and arguments are provided, the last is taken as the 'truth', i.e., if the command provided is `adde 1 n/first event n/another event d/20-01-2023 d/23-12-2024`, the Event added will be the same as if `adde 1 n/another event d/23-12-2024` was the command.
 
 Examples:
@@ -370,8 +371,8 @@ Format `deletee PATIENT_INDEX e/EVENT_INDEX`
 * `EVENT_INDEX` is the index of the event that is saved under a Patient's data.
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be a positive integer** 1, 2, 3, ...
 * Both `PATIENT_INDEX` and `EVENT_INDEX` **must be of a valid index** (i.e. within the range of total number of
-Patients/Events)
-* Both `PATIENT_INDEX` and `EVENT_INDEX` are compulsory fields (Neither can be **EMPTY**)
+Patients/Events).
+* Both `PATIENT_INDEX` and `EVENT_INDEX` are compulsory fields (Neither can be **EMPTY**).
 
 Examples:
 * `deletee 1 e/1`
@@ -461,9 +462,9 @@ This screenshot shows the result of executing `sort p`.
 
 Clears all patients from PatientSync.
 
-This screenshot shows the result of executing `clear`.
-
 Format: `clear`
+
+This screenshot shows the result of executing `clear`.
 
 ![result for 'clear'](images/clearResult.png)
 
