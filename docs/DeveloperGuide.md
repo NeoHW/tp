@@ -578,7 +578,7 @@ which falls on the 20th January.
 
 * Upon successful validation, it creates an `AddEventsCommand` instance.
 
-Step 3: The use executes `deletee 1 e/1` to delete the Event as the event is over.
+Step 3: The user executes `deletee 1 e/1` to delete the Event as the event is over.
 
 * Upon successful validation,  an `DeleteEventCommand` instance is created.
 
@@ -606,14 +606,14 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 **Aspect: Syntax to choose event to delete**
 
-* **Alternative 1 (current choice)**: Delete event by `[EVENT_INDEX]`. Syntax: prefix `e/` followed by `[EVENT_INDEX]` 
+* **Alternative 1 (current choice)**: Delete event by `EVENT_INDEX`. Syntax: prefix `e/` followed by `EVENT_INDEX` 
     * Pros: User do not need to type whole event name, also similar to delete patient where patient index is used to
   identify patient of interest.
-    * Cons: User need to know the `[EVENT_INDEX]` of the patient.
+    * Cons: User need to know the `EVENT_INDEX` of the patient.
       <br></br>
-* **Alternative 2**: Delete event by `[EVENT_NAME]`. Syntax: prefix `e/` followed by `[EVENT_NAME]`
+* **Alternative 2**: Delete event by `EVENT_NAME`. Syntax: prefix `e/` followed by `EVENT_NAME`
     * Pros: User can delete event quickly if name is short.
-    * Cons: User need to input the whole event name which might be tedious if `[EVENT_NAME]` is very long.
+    * Cons: User need to input the whole event name which might be tedious if `EVENT_NAME` is very long.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -645,7 +645,7 @@ Given below is an example usage scenario and how the group creation mechanism be
 Step 1: The user accesses the PatientSync application.
 
 Step 2: The user executes the `adde 1 n/Birthday d/20-12-2024` command to add the Event, Birthday,
-which falls on the 20th January.
+which falls on the 20th December.
 * Upon successful validation, it creates an `AddEventCommand` instance.
 
 Step 3: The user executes `edite 1 e/1 n/New Birthday d/20-12-2025` to edit the Event.
@@ -715,10 +715,10 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 * **Alternative 1 (current choice)**: Use index shown in the PatientSync.
   * Pros: More user-friendly, as user can refer to the index in PatientSync directly.
   * Cons: The index of the patients in PatientSync might change due to some commands 
-  such as `find`, `findt`, `sort` and `list` commands.
+  such as `find`, `findt`, `sort` and `list`.
     <br></br>
 * **Alternative 2**: Use `PATIENT_HOSPITAL_ID` of a Patient.
-  * Pros: Able to uniquely identified each patient.
+  * Pros: Able to uniquely identify each patient.
   * Cons: User might not remember the `PATIENT_HOSPITAL_ID` as it is not shown on the GUI.
 
 ### 3.9 Listing all Patients
@@ -857,6 +857,8 @@ The `SortCommand` class is responsible for sorting the patients by the specified
 * `SortCommand` will update the patient list with the sorted patient list and the display the sorted patient list.
 * If no attribute is specified, the default sorting method is by patient name.
 * SortCommand only can sort by patient's name or patient's preferred name.
+* Sort attribute `n` is used to sort patients by patients' name.
+* Sort attribute `p` is used to sort patients by patients' preferred name.
 * If multiple patients have the same name, the original order (with respect to the affected patients only) will be
 preserved for the affected patients.
 
