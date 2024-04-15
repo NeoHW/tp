@@ -138,7 +138,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
+* stores the PatientSync data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
 * stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -159,13 +159,13 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+* can save both PatientSync data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### 2.6 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Introduction
 
-The `AddCommand` class is responsible for adding new patient's information in the address book.
+The `AddCommand` class is responsible for adding new patient's information in PatientSync.
 
 #### Specifications
 
@@ -265,7 +265,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Introduction
 
-The `AddTagsCommand` class is responsible for adding one or more tags to a patient in the address book.
+The `AddTagsCommand` class is responsible for adding one or more tags to a patient in PatientSync.
 
 #### Specifications
 
@@ -336,7 +336,7 @@ The following sequence diagram shows how the Add Tags operation works:
 
 #### Introduction
 
-The `DeleteTagsCommand` class enables the removal of one or more tags from a patient in the address book.
+The `DeleteTagsCommand` class enables the removal of one or more tags from a patient in PatientSync.
 
 #### Specifications
 
@@ -410,7 +410,7 @@ The following sequence diagram shows how the Delete Tags operation works:
 
 #### Introduction
 
-The `AddEventCommand` class is responsible for adding an Event to a patient in the address book.
+The `AddEventCommand` class is responsible for adding an Event to a patient in PatientSync.
 
 #### Specifications
 
@@ -486,7 +486,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Introduction
 
-The `EditCommand` class is responsible for editing current patient's information in the address book.
+The `EditCommand` class is responsible for editing current patient's information in PatientSync.
 
 #### Specifications
 
@@ -554,7 +554,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Introduction
 
-The `DeleteEventCommand` class is responsible for deleting an Event from a patient in the address book.
+The `DeleteEventCommand` class is responsible for deleting an Event from a patient in PatientSync.
 
 #### Specifications
 
@@ -621,7 +621,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Introduction
 
-The `EditEventCommand` class is responsible for editing a specific Event for a patient in the address book.
+The `EditEventCommand` class is responsible for editing a specific Event for a patient in PatientSync.
 
 #### Specifications
 
@@ -680,11 +680,11 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Introduction
 
-The `DeleteCommand` is responsible for deleting a patient in the address book.
+The `DeleteCommand` is responsible for deleting a patient in PatientSync.
 
 #### Specifications
 
-* Delete command is used when the user wants to remove a patient from the address book.
+* Delete command is used when the user wants to remove a patient from PatientSync.
 
 The activity diagram below outlines the steps involved when a user initiates a Delete command.
 <puml src="diagrams/DeleteActivityDiagram.puml" alt="Delete Activity Diagram" />
@@ -695,11 +695,11 @@ Given below is an example usage scenario and how the group creation mechanism be
 
 Step 1: The user accesses the PatientSync application.
 
-Step 2: The user see all the patients in the address book.
+Step 2: The user see all the patients in PatientSync.
 
-Step 3: The user decide to remove the first patient in the address book.
+Step 3: The user decide to remove the first patient in PatientSync.
 
-Step 4: The user executes the `delete 1` command to remove the first patient in the address book.
+Step 4: The user executes the `delete 1` command to remove the first patient in PatientSync.
 
 The following UML sequence diagram illustrates how the Delete operations works.
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Delete Sequence Diagram" />
@@ -715,7 +715,7 @@ due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Introduction
 
-The `ListCommand` is responsible for listing all patients in the address book.
+The `ListCommand` is responsible for listing all patients in PatientSync.
 
 ####  Specifications
 
@@ -934,12 +934,12 @@ Additionally, an interactive command assistance feature will be introduced, offe
 ### 4.2 Edit tags feature
 Currently, the process of modifying patient tags in the PatientSync application can be cumbersome, requiring users to delete and re-add tags individually. This can lead to potential errors, especially when handling a large number of tags or making multiple changes. 
 
-To address this, we are planning to introduce the EditTagsCommand feature, providing users with a more flexible and efficient way to manage patient tags. The planned EditTagsCommand feature is designed to enhance user productivity, reduce the likelihood of errors, and improve overall usability within PatientSync.
+To address this, we plan to introduce the EditTagsCommand feature, providing users with a more flexible and efficient way to manage patient tags. The planned EditTagsCommand feature is designed to enhance user productivity, reduce the likelihood of errors, and improve overall usability within PatientSync.
 
 
 ### 4.3 Input Validation for Events
 
-Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation for the validity of the `DATE_OR_DATETIME_OF_EVENT`. It currently uses `LocalDate.parse()` and `LocalTime.parse()` along with the pattern format, but these methods are not strict by default. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time.
+Presently, the Date and Datetime for Events, referred to as `DATE_OR_DATETIME_OF_EVENT`, do not have sufficient input validation for the validity of the `DATE_OR_DATETIME_OF_EVENT`. It currently uses `LocalDate.parse()` and `LocalTime.parse()` along with the pattern format, but these methods are not strict by default. For example, the user is currently able to input `30-02-2024, 24:00 - 24:00`. However, `30-02-2024` is not a valid Date and `24:00` is not a valid time. 
 
 This can lead to potential errors if the user has accidentally mistyped the date and/or time when inputting the command, leading to confusion further down the line.
 
@@ -949,6 +949,8 @@ To address this, we plan to make our input validation for the `DATE_OR_DATETIME_
 2. Ensure that the Time, if provided, ranges from `00:00` to `23:59`, inclusive
 
 Upon identification of such invalid `DATE_OR_DATETIME_OF_EVENT` field values, PatientSync should then output a custom error message, i.e.,`Invalid DATE_OR_DATETIME_OF_EVENT!`
+
+Note that `24:00` is accepted as it refers to the midnight corresponding to the instant at the end of the calendar day. This also results in a specific error evaluating whether the end time of the Event is before or equal to the start time of the Event as `24:00` evaluates to `00:00` when using `LocalTime.parse()`. Thus, an example Event with `DATE_OR_DATETIME_OF_EVENT` of `30-02-2024, 24:00 - 12:00` is accepted as valid. This error will also be resolved if `24:00` is not accepted in PatientSync.
 
 
 ### 4.4 Addition of an Upper and Lower Bound for Event Date or Datetime
